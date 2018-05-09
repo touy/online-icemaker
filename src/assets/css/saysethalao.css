@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Saysettha_OT';
+    font-weight: normal;
+    font-style: normal;
+    src: url('./fonts/Saysettha_OT.ttf');
+    
+}
+
+.langlao{
+	font-family: 'Saysettha_OT' !important;
+}

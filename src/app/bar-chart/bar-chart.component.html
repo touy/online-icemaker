@@ -1,0 +1,5 @@
+<h1 class="text-center display-6 langlao mt-5">ກລາຟ B ສົມທຽບ</h1>
+<div style="display: block">
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+</div>
+<button class="btn btn-sm btn-primary mt-3 mb-3" (click)="randomize()">Update</button>

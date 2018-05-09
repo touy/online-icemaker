@@ -1,0 +1,59 @@
+.row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.menu-image1 {
+    height: 120px;
+    width: 120px;
+    background-color: #cb1f2f;
+}
+
+#border-icon-content {
+    border: 10px solid;
+    border-color: #ececec;
+}
+
+.menu-image1:hover {
+    height: 130px;
+    width: 130px;
+    background-color: #ec0b21;
+    /* float: center; */
+    transition: 0.5s;
+}
+
+.Circle-home {
+    font-size: 46pt;
+    color: white;
+}
+
+.menu-image2 {
+    height: 120px;
+    width: 120px;
+    background-color: rgb(16, 16, 167);
+}
+
+.menu-image2:hover {
+    height: 130px;
+    width: 130px;
+    background-color: rgb(3, 3, 143);
+    transition: 0.5s;
+}
+
+.menu-image3 {
+    height: 120px;
+    width: 120px;
+    background-color: rgb(8, 184, 32);
+    float: center;
+}
+
+.menu-image3:hover {
+    height: 130px;
+    width: 130px;
+    background-color: rgb(25, 207, 50);
+    float: center;
+    transition: 0.5s;
+}
+#ice-color{
+    color:green;
+}

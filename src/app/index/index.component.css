@@ -1,0 +1,13 @@
+
+.langlao{
+  text-align: center !important;
+}
+tr,th,td{
+  text-align: center !important;
+}
+.width-stwork{
+  width:20%;
+}
+.card{
+  border-radius: 10px 10px 10px 10px !important;
+}

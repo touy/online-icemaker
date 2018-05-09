@@ -1,0 +1,38 @@
+.table tr, th, td {
+    text-align: center !important;
+}
+.bd-form{
+    border:2px dotted;
+    border-top:none !important;
+    border-left:none !important;
+    border-right:none !important;
+}
+.container{
+    border:1px solid rgb(219, 216, 216);
+}
+.table-bordered,.table-bordered,#remove-border2{
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.table-bordered,.table-bordered,#remove-border{
+    border:none !important;
+    border-color:white !important;
+}
+
+.display-6{
+    font-weight: bold;
+}
+.dispaly-7{
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.5;
+}
+.text-right{
+    text-align: right !important;
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.5;
+}
+#ice-color{
+    color:green;
+}
