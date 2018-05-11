@@ -4,6 +4,7 @@
 } */
 body{
   background: rgb(248, 242, 242) !important;
+  
 }
 .bg-main-color{
   background: #aff587 !important;
@@ -26,3 +27,16 @@ body{
     font-weight: 300;
     line-height: 1.2;
   }
+  
+
+.nav-link{
+    color:rgb(53, 51, 51) !important;
+}
+.nav-link:hover{
+    color:#aab1a7 !important;
+    transition: 0.5s;
+    font-size: 13pt;
+}
+a{
+  cursor: pointer;
+}

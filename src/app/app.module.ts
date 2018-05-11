@@ -23,6 +23,7 @@ import { MonthsComponent } from './months/months.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListProductComponent } from './list-product/list-product.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MainMenuComponent,
     MonthsComponent,
     ForgotPasswordComponent,
-    LoginComponent
+    LoginComponent,
+    ListProductComponent
   ],
   imports: [
     NgbModule.forRoot(),
