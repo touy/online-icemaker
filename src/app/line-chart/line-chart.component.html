@@ -1,11 +1,11 @@
-<h1 class="text-center display-5 langlao mt-5">ກລາຟ A ສະແດງການຜະລິດ</h1>
-<div class="row">
-    <div class="col-12">
+<div class="line-chart-background">
+    <h1 class="text-center display-5 langlao mt-5"><u>ກລາຟ A ສະແດງການຜະລິດ</u></h1>
+    <div class="line-chart-background">
         <div style="display: block;">
             <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
             </canvas>
         </div>
-    </div>
+    </div>  
 </div>
 
 

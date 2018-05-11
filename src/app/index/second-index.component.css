@@ -9,8 +9,6 @@
   src: url('../../assets/fonts/OpenSans/OpenSans-Regular.ttf'); 
 }
 
-
-
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 * {
@@ -84,16 +82,6 @@ iframe {
 }
 
 
-
-
-/*//////////////////////////////////////////////////////////////////
-[ Utiliti ]*/
-
-
-
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
 
@@ -116,6 +104,7 @@ iframe {
   justify-content: center;
   flex-wrap: wrap;
   padding: 33px 30px;
+  margin-top:30px;
 }
 
 .wrap-table100 {
@@ -264,15 +253,11 @@ tbody tr:hover {
   }
   table tbody tr td:nth-child(4):before {
     font-family: 'Saysettha_OT' !important;
-    content: "ເລີ່ມຕົ້ນເຮັດວຽກ";
+    content: "ຊື້ຜູ້ໃຊ້";
   }
   table tbody tr td:nth-child(5):before {
     font-family: 'Saysettha_OT' !important;
-    content: "ຢຸດເຮັດວຽກ";
-  }
-  table tbody tr td:nth-child(6):before {
-    font-family: 'Saysettha_OT' !important;
-    content: "ລວມເວລາ";
+    content: "waiting";
   }
 
   .column4,

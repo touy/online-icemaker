@@ -1,3 +1,16 @@
+.list-product-bg{
+    padding: 30px;
+    background: rgb(223, 221, 221) !important;
+}
+.card{
+    background: rgb(223, 221, 221) !important;
+    border:none !important;
+    padding:30px;
+}
+.table{
+    background: rgb(223, 221, 221) !important;
+    border:none !important;
+}
 tr,th,td{
     text-align: center !important;
 }
@@ -5,59 +18,17 @@ tr,th,td{
     background-color: white !important;
 }
 
-.scrolling-wrapper {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
+.col-3{
+    border:none !important;
+    background:rgba(235, 236, 236, 0.609) !important;
+}
+.bg-detail-product{
+    background:rgba(235, 236, 236, 0.609) !important;
+    padding:30px;
 }
 
-.scrolling-wrapper .card {
-    display: inline-block;
-}
 
-.scrolling-wrapper-flexbox {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-}
-
-.scrolling-wrapper-flexbox .card {
-    flex: 0 0 auto;
-    margin-right: 3px;
-}
-
-.card {
-    border-color: white;
-    background: white;
-    padding-top: 10px;
-    margin-bottom: 20px !important;
-}
-
-.scrolling-wrapper,
-.scrolling-wrapper-flexbox {
-    width: 100%;
-    -webkit-overflow-scrolling: touch;
-}
-
-.scrolling-wrapper::-webkit-scrollbar,
-.scrolling-wrapper-flexbox::-webkit-scrollbar {}
-
-.color-head-transfer {
-    font-size: 12pt;
-    color: red;
-    line-height: 10px;
-}
-
-.color-content-transfer {
-    font-size: 12pt;
-    color: black;
-    line-height: 10px;
-}
-.card-header:first-child{
-    display: none !important;
-}
-.card-header{
-    padding: 0rem !important;
-    margin: 0 !important;
-    border-bottom: 0 !important;
+.form-control{
+    border: none !important;
+    background:rgba(235, 236, 236, 0.609) !important;
 }

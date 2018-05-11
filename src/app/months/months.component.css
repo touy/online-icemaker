@@ -1,0 +1,93 @@
+/* start class months */
+
+
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+.pagination>li {
+    overflow: hidden;
+    position: relative;
+    margin-top: 25px;
+    width: 20%;
+    float: left;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination>li p {
+    color: #000;
+    line-height: 1;
+}
+
+.pagination>li>a {
+    line-height: 50px;
+    text-decoration: none;
+    color: rgb(80, 76, 76);
+    display: block;
+    text-align: center;
+    position: relative;
+}
+
+/*positon the circle*/
+
+.pagination>li>a:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 50px;
+    height: 50px;
+    left: 50%;
+    margin-left: -25px;
+    border-radius: 100%;
+    border: 1.2px solid rgb(124, 124, 124) !important;
+    transition: all .4s;
+    background: rgba(245, 242, 242, 0.863);
+}
+
+
+/*positioning the line*/
+
+.pagination>li:not(:last-of-type):after,
+.pagination>li:not(:first-of-type):before {
+    content: '';
+    position: absolute;
+    background: rgb(26, 25, 25);
+    top: 25px;
+    height: 0.5px;
+}
+
+.pagination>li:first-of-type:after {
+    left: 50%;
+    right: 0;
+    margin-left: 25px;
+}
+
+.pagination>li:not(:first-of-type):before {
+    left: 0;
+    right: 50%;
+    margin-right: 25px;
+}
+
+.pagination>li:not(:first-of-type):after {
+    right: 0;
+    left: 50%;
+    margin-left: 25px;
+}
+
+
+/*hover stuff*/
+
+.pagination>li:hover a {
+    color: #fff;
+}
+
+.pagination>li:hover a:before {
+    background: linear-gradient(to right, rgb(22, 243, 2), rgb(11, 141, 39)) !important;
+}
+
+
+/* end class months */

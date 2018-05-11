@@ -19,6 +19,10 @@ import { PayBillComponent } from './pay-bill/pay-bill.component';
 import { IndexComponent } from './index/index.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { MonthsComponent } from './months/months.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,13 +39,18 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     PayBillComponent,
     IndexComponent,
     TopMenuComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    MonthsComponent,
+    ForgotPasswordComponent,
+    LoginComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

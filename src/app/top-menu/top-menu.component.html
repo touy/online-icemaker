@@ -1,31 +1,63 @@
-<div class="container text-center">
-    <h3 class="text-center display-7 mt-3">Laos-Ice<i class="fas fa-leaf" id="ice-color"></i></h3>
-    <h5 class="display-7 text-center langlao mt-3">ໜ້າສະແດງການເຄື່ອນໄຫວ</h5>
-  <div class="row">
-      <div class="col-4 mt-5 effect-circle1">
-          <a [routerLink]="['/index']">
-              <div id="border-icon-content" class="menu-image1 rounded-circle m-auto">
-                  <span class="text-center align-self-center Circle-home"><i class="fas fa-home"></i></span>
-              </div>
-              <p class="text-center langlao">ໜ້າແລກ</p>
-          </a>
-      </div>
-      <div class="col-4 mt-5 effect-circle1">
-          <a href="">
-              <div id="border-icon-content" class="menu-image2 rounded-circle m-auto">
-                  <span class="text-center align-self-center Circle-home"><i class="fas fa-mobile" ></i></span>
-              </div>
-              <p class="text-center langlao">ການເຄື່ອນໄຫວ</p>
-          </a>
-      </div>
-      <div class="col-4 mt-5">
-          <a href="">
-              <div id="border-icon-content" class="menu-image3 rounded-circle m-auto">
-                  <span class="text-center align-self-center Circle-home"><i class="fas fa-power-off"></i></span>
-              </div>
-              <p class="text-center langlao">ອອກຈາກລະບົບ</p>
-          </a>
-      </div>
-  </div>
+<div class="bg-top-menu text-center d-none d-sm-block">
+        <h3 class="text-center display-7 mt-3">Laos-Ice<i class="fas fa-leaf" id="ice-color"></i></h3>
+        <h5 class="display-7 text-center langlao mt-3"><u>ໜ້າສະແດງການເຄື່ອນໄຫວ</u></h5>
+    <div class="row">
+        <div class="col-4 mt-5 effect-circle1">
+            <a [routerLink]="['/index']">
+                <div id="border-icon-content" class="menu-image1 rounded-circle m-auto">
+                    <span class="text-center align-self-center Circle-home"><i class="fas fa-home"></i></span>
+                </div>
+                <p class="text-center langlao">ໜ້າແລກ</p>
+            </a>
+        </div>
+        <div class="col-4 mt-5 effect-circle1">
+            <a href="">
+                <div id="border-icon-content" class="menu-image2 rounded-circle m-auto">
+                    <span class="text-center align-self-center Circle-home"><i class="fas fa-mobile" ></i></span>
+                </div>
+                <p class="text-center langlao">ການເຄື່ອນໄຫວ</p>
+            </a>
+        </div>
+        <div class="col-4 mt-5">
+            <a [routerLink]="['/main-menu']">
+                <div id="border-icon-content" class="menu-image3 rounded-circle m-auto">
+                    <span class="text-center align-self-center Circle-home"><i class="fas fa-power-off"></i></span>
+                </div>
+                <p class="text-center langlao">ອອກຈາກລະບົບ</p>
+            </a>
+        </div>
+    </div>    
+</div>
 
+<!-- display for mobile -->
+
+<div class="bg-top-menu text-center d-block d-sm-none">
+        <h3 class="text-center display-7 mt-3">Laos-Ice<i class="fas fa-leaf" id="ice-color"></i></h3>
+        <h5 class="display-7 text-center langlao mt-3">ໜ້າສະແດງການເຄື່ອນໄຫວ</h5>
+    <div class="row">
+        <div class="col-4 mt-5 effect-circle1-mb">
+            <a [routerLink]="['/index']">
+                <div id="border-icon-content-mb" class="menu-image1-mb rounded-circle m-auto">
+                    <span class="text-center align-self-center Circle-home-mb"><i class="fas fa-home mg-mb"></i></span>
+                </div>
+                <p class="font-mb text-center langlao">ໜ້າແລກ</p>
+            </a>
+        </div>
+        <div class="col-4 mt-5 effect-circle1-mb">
+            <a href="">
+                <div id="border-icon-content-mb" class="menu-image2-mb rounded-circle m-auto">
+                    <span class="text-center align-self-center Circle-home-mb"><i class="fas fa-mobile mg-mb" ></i></span>
+                </div>
+                <p class="font-mb text-center langlao">ການເຄື່ອນໄຫວ</p>
+            </a>
+        </div>
+        <div class="col-4 mt-5">
+            <a [routerLink]="['/main-menu']">
+                <div id="border-icon-content-mb" class="menu-image3-mb rounded-circle m-auto">
+                    <span class="text-center align-self-center Circle-home-mb"><i class="fas fa-power-off mg-mb"></i></span>
+                </div>
+                <p class="font-mb text-center langlao">ອອກຈາກລະບົບ</p>
+            </a>
+        </div>
+    </div>
 </div>

@@ -1,3 +1,8 @@
-#background {
-    background: rgba(255, 0, 0, 0.2)
+
+.line-chart-background{
+    background: rgb(223, 221, 221) !important;
+    padding:33px;
+}
+#test{
+    background: rgba(1, 48, 255, 0.63);
 }

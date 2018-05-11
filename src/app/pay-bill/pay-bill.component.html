@@ -1,15 +1,15 @@
-<div class="container col-xl-7 col-lg-8 col-md-10 col-12">
-    <div class="row">
+<div class="container">
+    <div class="">
         <div class="col-12">
             <h3 class="text-center display-7 mt-3">Laos-Ice<i class="fas fa-leaf" id="ice-color"></i></h3>
-            <h5 class="display-7 text-center langlao mt-3">ບິນທີ່ຈະຊຳລະ</h5>
+            <h5 class="display-7 text-center langlao mt-3"><u>ບິນທີ່ຈະຊຳລະ</u></h5>
         </div>
     </div>
-    <div class="row mt-3">
-        <div class="col-12">
+    <div class="mt-3">
+        <div class="d-flex justify-content-center">
             <div class="col-12">
                 <form method="POST " action="">
-                    <table class="table table-bordered">
+                    <table class="table w-100 table-bordered table-responsive">
                         <thead>
                             <tr>
                                 <th class="langlao ct" >ລະຫັດ</th>
@@ -21,35 +21,35 @@
                         </thead>
                         <tbody>
                             <tr>                                
-                                <th>010518</th>
-                                <td>10</td>
-                                <td>10</td>
-                                <td>2000</td>
-                                <td colspan="4">...........</td>                               
+                                <th><input type="text" class="langlao" id="edit-text-bill" placeholder="000000"></th>
+                                <td><input type="text" class="langlao" id="remove-bd-input" placeholder="0h"></td>
+                                <td><input type="text" class="langlao" id="remove-bd-input" placeholder="000000"></td>
+                                <td><input type="number" class="langlao" id="remove-bd-input" placeholder="000000"></td>
+                                <td colspan="4"><input type="text" class="langlao" id="remove-bd-input" placeholder="1.000.000"></td>                               
                             </tr>
                             <tr>                                                                                           
-                                <th>010518</th>                                
-                                <td>12</td>
-                                <td>2000</td>
-                                <td>2000</td>
-                                <td colspan="4">...........</td>                               
+                                <th><input type="text" class="langlao" id="edit-text-bill" placeholder="000000"></th>
+                                <td><input type="text" class="langlao" id="remove-bd-input" placeholder="0h"></td>
+                                <td><input type="text" class="langlao" id="remove-bd-input" placeholder="000000"></td>
+                                <td><input type="number" class="langlao" id="remove-bd-input" placeholder="000000"></td>
+                                <td colspan="4"><input type="text" class="langlao" id="remove-bd-input" placeholder="1.000.000"></td>                         
                             </tr>
                             <tr>                                                                                           
-                                <th>010518</th>                                
-                                <td>18</td>
-                                <td>2000</td>
-                                <td>2000</td>
-                                <td colspan="4">...........</td>                               
+                                <th><input type="text" class="langlao" id="edit-text-bill" placeholder="000000"></th>
+                                <td><input type="text" class="langlao" id="remove-bd-input" placeholder="0h"></td>
+                                <td><input type="text" class="langlao" id="remove-bd-input" placeholder="000000"></td>
+                                <td><input type="number" class="langlao" id="remove-bd-input" placeholder="000000"></td>
+                                <td colspan="4"><input type="text" class="langlao" id="remove-bd-input" placeholder="1.000.000"></td>                             
                             </tr>
                             <tr>                                                                                           
-                                <th>010518</th>                                
-                                <td>20</td>
-                                <td>2000</td>
-                                <td>2000</td>
-                                <td colspan="4">...........</td>                               
+                                <th><input type="text" class="langlao" id="edit-text-bill" placeholder="000000"></th>
+                                <td><input type="text" class="langlao" id="remove-bd-input" placeholder="0h"></td>
+                                <td><input type="text" class="langlao" id="remove-bd-input" placeholder="000000"></td>
+                                <td><input type="number" class="langlao" id="remove-bd-input" placeholder="000000"></td>
+                                <td colspan="4"><input type="text" class="langlao" id="remove-bd-input" placeholder="1.000.000"></td>                        
                             </tr>
-                            <tr>
-                                <td class="langlao">ເພີ່ມ</td>
+                            <tr class="height-price">
+                                <td class="langlao add-column"><a class="" id="ice-color"><i class="fas fa-plus-circle mr-1"></i>ເພີ່ມ</a></td>
                                 <th colspan="2" id="remove-border2"></th>                                 
                                 <td class="langlao" id="free-space">ລວມ</td>
                                 <td colspan="1">000.000 kip</td>                                
@@ -62,7 +62,7 @@
                         </tbody>
                     </table>
                 </form>
-                <button class="col-6 btn d-block mx-auto btn-primary langlao mt-3 mb-3" [routerLink]="['/bill']">ຮັບເງິນ + ພິມ</button>
+                <button class="col-6 btn d-block mx-auto btn-primary langlao mt-4 mb-3" [routerLink]="['/bill']">ຮັບເງິນ + ພິມ</button>
             </div>
         </div> 
     </div>

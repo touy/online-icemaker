@@ -1,134 +1,110 @@
-<button class="btn btn-sm mx-auto d-block btn-outline-primary mb-3 langlao" (click)="acc.toggle('toggle-1')">ສະແດງລາຍການສິນຄ້າ</button>
+<div class="list-product-bg">
+    <h3 class="display-6 text-center langlao"><u>ລາຍການສິນຄ້າ</u></h3>
+    <div class="mt-3">
+        <div class="col-12">
+            <div class="col-12">
+                    <form method="POST " action="">
+                        <table class="table w-100 table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th class="langlao ct">ໃບບິນ</th>
+                                    <th class="langlao ct" >ລະຫັດ</th>
+                                    <th class="langlao ct" >ຊົ່ວໂມງເຮັດວຽກ</th>
+                                    <th class="langlao ct" >ປະລິມານ</th>
+                                    <th class="langlao ct" >ລາຄາ</th>
+                                    <th class="langlao ct" >ຈຳນວນ</th>
+                                    <th class="langlao ct" >ຊຳລະແລ້ວ</th>
+                                    <th class="langlao ct">ວັນທີຊຳລະ</th>                                                                                                                            
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th class="langlao ct">ວັນທີ 1</th>
+                                    <th>010518</th>
+                                    <td>10</td>
+                                    <td>80</td>
+                                    <td>250</td>
+                                    <td>2000</td>
+                                    <td><input type="checkbox"></td>
+                                    <td>12.12.2022</td>
+                                </tr>
+                                <tr>
+                                    <th class="langlao ct">ວັນທີ 2</th>                                                                
+                                    <th>010518</th>
+                                    <td>10</td>
+                                    <td>80</td>
+                                    <td>250</td>
+                                    <td>2000</td>
+                                    <td><input type="checkbox"></td>
+                                    <td>12.12.2022</td>
+                                </tr>
+                                <tr>
+                                    <th class="langlao ct">ວັນທີ 3</th> 
+                                    <th>010518</th>
+                                    <td>10</td>
+                                    <td>80</td>
+                                    <td>250</td>
+                                    <td>2000</td>
+                                    <td><input type="checkbox"></td>
+                                    <td>12.12.2022</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+            </div>            
+        </div>
+    </div>
+</div>
+<button class="col-6 btn d-block mx-auto btn-primary langlao mt-3 mb-3" [routerLink]="['/pay-bill']">ຊຳລະ</button>  
+
+<hr>
+
+<button class="btn btn-sm mx-auto d-block btn-outline-primary mb-3 langlao" (click)="acc.toggle('toggle-1')">ສະແດງລາຍລະອຽດສິນຄ້າ</button>
 <ngb-accordion #acc="ngbAccordion">
     <ngb-panel id="toggle-1" title="Show information">
         <ng-template ngbPanelContent>
-                <h3 class="display-6 text-center langlao">ລາຍການສິນຄ້າ</h3>
-                <div class="d-flex justify-content-center mt-2">
-                        <div class="col-12 scrolling-wrapper mt-3">
-                            <div class="card col-12">
-                                <div class="col-12">
-                                    <form method="POST " action="">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th class="langlao ct">ໃບບິນ</th>
-                                                    <th class="langlao ct" >ລະຫັດ</th>
-                                                    <th class="langlao ct" >ຊົ່ວໂມງເຮັດວຽກ</th>
-                                                    <th class="langlao ct" >ປະລິມານ</th>
-                                                    <th class="langlao ct" >ລາຄາ</th>
-                                                    <th class="langlao ct" >ຈຳນວນ</th>
-                                                    <th class="langlao ct" >ຊຳລະແລ້ວ</th>
-                                                    <th class="langlao ct" >ວັນທີຊຳລະ</th>                                                                
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th class="langlao ct">ວັນທີ 1</th>
-                                                    <th>010518</th>
-                                                    <td>10</td>
-                                                    <td>80</td>
-                                                    <td>250</td>
-                                                    <td>2000</td>
-                                                    <td><input type="checkbox"></td>
-                                                    <td>12.12.2022</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="langlao ct">ວັນທີ 2</th>                                                                
-                                                    <th>010518</th>
-                                                    <td>10</td>
-                                                    <td>80</td>
-                                                    <td>250</td>
-                                                    <td>2000</td>
-                                                    <td><input type="checkbox"></td>
-                                                    <td>12.12.2022</td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="langlao ct">ວັນທີ 3</th> 
-                                                    <th>010518</th>
-                                                    <td>10</td>
-                                                    <td>80</td>
-                                                    <td>250</td>
-                                                    <td>2000</td>
-                                                    <td><input type="checkbox"></td>
-                                                    <td>12.12.2022</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="card col-12">
-                                    <div class="col-12">
-                                        <form method="POST " action="">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="langlao ct">ໃບບິນ</th>
-                                                        <th class="langlao ct" >ລະຫັດ</th>
-                                                        <th class="langlao ct" >ຊົ່ວໂມງເຮັດວຽກ</th>
-                                                        <th class="langlao ct" >ປະລິມານ</th>
-                                                        <th class="langlao ct" >ລາຄາ</th>
-                                                        <th class="langlao ct" >ຈຳນວນ</th>
-                                                        <th class="langlao ct" >ຊຳລະແລ້ວ</th>
-                                                        <th class="langlao ct" >ວັນທີຊຳລະ</th>                                                                
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th class="langlao ct">ວັນທີ 1</th>
-                                                        <th>010518</th>
-                                                        <td>10</td>
-                                                        <td>80</td>
-                                                        <td>250</td>
-                                                        <td>2000</td>
-                                                        <td><input type="checkbox"></td>
-                                                        <td>12.12.2022</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="langlao ct">ວັນທີ 2</th>                                                                
-                                                        <th>010518</th>
-                                                        <td>10</td>
-                                                        <td>80</td>
-                                                        <td>250</td>
-                                                        <td>2000</td>
-                                                        <td><input type="checkbox"></td>
-                                                        <td>12.12.2022</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="langlao ct">ວັນທີ 3</th> 
-                                                        <th>010518</th>
-                                                        <td>10</td>
-                                                        <td>80</td>
-                                                        <td>250</td>
-                                                        <td>2000</td>
-                                                        <td><input type="checkbox"></td>
-                                                        <td>12.12.2022</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </form>
-                                    </div>
-                            </div>
-                            
-                        </div>
+            <div class="row bg-detail-product">
+                <h2 class="col-12 display-6 langlao text-center"><u>ລາຍລະອຽດສິນຄ້າ</u></h2>
+                <div class="col-xl-6 xol-lg-6 col-12">   
+                    <div class="input-group mt-3">
+                        <label class="col-5" for="">IMEI:</label>
+                        <input class="col-7 form-control text-center" type="text" placeholder="025468181259" disabled>
+                    </div>
+                    
+                    <div class="input-group mt-3">
+                        <label class="col-5 langlao" for="">ຊື່ຕູ້ນ້ຳກ້ອນ:</label>
+                        <input class="col-7 form-control text-center langlao" type="text" placeholder="ຕູ້ນ້ຳກ້ອນ A" disabled>
+                    </div>
+                    
+                    <div class="input-group mt-3">
+                        <label class="col-5 langlao" for="">ຊົ່ວໂມງເຮັດວຽກ:</label>
+                        <input class="col-7 form-control text-center langlao" type="text" placeholder="14h" disabled>
+                    </div>
+                    
+                    <div class="input-group mt-3">
+                        <label class="col-5 langlao" for="">ຈຳນວນເວລາທັງໝົດ:</label>
+                        <input class="col-7 form-control text-center langlao" type="text" placeholder="218h" disabled>
+                    </div>
+                    
+                    <div class="input-group mt-3">
+                        <label class="col-5 langlao" for="">ມື້ຕິດຕັ້ງ:</label>
+                        <input class="col-7 form-control text-center langlao" type="text" placeholder="01.01.2011" disabled>
+                    </div>
+                    
+                    <div class="input-group mt-3">
+                        <label class="col-5 langlao" for="">ຜູ້ໃຊ້:</label>
+                        <input class="col-7 form-control text-center langlao" type="text" placeholder="Mr.ABC" disabled>
+                    </div>
                 </div>
+
+                <div class="col-xl-6 xol-lg-6 col-12">
+                    <img class="img-fluid responsive" src="../../assets/photo/machine1.png" alt="Responsive image">
+                </div>
+            </div>
         </ng-template>
     </ngb-panel>        
 </ngb-accordion>    
 
-<button class="col-6 btn d-block mx-auto btn-primary langlao mt-3 mb-3" [routerLink]="['/pay-bill']">ຊຳລະ</button>  
-      <hr/>
-    
 
 
-<!-- <h2 class="display-6 langlao mt-5 text-center">ສ້າງບິນ ແລະ ຊຳລະ</h2>
-<div class="row container d-flex justify-content-center mt-5">
-    <ul>
-        <li>IMEI:</li>
-        <li class="langlao">ຊື່:</li>
-        <li class="langlao">ຊົ່ວໂມງເຮັດວຽກ:</li>
-        <li class="langlao">ຈຳນວນເວລາທັງໝົດ:</li>
-        <li class="langlao">ມື້ຕິດຕັ້ງ:</li>
-        <li class="langlao">ຜູ້ໃຊ້:</li>
-    </ul>
-</div> -->
+

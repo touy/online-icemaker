@@ -40,7 +40,7 @@ export class LineChartComponent {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
     { // blue
-      backgroundColor: 'rgba(4, 83, 252, 0.2)',
+      backgroundColor: 'rgba(1, 48, 255, 0.63)',
       borderColor: 'rgba(77,83,96,1)',
       pointBackgroundColor: 'rgba(77,83,96,1)',
       pointBorderColor: '#fff',

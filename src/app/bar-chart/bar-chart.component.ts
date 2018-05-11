@@ -16,8 +16,8 @@ export class BarChartComponent {
   public barChartLegend:boolean = true;
  
   public barChartData:any[] = [
-    {data: [100, 59, 80, 81, 56, 55, 40], label: 'today'},
-    {data: [28, -48, 40, 200, 86, 27, 90], label: 'compare to yesterday'},
+    {data: [100, 59, 80, 81, 56, 55, 40], label: 'Today'},
+    {data: [28, -48, 40, 200, 86, 27, 90], label: 'Compare to yesterday'},
   ];
  
   // events

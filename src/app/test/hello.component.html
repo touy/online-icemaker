@@ -1,0 +1,11 @@
+<button class="btn btn-sm mx-auto d-block btn-outline-primary mb-3 langlao" (click)="acc.toggle('toggle-1')">ສະແດງລາຍການສິນຄ້າ</button>
+<ngb-accordion #acc="ngbAccordion">
+    <ngb-panel id="toggle-1" title="Show information">
+        <ng-template ngbPanelContent>
+        </ng-template>
+    </ngb-panel>        
+</ngb-accordion>    
+
+<button class="col-6 btn d-block mx-auto btn-primary langlao mt-3 mb-3" [routerLink]="['/pay-bill']">ຊຳລະ</button>  
+      <hr/>
+    

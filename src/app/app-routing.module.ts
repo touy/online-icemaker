@@ -13,6 +13,8 @@ import { PayBillComponent } from './pay-bill/pay-bill.component';
 import { IndexComponent } from './index/index.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: MainMenuComponent },
@@ -26,7 +28,9 @@ const routes: Routes = [
   { path: 'pay-bill', component: PayBillComponent},
   { path: 'index', component: IndexComponent},
   { path: 'top-menu', component: TopMenuComponent},
-  { path: 'main-menu', component: MainMenuComponent}
+  { path: 'main-menu', component: MainMenuComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent},
+  { path: 'login', component: LoginComponent}
 ]
 
 @NgModule({

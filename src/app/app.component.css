@@ -1,0 +1,6 @@
+body{
+    background-color: rgb(107, 37, 37) !important;
+}
+router-outlet{
+    background: red !important;
+}

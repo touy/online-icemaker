@@ -6,7 +6,7 @@
 .menu-image1 {
     height: 120px;
     width: 120px;
-    background-color: #cb1f2f;
+    background-color: #55cb1f;
 }
 
 #border-icon-content {
@@ -17,7 +17,7 @@
 .menu-image1:hover {
     height: 130px;
     width: 130px;
-    background-color: #ec0b21;
+    background-color: #4ab916;
     /* float: center; */
     transition: 0.5s;
 }
@@ -43,17 +43,96 @@
 .menu-image3 {
     height: 120px;
     width: 120px;
-    background-color: rgb(8, 184, 32);
+    background-color: rgb(231, 13, 13);
     float: center;
 }
 
 .menu-image3:hover {
     height: 130px;
     width: 130px;
-    background-color: rgb(25, 207, 50);
+    background-color: rgb(202, 12, 12);
     float: center;
     transition: 0.5s;
 }
 #ice-color{
     color:green;
+}
+
+.bg-top-menu{
+    background: rgb(223, 221, 221) !important;
+    padding:33px;
+}
+
+
+/* 88888888888888888888888888888888888888888888888888888888 */
+
+.mg-mb{
+    margin-top:15px;
+}
+.font-mb{
+    font-size: 10pt !important;
+}
+.row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.menu-image1-mb {
+    height: 60px;
+    width: 60px;
+    background-color: #55cb1f;
+}
+
+#border-icon-content-mb {
+    border: 5px solid;
+    border-color: #ececec;
+}
+
+.menu-image1-mb:hover {
+    height: 70px;
+    width: 70px;
+    background-color: #4ab916;
+    /* float: center; */
+    transition: 0.5s;
+}
+
+.Circle-home-mb {
+    font-size: 18pt;
+    color: white;
+}
+
+.menu-image2-mb {
+    height: 60px;
+    width: 60px;
+    background-color: rgb(16, 16, 167);
+}
+
+.menu-image2-mb:hover {
+    height: 70px;
+    width: 70px;
+    background-color: rgb(3, 3, 143);
+    transition: 0.5s;
+}
+
+.menu-image3-mb {
+    height: 60px;
+    width: 60px;
+    background-color: rgb(231, 13, 13);
+    float: center;
+}
+
+.menu-image3-mb:hover {
+    height: 70px;
+    width: 70px;
+    background-color: rgb(202, 12, 12);
+    float: center;
+    transition: 0.5s;
+}
+#ice-color-mb{
+    color:green;
+}
+
+.bg-top-menu-mb{
+    background: rgb(223, 221, 221) !important;
+    padding:15px;
 }

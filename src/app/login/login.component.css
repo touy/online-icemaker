@@ -1,0 +1,15 @@
+#color-icon{
+    color:green;
+}
+.card{
+    padding:40px;
+}
+.form-control{
+    background: rgb(235, 231, 231) !important;
+}
+
+.border-color{
+    border:1px solid yellowgreen !important;
+    padding:40px;
+    background: rgb(223, 221, 221)  !important;
+}
