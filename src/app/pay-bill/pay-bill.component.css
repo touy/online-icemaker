@@ -44,13 +44,19 @@
     font-size: 12pt;
     cursor: pointer;
 }
-#ice-color:hover{
-    color:rgb(128, 62, 0);
-    font-size: 20pt;
-    font-size: 13pt;
-    transition: 0.5s;
-    cursor: pointer;    
+
+#add-color{
+    color:green;
+    font-size: 12pt;
+    cursor: pointer;
 }
+
+#add-color:hover{
+    color:rgb(173, 129, 7);
+    font-size: 14pt;
+    cursor: pointer;
+}
+
 #edit-text-bill{
     font-weight: bold;
     text-align: center !important;

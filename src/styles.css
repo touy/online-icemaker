@@ -40,3 +40,14 @@ body{
 a{
   cursor: pointer;
 }
+.main-font-color{
+  color:#424242 !important;
+}
+
+.font-link{
+  color:#90a4ae !important;
+}
+.font-link:hover{
+  color:#455a64 !important;
+  transition: 0.5s;
+}

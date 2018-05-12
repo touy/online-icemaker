@@ -1,6 +1,3 @@
-body {
-    background-color: linear-gradient(to right, rgb(165, 4, 138), rgb(238, 7, 238)) !important;
-}
 
 .bg-footer {
     background:rgba(9, 248, 21, 0.198) !important;
@@ -12,12 +9,39 @@ body {
     line-height: 30px;
 }
 
+.font-link{
+    line-height: 40px !important;
+}
+
 #social {
+    line-height: 40px;
     margin-left: 30px;
-    font-size: 24pt;
+    font-size: 14pt;
 }
 
 #social:hover {
-    font-size: 26pt;
+    font-size: 16pt;
     transition: 0.5s;
+}
+.img-footer{
+    width:200px;
+    height: 200px;
+}
+.border-size{
+    height: 15px;
+    background: #aff587;
+    border:none !important;
+    margin-bottom: 30px;
+}
+#social{
+    color:#90a4ae !important;
+}
+
+#social:hover{
+    color:#455a64 !important;
+    transition: 0.5s;
+}
+
+.text-center2{
+    text-align: center !important;
 }
