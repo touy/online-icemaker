@@ -45,3 +45,15 @@ tr,th,td{
   background-color: #0069d9;
   border-color: #0062cc;
 }
+
+.btn-success2 {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success2:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}

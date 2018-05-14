@@ -1,6 +1,6 @@
 .list-product-bg{
-    padding: 30px;
-    background: rgb(223, 221, 221) !important;
+    /* padding: 30px; */
+    /* background: rgb(223, 221, 221) !important; */
 }
 .card{
     background: rgb(223, 221, 221) !important;
@@ -8,11 +8,12 @@
     padding:30px;
 }
 .table{
-    background: rgb(223, 221, 221) !important;
+    /* background: rgb(223, 221, 221) !important; */
     border:none !important;
 }
 tr,th,td{
     text-align: center !important;
+    width:10%;
 }
 .form-control {
     background-color: white !important;
