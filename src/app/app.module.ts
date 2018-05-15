@@ -24,6 +24,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListProductComponent } from './list-product/list-product.component';
+import { DeviceListComponent } from './device-list/device-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ListProductComponent } from './list-product/list-product.component';
     MonthsComponent,
     ForgotPasswordComponent,
     LoginComponent,
-    ListProductComponent
+    ListProductComponent,
+    DeviceListComponent
   ],
   imports: [
     NgbModule.forRoot(),

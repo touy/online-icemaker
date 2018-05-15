@@ -2,9 +2,9 @@
 	<div class="container-table100">
 		<div class="wrap-table100">
 			<div class="table100 card">
-				<h3 class="text-center display-7 mt-2">Laos-Ice<i class="fas fa-leaf" id="ice-color"></i></h3>
-				<h5 class="display-7 text-center langlao mt-3 mb-3"><u>ລາຍຊື່ຕູ້ນ້ຳກ້ອນ Ice-App</u></h5>
-				<table>
+				<h3 class="text-center display-7 mt-2 mb-4">Laos-Ice<i class="fas fa-leaf" id="ice-color"></i></h3>
+				<h5 class="display-7 text-center langlao"><u>ລາຍຊື່ຕູ້ນ້ຳກ້ອນ Ice-App</u></h5>
+				<table class="mt-4">
 					<thead>
 						<tr class="table100-head">
 							<th class="langlao">ຊື່ຕູ້ນ້ຳກ້ອນ</th>
@@ -64,7 +64,14 @@
 	</div>
 </div>
 
-<div class="get-detail-and-add">
-<button class="col-3 btn2 btn-success2 d-block mx-auto" (click)="getDevices()">get list</button>
-<button class="col-3 btn2 btn-primary2 d-block mx-auto text-center mt-3 langlao">ເພີ່ມຜູ້ໃຊ້</button>
+<div class="limiter container">
+		<button class="btn-form-users btn-primary-form-users d-block mx-auto langlao" (click)="acc.toggle('toggle-1')">ເພີ່ມຂໍ້ມູນເຄື່ອງ</button>
+<ngb-accordion #acc="ngbAccordion">
+  <ngb-panel id="toggle-1" title="Add-more-Device">
+      <ng-template ngbPanelContent>
+		  <app-test></app-test>
+      </ng-template>
+  </ngb-panel>
+</ngb-accordion> 
 </div>
+

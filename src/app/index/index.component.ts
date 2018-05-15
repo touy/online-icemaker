@@ -9,7 +9,7 @@ import { WebsocketService } from '../websocket.service';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css','./second-index.component.css','./util.component.css'],
+  styleUrls: ['./index.component.css','./second-index.component.css','./util.component.css','../test/test.component.css'],
   providers: [WebsocketDataServiceService, ChatService, WebsocketService]
 })
 

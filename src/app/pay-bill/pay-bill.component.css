@@ -49,6 +49,7 @@
     color:green;
     font-size: 12pt;
     cursor: pointer;
+    transition: 0.5s;
 }
 
 #add-color:hover{

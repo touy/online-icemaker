@@ -16,6 +16,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { ListProductComponent } from './list-product/list-product.component';
+import { DeviceListComponent } from './device-list/device-list.component';
 
 const routes: Routes = [
   { path: '', component: MainMenuComponent },
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'main-menu', component: MainMenuComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'list-product', component:ListProductComponent}
+  { path: 'list-product', component:ListProductComponent},
+  { path: 'device-list', component:DeviceListComponent}
 ]
 
 @NgModule({

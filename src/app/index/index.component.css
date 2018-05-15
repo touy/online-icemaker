@@ -1,7 +1,4 @@
 
-.langlao{
-  text-align: center !important;
-}
 tr,th,td{
   text-align: center !important;
 }
@@ -10,7 +7,7 @@ tr,th,td{
 }
 .card{
   border-radius: 10px 10px 10px 10px !important;
-  padding:30px;
+  padding:33px;
 }
 #ice-color{
   color:green;
@@ -34,6 +31,22 @@ tr,th,td{
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.padding-top-form-users{
+  width: 100%;
+  /* min-height: 100vh; */
+  background: #f5f5f5;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0px 0px;
+  margin-top:0px;
+}
 .btn-primary2 {
   color: #fff;
   background-color: #007bff;
