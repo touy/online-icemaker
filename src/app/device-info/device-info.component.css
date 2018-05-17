@@ -21,8 +21,8 @@ tr,th,td{
     line-height: 1.5;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-#phone-number{
-    width: 400px !important;
+.phone-number{
+    width: 20%;
 }
 
 .btn-form-users{
@@ -112,13 +112,4 @@ tr,th,td{
       .mg-name{
           margin:0 !important;
           padding:0 !important;
-      }
-
-      .bg-list{
-          /* background: red; */
-          cursor: pointer;
-      }
-      .bg-list:hover{
-          background: #aff587 !important;
-          color:red;
       }

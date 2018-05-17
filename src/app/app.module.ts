@@ -25,6 +25,8 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListProductComponent } from './list-product/list-product.component';
 import { DeviceListComponent } from './device-list/device-list.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { DeviceInfoComponent } from './device-info/device-info.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { DeviceListComponent } from './device-list/device-list.component';
     ForgotPasswordComponent,
     LoginComponent,
     ListProductComponent,
-    DeviceListComponent
+    DeviceListComponent,
+    UserListComponent,
+    DeviceInfoComponent
   ],
   imports: [
     NgbModule.forRoot(),

@@ -1,0 +1,70 @@
+<h1 class="text-center mt-5">Users-list</h1>
+<div class="container mt-5 card">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <div class="add-new-devices">
+        <ng-template #content let-c="close" let-d="dismiss" id="">
+          <div class="modal-header">
+            <h4 class="modal-title langlao">ເພີ່ມ Users</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="">
+              <div class="row pb-2">                        
+                <div class="col-12">
+                  <img src="../../assets/photo/default-user.png" class="img-fluid rounded-circle mx-auto d-block">                            
+                </div>
+              </div>
+              <div class="d-block justify-content-center">
+                <label class="col-md-3 col-xs-3 btn-form-users btn-primary-form-users d-block mx-auto mt-3"> Select photo
+                  <input type="file"  placeholder="file"  hidden required >
+                </label>
+              </div>
+              <section id="form-add-users">
+                <div class="row col-md-10 offset-md-1 font-color-form-users">
+                  <div class="group-control col-md-6 col-12 mt-4">
+                    <label class="langlao mg-name" for="">ຊື່ຕູ້ນ້ຳກ້ອນ *</label>
+                    <input class="form-control" type="text">
+                  </div>
+                  <div class="group-control col-md-6 col-12 mt-4">
+                    <label class="langlao mg-name" for="">ເລກ IMEI *</label>
+                    <input class="form-control" type="text">
+                  </div>
+                  <div class="group-control col-md-6 col-12 mt-4">
+                    <label class="langlao mg-name" for="">ຊື່ຜູ້ໃຊ້ *</label>
+                    <input class="form-control" type="text">
+                  </div>
+                  <div class="group-control col-md-6 col-12 mt-4">
+                    <label class="langlao mg-name" for="">ເບີໂທລະສັບ *</label>
+                    <input class="form-control" type="text">
+                  </div>
+                  <div class="group-control col-12 mt-4">
+                    <label class="langlao mg-name" for="">ໝາຍເຫດ *</label>
+                    <input class="form-control" type="text">
+                  </div>
+                  <div class="group-control col-12 mt-4 d-flex justify-content-center">
+                    <button class="col-md-4 mg-btn col-6 btn btn-primary-form-users langlao" type="submit">ສຳເລັດ</button>
+                    <button class="col-md-4 mg-btn col-6 btn btn-danger-form-users langlao" type="reset">ຍົກເລີກ</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+            </div>
+        </ng-template>
+        <button class="btn btn-outline-success mb-2 mr-2" (click)="openVerticallyCentered(content)"><i class="fas fa-plus-circle mr-1"></i>Info</button>  
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

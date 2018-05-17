@@ -43,7 +43,7 @@
     left: 50%;
     margin-left: -25px;
     border-radius: 100%;
-    border: 1.2px solid rgb(124, 124, 124) !important;
+    border: 6px solid rgb(124, 124, 124) !important;
     transition: all .4s;
     background: rgba(245, 242, 242, 0.863);
 }
@@ -55,9 +55,9 @@
 .pagination>li:not(:first-of-type):before {
     content: '';
     position: absolute;
-    background: rgb(26, 25, 25);
+    background: rgb(153, 151, 151);
     top: 25px;
-    height: 0.5px;
+    height: 2px;
 }
 
 .pagination>li:first-of-type:after {

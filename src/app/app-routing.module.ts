@@ -17,6 +17,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 import { ListProductComponent } from './list-product/list-product.component';
 import { DeviceListComponent } from './device-list/device-list.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { DeviceInfoComponent } from './device-info/device-info.component';
 
 const routes: Routes = [
   { path: '', component: MainMenuComponent },
@@ -34,7 +36,9 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'login', component: LoginComponent},
   { path: 'list-product', component:ListProductComponent},
-  { path: 'device-list', component:DeviceListComponent}
+  { path: 'device-list', component:DeviceListComponent},
+  { path: 'user-list', component:UserListComponent},
+  { path: 'device-info', component:DeviceInfoComponent}
 ]
 
 @NgModule({
