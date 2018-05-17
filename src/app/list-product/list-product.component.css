@@ -1,35 +1,34 @@
-.list-product-bg{
-    /* padding: 30px; */
-    /* background: rgb(223, 221, 221) !important; */
+.list-product-bg {
+  padding: 10px; 
+   /* background: rgb(223, 221, 221) !important; */
 }
-.card{
-    background: rgb(223, 221, 221) !important;
-    border:none !important;
-    padding:30px;
+.card {
+  background: rgb(223, 221, 221) !important;
+  border: none !important;
+  padding: 30px;
 }
-.table{
-    /* background: rgb(223, 221, 221) !important; */
-    border:none !important;
+.table {
+  /* background: rgb(223, 221, 221) !important; */
+  border: none !important;
 }
-tr,th,td{
-    text-align: center !important;
-    width:10%;
+tr,th,td {
+  text-align: center !important;
+  width: 10%;
 }
 .form-control {
-    background-color: white !important;
+  background-color: white !important;
 }
 
-.col-3{
-    border:none !important;
-    background:rgba(235, 236, 236, 0.609) !important;
+.col-3 {
+  border: none !important;
+  background: rgba(235, 236, 236, 0.609) !important;
 }
-.bg-detail-product{
-    background:rgba(235, 236, 236, 0.609) !important;
-    padding:30px;
+.bg-detail-product {
+  background: rgba(235, 236, 236, 0.609) !important;
+  padding: 30px;
 }
 
-
-.form-control{
-    border: none !important;
-    background:rgba(235, 236, 236, 0.609) !important;
+.form-control {
+  border: none !important;
+  background: rgba(235, 236, 236, 0.609) !important;
 }

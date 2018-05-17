@@ -2,8 +2,12 @@
 	<div class="container-table100">
 		<div class="wrap-table100">
 			<div class="table100 card">
-				<h3 class="text-center display-7 mt-2 mb-4">Laos-Ice<i class="fas fa-leaf" id="ice-color"></i></h3>
-				<h5 class="display-7 text-center langlao"><u>ລາຍຊື່ຕູ້ນ້ຳກ້ອນ Ice-App</u></h5>
+				<h3 class="text-center display-7 mt-2 mb-4">Laos-Ice
+					<i class="fas fa-leaf" id="ice-color"></i>
+				</h3>
+				<h5 class="display-7 text-center langlao">
+					<u>ລາຍຊື່ຕູ້ນ້ຳກ້ອນ Ice-App</u>
+				</h5>
 				<table class="mt-4">
 					<thead>
 						<tr class="table100-head">
@@ -11,7 +15,7 @@
 							<th class="langlao">ເລກ IMEI</th>
 							<th class="langlao">ສະຸຖານະ</th>
 							<th class="langlao width-stwork">ຊື່ຜູ້ໃຊ້</th>
-							<th colspan="2" class="langlao">..........waiting...........</th>								
+							<th colspan="2" class="langlao">..........waiting...........</th>
 						</tr>
 					</thead>
 					<tbody class="height-tbdody">
@@ -57,7 +61,7 @@
 							<td class="langlao">User A</td>
 							<td colspan="2" class="langlao">......</td>
 						</tr>
-					</tbody>						
+					</tbody>
 				</table>
 			</div>
 		</div>
@@ -65,13 +69,12 @@
 </div>
 
 <div class="limiter container">
-		<button class="btn-form-users btn-primary-form-users d-block mx-auto langlao" (click)="acc.toggle('toggle-1')">ເພີ່ມຂໍ້ມູນເຄື່ອງ</button>
-<ngb-accordion #acc="ngbAccordion">
-  <ngb-panel id="toggle-1" title="Add-more-Device">
-      <ng-template ngbPanelContent>
-		  <app-test></app-test>
-      </ng-template>
-  </ngb-panel>
-</ngb-accordion> 
+	<button class="btn-form-users btn-primary-form-users d-block mx-auto langlao" (click)="acc.toggle('toggle-1')">ເພີ່ມຂໍ້ມູນເຄື່ອງ</button>
+	<ngb-accordion #acc="ngbAccordion">
+		<ngb-panel id="toggle-1" title="Add-more-Device">
+			<ng-template ngbPanelContent>
+				<app-test></app-test>
+			</ng-template>
+		</ngb-panel>
+	</ngb-accordion>
 </div>
-

@@ -1,38 +1,35 @@
-import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';  // <<<< import it here
-import { WebsocketDataServiceService } from '../websocket-data-service.service';
-import { ChatService, Message } from '../chat.service';
-import { WebsocketService } from '../websocket.service';
-
+import { Component, Inject, OnInit, OnDestroy } from "@angular/core";
+import { Router, RouterModule } from "@angular/router";
+import { FormsModule } from "@angular/forms"; // <<<< import it here
+import { WebsocketDataServiceService } from "../websocket-data-service.service";
+import { ChatService, Message } from "../chat.service";
+import { WebsocketService } from "../websocket.service";
 
 @Component({
-  selector: 'app-list-product',
-  templateUrl: './list-product.component.html',
-  styleUrls: ['./list-product.component.css'],
+  selector: "app-list-product",
+  templateUrl: "./list-product.component.html",
+  styleUrls: ["./list-product.component.css"],
   providers: [WebsocketDataServiceService, ChatService, WebsocketService]
 })
-
 export class ListProductComponent implements OnInit, OnDestroy {
   private _message: Message;
   private _newUser: any = {};
-  private _userDetailsStr = '';
+  private _userDetailsStr = "";
   private _server_event: Array<any> = [];
   private _client: Message = {
-    gui: '',
-    username: '',
-    logintoken: '',
-    logintime: '',
-    loginip: '',
+    gui: "",
+    username: "",
+    logintoken: "",
+    logintime: "",
+    loginip: "",
     data: {}
   };
   private _otherSource: any = {};
-  private _loginUser = { username: '', password: '' };
+  private _loginUser = { username: "", password: "" };
   private _currentUserdetail: any = {};
   private _otherMessage: any = {};
   private _subs: any = [];
   private _trans: any = [];
-
 
   //// ICE-MAKER
   private _currentDevice: any;
@@ -43,49 +40,71 @@ export class ListProductComponent implements OnInit, OnDestroy {
   private _arrayBills: any;
   private _arrayPayment: any;
   /// WEBSOCKET LAUNCHING
-  constructor(private websocketDataServiceService: WebsocketDataServiceService, private router: Router) {
+  constructor(
+    private websocketDataServiceService: WebsocketDataServiceService,
+    private router: Router
+  ) {
     this.loadClient();
-    this._subs.push(this.websocketDataServiceService.clientSource.subscribe(client => {
-    this.readClient(client);
-    }));
-    this._subs.push(this.websocketDataServiceService.newUserSource.subscribe(client => {
-      this._newUser = client;
-      this.readNewUser(client);
-    }));
+    this._subs.push(
+      this.websocketDataServiceService.clientSource.subscribe(client => {
+        this.readClient(client);
+      })
+    );
+    this._subs.push(
+      this.websocketDataServiceService.newUserSource.subscribe(client => {
+        this._newUser = client;
+        this.readNewUser(client);
+      })
+    );
     // this._subs.push(this.websocketDataServiceService.eventSource.subscribe(events => {
     //   this._server_event = events;
     //   this.readServerEvent(events);
     // }));
-    this._subs.push(this.websocketDataServiceService.currentUserSource.subscribe(user => {
-      this.readCurrentUserDetail(user);
-    }));
+    this._subs.push(
+      this.websocketDataServiceService.currentUserSource.subscribe(user => {
+        this.readCurrentUserDetail(user);
+      })
+    );
 
-    this._subs.push(this.websocketDataServiceService.otherSource.subscribe(msg => {
-      this.readOtherMessage(msg);
-    }));
-    this._subs.push(this.websocketDataServiceService.currentBillSource.subscribe(msg => {
-      this.readBill(msg);
-    }));
-    this._subs.push(this.websocketDataServiceService.currentDeviceSource.subscribe(msg => {
-      this.readDevice(msg);
-    }));
-    this._subs.push(this.websocketDataServiceService.currentPaymentSource.subscribe(msg => {
-      this.readPayment(msg);
-    }));
-    this._subs.push(this.websocketDataServiceService.currentSubUserSource.subscribe(msg => {
-      this.readSubUser(msg);
-    }));
-    this.websocketDataServiceService.heartbeat_interval = setInterval(this.websocketDataServiceService.heartbeat.bind(this.websocketDataServiceService), 1000 * 60);
-
+    this._subs.push(
+      this.websocketDataServiceService.otherSource.subscribe(msg => {
+        this.readOtherMessage(msg);
+      })
+    );
+    this._subs.push(
+      this.websocketDataServiceService.currentBillSource.subscribe(msg => {
+        this.readBill(msg);
+      })
+    );
+    this._subs.push(
+      this.websocketDataServiceService.currentDeviceSource.subscribe(msg => {
+        this.readDevice(msg);
+      })
+    );
+    this._subs.push(
+      this.websocketDataServiceService.currentPaymentSource.subscribe(msg => {
+        this.readPayment(msg);
+      })
+    );
+    this._subs.push(
+      this.websocketDataServiceService.currentSubUserSource.subscribe(msg => {
+        this.readSubUser(msg);
+      })
+    );
+    this.websocketDataServiceService.heartbeat_interval = setInterval(
+      this.websocketDataServiceService.heartbeat.bind(
+        this.websocketDataServiceService
+      ),
+      1000 * 60
+    );
   }
   //// END WEBSOCKET LAUNCHING
-
 
   /// OTHER FUNCTIONS
   private clearJSONValue(u) {
     for (const key in u) {
       if (u.hasOwnProperty(key)) {
-        u[key] = '';
+        u[key] = "";
       }
     }
   }
@@ -100,37 +119,32 @@ export class ListProductComponent implements OnInit, OnDestroy {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._currentUserdetail = {};
 
-    this._userDetailsStr = '';
+    this._userDetailsStr = "";
     this._otherMessage = {};
   }
   ngOnDestroy() {
-    console.log('STOP SERVICE');
-
+    console.log("STOP SERVICE");
   }
   saveClient() {
     // this.websocketDataServiceService.refreshClient();
     this.websocketDataServiceService.setClient(this._client);
   }
   loadClient() {
-    sessionStorage.setItem('firstHandShake', '');
-    sessionStorage.setItem('firstHeartBeat', '');
+    sessionStorage.setItem("firstHandShake", "");
+    sessionStorage.setItem("firstHeartBeat", "");
     // if (!this._client.gui || this._client.gui === undefined) {
     this._client = this.websocketDataServiceService.getClient();
-    console.log('client loaded');
+    console.log("client loaded");
     // } else {
     // this.saveClient();
     // }
   }
   /// INIT FUNCTIONS
 
-
-
   /// *************RECEIVING  */
   ab2str(arrayBuffer) {
-    let
-      binaryString = '';
-    const
-      bytes = new Uint8Array(arrayBuffer),
+    let binaryString = "";
+    const bytes = new Uint8Array(arrayBuffer),
       length = bytes.length;
     for (let i = 0; i < length; i++) {
       binaryString += String.fromCharCode(bytes[i]);
@@ -153,69 +167,85 @@ export class ListProductComponent implements OnInit, OnDestroy {
         this._client = c;
         // this.saveClient();
         console.log(c);
-        switch (this._client.data['command']) {
-          case 'heart-beat':
-            if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
-              console.log(this._client.data['message']);
+        switch (this._client.data["command"]) {
+          case "heart-beat":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
             } else {
               // this._client.data['user'] = u;
-              console.log('heart beat ok');
+              console.log("heart beat ok");
             }
             break;
-          case 'ping':
-            if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
-              console.log(this._client.data['message']);
+          case "ping":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
             } else {
-              console.log(this._client.data['message']);
+              console.log(this._client.data["message"]);
             }
             break;
-          case 'get-client':
-            if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
-              console.log(this._client.data['message']);
+          case "get-client":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
             } else {
-              console.log('get-client OK');
+              console.log("get-client OK");
             }
             break;
-          case 'shake-hands':
-            if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
+          case "shake-hands":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
               // // console.log(this._client);
-              console.log(this._client.data['message']);
+              console.log(this._client.data["message"]);
             } else {
-              console.log('shake hands ok');
+              console.log("shake hands ok");
               // this.getDevices();
               // alert("get device don't work any more");
             }
             break;
-          case 'get-transaction':
-            if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
-              console.log(this._client.data['message']);
+          case "get-transaction":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
             } else {
               // // alert('change password OK');
-              console.log('get transaction id ok');
+              console.log("get transaction id ok");
             }
             break;
-          case 'check-transaction':
-            if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
-              console.log(this._client.data['message']);
+          case "check-transaction":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
             } else {
               // // alert('change password OK');
-              console.log('check transaction id ok');
+              console.log("check transaction id ok");
             }
             break;
-          case 'get-all-paymnet':
-            if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
-              console.log(this._client.data['message']);
+          case "get-all-paymnet":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
             } else {
               alert("Get-all-paymnet is working");
             }
-            break;    
-          case 'get-device-info':
-            if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
-              console.log(this._client.data['message']);
+            break;
+          case "get-device-info":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
             } else {
               alert("Get-device-info is working");
             }
-            break;            
+            break;
           default:
             break;
         }
@@ -224,12 +254,11 @@ export class ListProductComponent implements OnInit, OnDestroy {
         // if (evt.data != '.') $('#output').append('<p>'+evt.data+'</p>');
       } else {
         // alert('data empty');
-        console.log('data is empty');
+        console.log("data is empty");
       }
     } catch (error) {
       console.log(error);
     }
-
   }
   readNewUser(n): any {
     // this._newUser;
@@ -284,20 +313,18 @@ export class ListProductComponent implements OnInit, OnDestroy {
 
   /// END RECEIVING
 
-
-
   //// SENDING
   showNewMessage() {
-    this._client.data.message = 'changed from show message';
+    this._client.data.message = "changed from show message";
     // this._client.data.transaction = this.createTransaction(); // NEED TO BE DONE BEOFORE SEND MESSAGE
     // this.websocketDataServiceService.refreshClient();
     this.websocketDataServiceService.changeMessage(this._client);
   }
   setOtherMessage() {
     const msg = {
-      title: '',
+      title: "",
       data: {},
-      other: {}, // ...
+      other: {} // ...
     };
     // msg.data['transaction'] = this.createTransaction(); // NEED TO BE DONE BEOFORE SEND MESSAGE
     this.websocketDataServiceService.setOtherMessage(msg);
@@ -311,10 +338,9 @@ export class ListProductComponent implements OnInit, OnDestroy {
   ping_test() {
     // this._client.data.transaction = this.createTransaction(); // NEED TO BE DONE BEOFORE SEND MESSAGE
     // this.websocketDataServiceService.refreshClient();
-    this._client.data.message += ' HERE in app component';
+    this._client.data.message += " HERE in app component";
     // console.log(this._client);
     this.websocketDataServiceService.ping_test();
-
   }
   /////////////// END SENDING
   /// ICEMAKER ----------------------------------------

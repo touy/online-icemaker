@@ -1,10 +1,7 @@
 <h1 class="text-center mt-5">Users-list</h1>
 <div class="container mt-5 card">
   <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-4 offset-md-4">
       <div class="add-new-devices">
         <ng-template #content let-c="close" let-d="dismiss" id="">
           <div class="modal-header">
@@ -15,14 +12,14 @@
           </div>
           <div class="modal-body">
             <div class="">
-              <div class="row pb-2">                        
+              <div class="row pb-2">
                 <div class="col-12">
-                  <img src="../../assets/photo/default-user.png" class="img-fluid rounded-circle mx-auto d-block">                            
+                  <img src="../../assets/photo/default-user.png" class="img-fluid rounded-circle mx-auto d-block">
                 </div>
               </div>
               <div class="d-block justify-content-center">
                 <label class="col-md-3 col-xs-3 btn-form-users btn-primary-form-users d-block mx-auto mt-3"> Select photo
-                  <input type="file"  placeholder="file"  hidden required >
+                  <input type="file" placeholder="file" hidden required>
                 </label>
               </div>
               <section id="form-add-users">
@@ -55,16 +52,13 @@
               </section>
             </div>
           </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
-            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+          </div>
         </ng-template>
-        <button class="btn btn-outline-success mb-2 mr-2" (click)="openVerticallyCentered(content)"><i class="fas fa-plus-circle mr-1"></i>Info</button>  
+        <button class="btn btn-outline-success mb-2 mr-2" (click)="openVerticallyCentered(content)">
+          <i class="fas fa-plus-circle mr-1"></i>Info</button>
       </div>
     </div>
   </div>
 </div>
-
-
-
-

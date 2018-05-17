@@ -424,9 +424,9 @@ export class WebsocketDataServiceService implements OnInit {
     this.otherSource.next(msg);
   }
   sendMsg() {
-    // this._message.data['command'] = 'ping';
-    //console.log(JSON.stringify(this._message));
-    // console.log('new message from client to websocket: ', JSON.stringify(this._message.data['command']));
+     this._message.data['command'] = 'ping';
+    console.log(JSON.stringify(this._message));
+     console.log('new message from client to websocket: ', JSON.stringify(this._message.data['command']));
     if (this._message['gui'] || this._message.data['command'] === 'shake-hands' || this._message.data['command'] === 'ping') {
       //let state=this.chatService.getWSState();
       //console.log('get ws state'+state);

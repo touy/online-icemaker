@@ -1,98 +1,97 @@
 .row {
-    margin-left: 0px !important;
-    margin-right: 0px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
-.card{
-    background: rgb(223, 221, 221) !important;
+.card {
+  background: rgb(223, 221, 221) !important;
 }
-.twoone{
-    border:1px solid yellowgreen !important;
-    padding:40px;
-    background: rgb(223, 221, 221)  !important;
+.twoone {
+  border: 1px solid yellowgreen !important;
+  padding: 40px;
+  background: rgb(223, 221, 221) !important;
 }
 .menu-image1 {
-    height: 150px;
-    width: 150px;
-    background-color: yellowgreen;
+  height: 150px;
+  width: 150px;
+  background-color: yellowgreen;
 }
-.image-size-one{
-    height: 110px;
-    width:110px;
+.image-size-one {
+  height: 110px;
+  width: 110px;
 }
 
-.image-size-one:hover{
-    height: 115px;
-    width:115px;
-    transition: 0.7s;
+.image-size-one:hover {
+  height: 115px;
+  width: 115px;
+  transition: 0.7s;
 }
 
 #border-icon-content {
-    border: 10px solid;
-    border-color: #ececec;
+  border: 10px solid;
+  border-color: #ececec;
 }
 
 .menu-image1:hover {
-    height: 160px;
-    width: 160px;
-    background-color: rgb(158, 231, 11);
-    /* float: center; */
-    transition: 0.5s;
+  height: 160px;
+  width: 160px;
+  background-color: rgb(158, 231, 11);
+  /* float: center; */
+  transition: 0.5s;
 }
 
 .Circle-home {
-    font-size: 46pt;
-    color: white;
+  font-size: 46pt;
+  color: white;
 }
 
-#ice-color{
-    color:green;
+#ice-color {
+  color: green;
 }
-
 
 /* ....................mobile......................... */
 
 .row {
-    margin-left: 0px !important;
-    margin-right: 0px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
-.card{
-    background: rgb(223, 221, 221) !important;
+.card {
+  background: rgb(223, 221, 221) !important;
 }
-.twoone-mb{
-    border:1px solid yellowgreen !important;
-    padding:20px;
-    background: rgb(223, 221, 221)  !important;
+.twoone-mb {
+  border: 1px solid yellowgreen !important;
+  padding: 20px;
+  background: rgb(223, 221, 221) !important;
 }
 .menu-image1-mb {
-    height: 90px;
-    width: 90px;
-    background-color: yellowgreen;
+  height: 90px;
+  width: 90px;
+  background-color: yellowgreen;
 }
 
-.image-size-mb{
-    height: 65px;
-    width:65px;
+.image-size-mb {
+  height: 65px;
+  width: 65px;
 }
-.image-size-mb:hover{
-    height: 70px;
-    width: 70px;
-    transition: 0.5s;
+.image-size-mb:hover {
+  height: 70px;
+  width: 70px;
+  transition: 0.5s;
 }
 
 #border-icon-content-mb {
-    border: 5px solid;
-    border-color: #ececec;
+  border: 5px solid;
+  border-color: #ececec;
 }
 
 .menu-image1-mb:hover {
-    height: 100px;
-    width: 100px;
-    background-color: rgb(158, 231, 11);
-    /* float: center; */
-    transition: 0.5s;
+  height: 100px;
+  width: 100px;
+  background-color: rgb(158, 231, 11);
+  /* float: center; */
+  transition: 0.5s;
 }
 
 .Circle-home-mb {
-    font-size: 23pt;
-    color: white;
+  font-size: 23pt;
+  color: white;
 }

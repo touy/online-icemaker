@@ -1,51 +1,53 @@
-.table tr, th, td {
-    text-align: center !important;
+.table tr,
+th,
+td {
+  text-align: center !important;
 }
-.bd-form{
-    border:2px dotted;
-    border-top:none !important;
-    border-left:none !important;
-    border-right:none !important;
-    background: none !important;
+.bd-form {
+  border: 2px dotted;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  background: none !important;
 }
-.container{
-    border:1px solid rgb(219, 216, 216);
-    margin-top:33px;
-    padding:63px;
-}
-
-.display-6{
-    font-weight: bold;
-}
-.dispaly-7{
-    font-size: 0.8rem;
-    font-weight: 300;
-    line-height: 1.5;
-}
-.text-right{
-    text-align: right !important;
-    font-size: 1.4rem;
-    font-weight: 300;
-    line-height: 1.5;
-}
-#edit-text-bill{
-    text-align: center !important;
-    border:none;
-    background: none !important;
+.container {
+  border: 1px solid rgb(219, 216, 216);
+  margin-top: 33px;
+  padding: 63px;
 }
 
-#remove-bd-input{
-    text-align: center !important;
-    border:none;
-    background: none !important;
+.display-6 {
+  font-weight: bold;
+}
+.dispaly-7 {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.text-right {
+  text-align: right !important;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+#edit-text-bill {
+  text-align: center !important;
+  border: none;
+  background: none !important;
 }
 
-.min-height{
-    margin-bottom: 280px;
+#remove-bd-input {
+  text-align: center !important;
+  border: none;
+  background: none !important;
 }
-.table{
-    border:none !important;
+
+.min-height {
+  margin-bottom: 280px;
 }
-#free-space{
-    border:none !important;
+.table {
+  border: none !important;
+}
+#free-space {
+  border: none !important;
 }

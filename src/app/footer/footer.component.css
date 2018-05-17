@@ -1,47 +1,46 @@
-
 .bg-footer {
-    background:rgba(9, 248, 21, 0.198) !important;
-    color: whitesmoke !important;
+  background: rgba(9, 248, 21, 0.198) !important;
+  color: whitesmoke !important;
 }
 
 .list-footer li a {
-    text-decoration: none;
-    line-height: 30px;
+  text-decoration: none;
+  line-height: 30px;
 }
 
-.font-link{
-    line-height: 40px !important;
+.font-link {
+  line-height: 40px !important;
 }
 
 #social {
-    line-height: 40px;
-    margin-left: 30px;
-    font-size: 14pt;
+  line-height: 40px;
+  margin-left: 30px;
+  font-size: 14pt;
 }
 
 #social:hover {
-    font-size: 16pt;
-    transition: 0.5s;
+  font-size: 16pt;
+  transition: 0.5s;
 }
-.img-footer{
-    width:200px;
-    height: 200px;
+.img-footer {
+  width: 200px;
+  height: 200px;
 }
-.border-size{
-    height: 15px;
-    background: #aff587;
-    border:none !important;
-    margin-bottom: 30px;
+.border-size {
+  height: 15px;
+  background: #aff587;
+  border: none !important;
+  margin-bottom: 30px;
 }
-#social{
-    color:#90a4ae !important;
-}
-
-#social:hover{
-    color:#455a64 !important;
-    transition: 0.5s;
+#social {
+  color: #90a4ae !important;
 }
 
-.text-center2{
-    text-align: center !important;
+#social:hover {
+  color: #455a64 !important;
+  transition: 0.5s;
+}
+
+.text-center2 {
+  text-align: center !important;
 }

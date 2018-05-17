@@ -1,20 +1,25 @@
 <div class="container border-color bg-gray-color card mt-5">
   <div class="border-color">
     <div class="col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 border-register">
-      <h3 class="text-center display-7">Pay Cheap <i class="fas fa-leaf" id="color-icon"></i></h3>
-        <h5 class="text-center langlao">ເຂົ້າໃຊ້ບັນຊີຂອງທ່ານ</h5>
-          <form action="#">
-            <label class="ml-4 langlao" for="loginUsername">ກະລຸນາປ້ອນຊື່ *</label>
-            <input [value]="_loginUser.username===undefined?'':_loginUser.username" (input)="_loginUser.username=$event.target.value" name="loginUsername" type="text" placeholder="Username" class="form-control" required>
+      <h3 class="text-center display-7">Pay Cheap
+        <i class="fas fa-leaf" id="color-icon"></i>
+      </h3>
+      <h5 class="text-center langlao">ເຂົ້າໃຊ້ບັນຊີຂອງທ່ານ</h5>
+      <form action="#">
+        <label class="ml-4 langlao" for="loginUsername">ກະລຸນາປ້ອນຊື່ *</label>
+        <input [value]="_loginUser.username===undefined?'':_loginUser.username" (input)="_loginUser.username=$event.target.value"
+          name="loginUsername" type="text" placeholder="Username" class="form-control" required>
 
-            <label class="ml-4 mt-3 langlao" for="password">ລະຫັດຜ່ານ *</label>
-            <input [value]="_loginUser.password===undefined? '' :_loginUser.password" (input)="_loginUser.password=$event.target.value" name="loginPassword" type="password" placeholder="password" class="form-control" required>
-          
-            <span class="input-group mt-3">
-                <input type="checkbox" style="height:40px; width:60px;"> <i class="smoke-font-color mt-2 mb-4">Keep me signed in</i>
-            </span>
-            <button type="submit" class="btn bg-main-color langlao" style="width:100%" (click)="login()">ເຂົ້າສູ່ລະບົບ</button>
-          </form>
+        <label class="ml-4 mt-3 langlao" for="password">ລະຫັດຜ່ານ *</label>
+        <input [value]="_loginUser.password===undefined? '' :_loginUser.password" (input)="_loginUser.password=$event.target.value"
+          name="loginPassword" type="password" placeholder="password" class="form-control" required>
+
+        <span class="input-group mt-3">
+          <input type="checkbox" style="height:40px; width:60px;">
+          <i class="smoke-font-color mt-2 mb-4">Keep me signed in</i>
+        </span>
+        <button type="submit" class="btn bg-main-color langlao" style="width:100%" (click)="login()">ເຂົ້າສູ່ລະບົບ</button>
+      </form>
     </div>
   </div>
 </div>

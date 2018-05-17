@@ -1,74 +1,77 @@
-.table tr, th, td {
-    text-align: center !important;
+.table tr,
+th,
+td {
+  text-align: center !important;
 }
-.bd-form{
-    border:2px dotted;
-    border-top:none !important;
-    border-left:none !important;
-    border-right:none !important;
+.bd-form {
+  border: 2px dotted;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
 }
-.langlao{    
-    text-align: center !important;
-    /* border:none; */
-}
-
-
-#remove-bd-input{
-    border:none !important;
-    background: none !important;
+.langlao {
+  text-align: center !important;
+  /* border:none; */
 }
 
-.table-bordered,.table-bordered,#remove-border{
-    border:none !important;
-    /* border-color:white !important; */
-}
-#remove-border2{
-    border-bottom: 2px solid rgb(248, 242, 242) !important;
-}
-.display-6{
-    font-weight: bold;
-}
-.dispaly-7{
-    font-size: 0.8rem;
-    font-weight: 300;
-    line-height: 1.5;
-}
-.text-right{
-    text-align: right !important;
-    font-size: 1.4rem;
-    font-weight: 300;
-    line-height: 1.5;
-}
-#ice-color{
-    color:green;
-    font-size: 12pt;
-    cursor: pointer;
+#remove-bd-input {
+  border: none !important;
+  background: none !important;
 }
 
-#add-color{
-    color:green;
-    font-size: 12pt;
-    cursor: pointer;
-    transition: 0.5s;
+.table-bordered,
+.table-bordered,
+#remove-border {
+  border: none !important;
+  /* border-color:white !important; */
+}
+#remove-border2 {
+  border-bottom: 2px solid rgb(248, 242, 242) !important;
+}
+.display-6 {
+  font-weight: bold;
+}
+.dispaly-7 {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.text-right {
+  text-align: right !important;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+#ice-color {
+  color: green;
+  font-size: 12pt;
+  cursor: pointer;
 }
 
-#add-color:hover{
-    color:rgb(173, 129, 7);
-    font-size: 14pt;
-    cursor: pointer;
+#add-color {
+  color: green;
+  font-size: 12pt;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
-#edit-text-bill{
-    font-weight: bold;
-    text-align: center !important;
-    border:none;
-    background:none !important;
+#add-color:hover {
+  color: rgb(173, 129, 7);
+  font-size: 14pt;
+  cursor: pointer;
 }
 
-#free-space{
-    margin-top:50px !important;
+#edit-text-bill {
+  font-weight: bold;
+  text-align: center !important;
+  border: none;
+  background: none !important;
 }
 
-.add-column{
-background: #aff587;
+#free-space {
+  margin-top: 50px !important;
+}
+
+.add-column {
+  background: #aff587;
 }
