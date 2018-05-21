@@ -125,3 +125,24 @@ td {
 .bg-list:hover {
   background: #aff587 !important;
 }
+
+.size-add-people{
+  width: 200px !important;
+  font-size: 13pt;
+  border-radius:40px 40px 40px 40px;
+}
+.size-add-people:hover{
+  width: 220px !important;
+  font-size: 14pt;
+  color:rgb(0, 0, 0);
+  transition: 0.5s;
+}
+
+.size-icon-add{
+  font-size: 20pt;
+}
+
+.d-width{
+  width: 150px;
+  border-radius:40px 40px 40px 40px;
+}

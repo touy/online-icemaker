@@ -1,8 +1,12 @@
+   <!-- list-product "ລາຍການສຶນຄ້າ" -->
+   
 <div class="list-product-bg">
     <h3 class="display-6 text-center langlao">
         <u>ລາຍການສິນຄ້າ</u>
     </h3>
-    <div class="mt-3">
+    
+    <!-- list-product "ລາຍການສຶນຄ້າ" -->
+    <div class="mt-3">  
         <div class="responsive">
             <div class="col-12">
                 <form method="POST " action="">
@@ -63,7 +67,8 @@
         </div>
     </div>
 </div>
-<button class="col-6 btn d-block mx-auto btn-primary langlao mt-3 mb-3" (click)="getAllPayment()">ຊຳລະ</button>
+
+<button class="col-6 btn d-block mx-auto btn-primary langlao mt-3 mb-3" (click)="getAllPayment()" [routerLink]="['/pay-bill']">ຊຳລະ</button>
 
 <hr>
 

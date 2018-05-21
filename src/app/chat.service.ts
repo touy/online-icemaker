@@ -5,8 +5,8 @@ import { WebsocketService } from './websocket.service';
 import { DOCUMENT } from '@angular/platform-browser';
 import {map, share} from 'rxjs/Operators';
 // let CHAT_URL = 'ws://localhost:6698/';
-// let CHAT_URL = 'ws://192.168.0.228:6698//'; // ice-maker web service
-let CHAT_URL = 'ws://nonav.net:6698/'; 
+let CHAT_URL = 'ws://192.168.0.228:6698//'; // ice-maker web service
+// let CHAT_URL = 'ws://nonav.net:6698/'; 
 // let CHAT_URL = 'ws://nonav.net:6688/'; // user-mananagement web service
 
 export interface Message {

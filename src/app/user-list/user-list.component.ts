@@ -106,14 +106,28 @@ constructor(
 }
 //// END WEBSOCKET LAUNCHING
 
-openVerticallyCentered(content) {
-  this.modalService.open(content, { centered: true });
+Add_New_Users(new_Users) {
+  this.modalService.open(new_Users, { centered: true });
+}
+
+Add_New_Sales(new_sales) {
+  this.modalService.open(new_sales, { centered: true });
+}
+
+Add_New_Finances(new_finances) {
+  this.modalService.open(new_finances, { centered: true });
 }
 
 Show_update_details(Alert_update_details) {
   this.modalService.open(Alert_update_details, { centered: true });
   // alert(content);
 }
+
+Add_Button_Users(button_user) {
+  this.modalService.open(button_user, { centered: true });
+  // alert(content);
+}
+
 
 /// OTHER FUNCTIONS
 private clearJSONValue(u) {
