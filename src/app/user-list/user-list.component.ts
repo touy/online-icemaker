@@ -147,7 +147,6 @@ ngOnInit() {
   this._newUser.data.user = {};
   this._message = JSON.parse(JSON.stringify(this._client));
   this._currentUserdetail = {};
-
   this._userDetailsStr = "";
   this._otherMessage = {};
 }
@@ -189,106 +188,106 @@ str2ab(str) {
   }
   return buf;
 }
-readClient(c): any {
-  // this._client
-  try {
-    if (c !== undefined) {
-      this._client = c;
-      // this.saveClient();
-      console.log(c);
-      switch (this._client.data["command"]) {
-        case "heart-beat":
-          if (
-            this._client.data["message"].toLowerCase().indexOf("error") > -1
-          ) {
-            console.log(this._client.data["message"]);
-          } else {
-            // this._client.data['user'] = u;
-            console.log("heart beat ok");
-          }
-          break;
-        case "ping":
-          if (
-            this._client.data["message"].toLowerCase().indexOf("error") > -1
-          ) {
-            console.log(this._client.data["message"]);
-          } else {
-            console.log(this._client.data["message"]);
-          }
-          break;
-        case "get-client":
-          if (
-            this._client.data["message"].toLowerCase().indexOf("error") > -1
-          ) {
-            console.log(this._client.data["message"]);
-          } else {
-            console.log("get-client OK");
-          }
-          break;
-        case "shake-hands":
-          if (
-            this._client.data["message"].toLowerCase().indexOf("error") > -1
-          ) {
-            // // console.log(this._client);
-            console.log(this._client.data["message"]);
-          } else {
-            console.log("shake hands ok");
-            // this.getDevices();
-            // alert("get device don't work any more");
-          }
-          break;
-        case "get-transaction":
-          if (
-            this._client.data["message"].toLowerCase().indexOf("error") > -1
-          ) {
-            console.log(this._client.data["message"]);
-          } else {
-            // // alert('change password OK');
-            console.log("get transaction id ok");
-          }
-          break;
-        case "check-transaction":
-          if (
-            this._client.data["message"].toLowerCase().indexOf("error") > -1
-          ) {
-            console.log(this._client.data["message"]);
-          } else {
-            // // alert('change password OK');
-            console.log("check transaction id ok");
-          }
-          break;
-        case "get-all-paymnet":
-          if (
-            this._client.data["message"].toLowerCase().indexOf("error") > -1
-          ) {
-            console.log(this._client.data["message"]);
-          } else {
-            alert("Get-all-paymnet is working");
-          }
-          break;
-        case "get-device-info":
-          if (
-            this._client.data["message"].toLowerCase().indexOf("error") > -1
-          ) {
-            console.log(this._client.data["message"]);
-          } else {
-            alert("Get-device-info is working");
-          }
-          break;
-        default:
-          break;
+  readClient(c): any {
+    // this._client
+    try {
+      if (c !== undefined) {
+        this._client = c;
+        // this.saveClient();
+        console.log(c);
+        switch (this._client.data["command"]) {
+          case "heart-beat":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
+            } else {
+              // this._client.data['user'] = u;
+              console.log("heart beat ok");
+            }
+            break;
+          case "ping":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
+            } else {
+              console.log(this._client.data["message"]);
+            }
+            break;
+          case "get-client":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
+            } else {
+              console.log("get-client OK");
+            }
+            break;
+          case "shake-hands":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              // // console.log(this._client);
+              console.log(this._client.data["message"]);
+            } else {
+              console.log("shake hands ok");
+              // this.getDevices();
+              // alert("get device don't work any more");
+            }
+            break;
+          case "get-transaction":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
+            } else {
+              // // alert('change password OK');
+              console.log("get transaction id ok");
+            }
+            break;
+          case "check-transaction":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
+            } else {
+              // // alert('change password OK');
+              console.log("check transaction id ok");
+            }
+            break;
+          case "get-all-paymnet":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
+            } else {
+              alert("Get-all-paymnet is working");
+            }
+            break;
+          case "get-device-info":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
+            } else {
+              alert("Get-device-info is working");
+            }
+            break;
+          default:
+            break;
+        }
+        // console.log(this.heartbeat_interval);
+        // console.log(this._client);
+        // if (evt.data != '.') $('#output').append('<p>'+evt.data+'</p>');
+      } else {
+        // alert('data empty');
+        console.log("data is empty");
       }
-      // console.log(this.heartbeat_interval);
-      // console.log(this._client);
-      // if (evt.data != '.') $('#output').append('<p>'+evt.data+'</p>');
-    } else {
-      // alert('data empty');
-      console.log("data is empty");
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
   }
-}
 readNewUser(n): any {
   // this._newUser;
   if (n !== undefined) {
@@ -375,7 +374,17 @@ ping_test() {
 /// ICEMAKER ----------------------------------------
 
 registerNewUser() {
-  const u = this._currentSubUser;
+  const u = this._newUser.data.user;
   this.websocketDataServiceService.registerNewUser(u);
 }
+
+registerSaleUser() {
+  const u = this._currentSubUser;
+  this.websocketDataServiceService.registerSaleUser(u);
+}
+registerFinanceUser() {
+  const u = this._currentSubUser;
+  this.websocketDataServiceService.registerFinacneUser(u);
+}
+
 }
