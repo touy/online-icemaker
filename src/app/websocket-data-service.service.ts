@@ -1,3 +1,4 @@
+
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 // import { Observable } from 'rxjs/Rx';
@@ -7,8 +8,6 @@ import { v4 as uuid } from 'uuid';
 import { Moment } from 'moment';
 import * as moment from 'moment-timezone';
 //import * as PouchDB from 'pouchdb';
-//const PouchDB = $PouchDB['default'];
-// /import * as PouchDB from 'pouchdb';
 import { PouchDBService } from './pouchdb.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
@@ -53,15 +52,16 @@ export class WebsocketDataServiceService implements OnInit {
   public currentUserSource = new BehaviorSubject<any>(this._currentUserdetail);
   public eventSource = new BehaviorSubject<any>(this._server_event);
   public otherSource = new BehaviorSubject<any>(this._otherMessage);
-  private timeOut_runner: any;
+  private timeOut_runner: NodeJS.Timer;
   public currentDeviceSource = new BehaviorSubject<any>(this._currentDevice);
   public currentPaymentSource = new BehaviorSubject<any>(this._currentPayment);
   public currentSubUserSource = new BehaviorSubject<any>(this._currentSubUser);
   public currentBillSource = new BehaviorSubject<any>(this._currentBill);
   // private currentMessage = this.clientSource.asObservable();
   // private serverEvent = this.eventSource.asObservable();
-
-
+  // timeOut_runner = setTimeout(() => {
+  //   this.shakeHands();
+  // }, 1000 * 1);
   public refreshSubUserMessage() {
     this.currentSubUserSource.next(this._currentSubUser);
   }
@@ -123,7 +123,7 @@ export class WebsocketDataServiceService implements OnInit {
     this._message = JSON.parse(JSON.stringify(this._client));
   }
   constructor(private chatService: ChatService, private sanitizer: DomSanitizer) {
-    // this._pouch = new PouchDB('_client');
+    //this._pouch = new PouchDB('_client');
     chatService.messages.subscribe(msg => {
       const d = msg;
       // // alert(d);
@@ -199,7 +199,7 @@ export class WebsocketDataServiceService implements OnInit {
               case 'online-changed':
                 console.log(d);
                 break;
-                case 'msg-changed':
+              case 'msg-changed':
                 console.log(d);
                 break;
 
@@ -412,9 +412,9 @@ export class WebsocketDataServiceService implements OnInit {
       }
 
     });
-     this.timeOut_runner = setTimeout(() => {
-    this.shakeHands();
-  }, 1000 * 1);
+    this.timeOut_runner = setTimeout(() => {
+      this.shakeHands();
+    }, 1000 * 1);
   }
   changeMessage(message: Message) {
     // console.log(message.data.message);
@@ -424,13 +424,10 @@ export class WebsocketDataServiceService implements OnInit {
     this.otherSource.next(msg);
   }
   sendMsg() {
-     this._message.data['command'] = 'ping';
-    console.log(JSON.stringify(this._message));
-     console.log('new message from client to websocket: ', JSON.stringify(this._message.data['command']));
+    // this._message.data['command'] = 'ping';
+    // console.log(JSON.stringify(this._message));
+    // console.log('new message from client to websocket: ', JSON.stringify(this._message.data['command']));
     if (this._message['gui'] || this._message.data['command'] === 'shake-hands' || this._message.data['command'] === 'ping') {
-      //let state=this.chatService.getWSState();
-      //console.log('get ws state'+state);
-      console.log('sending data');
       this.chatService.messages.next(this._message);
     }
   }
@@ -457,7 +454,6 @@ export class WebsocketDataServiceService implements OnInit {
     this._message.data['command'] = 'ping';
     this._message.data.transaction = this.createTransaction();
     // alert('PING');
-
     this.sendMsg();
   }
   get_user_gui() {
@@ -504,7 +500,6 @@ export class WebsocketDataServiceService implements OnInit {
 
   shakeHands() {
     if (!this._client.gui || this._client.gui === undefined) {
-      console.log('shaking hands');
       this.getClient();
     }
     const firstHandShake = sessionStorage.getItem('firstHandShake');
@@ -533,7 +528,7 @@ export class WebsocketDataServiceService implements OnInit {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data['command'] = 'login';
     this._message.data.user = loginuser;
-    //alert(JSON.stringify(this._message));
+    // alert(JSON.stringify(this._message));
     this._message.data.transaction = this.createTransaction();
     this.sendMsg();
   }
@@ -743,7 +738,6 @@ export class WebsocketDataServiceService implements OnInit {
   }
   convertTZ(fromTZ) {
     // let m= moment().;
-
     // moment.tz('Asia/Vientiane').format();
     // return this._moment.tz(fromTZ, 'Asia/Vientiane').format();
   }
@@ -795,6 +789,16 @@ export class WebsocketDataServiceService implements OnInit {
     this._message.data.user = data;
     this.sendMsg();
   }
+
+
+  getSubUsers() {
+    this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
+    this._message.data.transaction = this.createTransaction();
+    this._message.data.command = 'get-sub-users';
+    this.sendMsg();
+  }
+
   getDevices() {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data = {};
@@ -815,7 +819,7 @@ export class WebsocketDataServiceService implements OnInit {
     this._message.data.command = 'approve-payment';
     this._message.data.payment = p;
     this.sendMsg();
-  } 
+  }
   getAllPayment() {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data.transaction = this.createTransaction();
@@ -889,16 +893,12 @@ export class WebsocketDataServiceService implements OnInit {
   //       return false;
   //     }
   //     for (var i = 0; i < files.length; i++) {
-
   //       var $transfer = $('<div />').addClass('transfer');
   //       var $progress = $('<div />').addClass('progress')
   //       var $progressBar = $('<div />').addClass('progressBar');
   //       $progressBar.append($progress);
-
   //       $transfer.append($progressBar);
-
   //       $('#progresses').append($transfer);
-
   //       // Creates the transfer
   //       var transfer = new WebSocketFileTransfer({
   //         url: socketServerUrl,
@@ -913,12 +913,9 @@ export class WebsocketDataServiceService implements OnInit {
   //           this.$progress.addClass('finished');
   //         }
   //       });
-
   //       // Starts the transfer
   //       transfer.start();
-
   //     }
-
   //     return false;
   //   });
   // }

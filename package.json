@@ -23,8 +23,10 @@
     "@angular/router": "^6.0.0",
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",
     "@reactivex/rxjs": "^6.1.0",
+    "@types/moment-timezone": "^0.5.4",
     "@types/pouchdb": "^6.3.2",
     "@types/pouchdb-core": "^6.1.13",
+    "@types/uuid": "^3.4.3",
     "bootstrap": "^4.1.1",
     "buffer": "^5.1.0",
     "chart.js": "^2.7.2",
@@ -56,5 +58,17 @@
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "~2.7.2"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KouiDeveloper/Ice-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KouiDeveloper/Ice-app/issues"
+  },
+  "homepage": "https://github.com/KouiDeveloper/Ice-app#readme"
 }
