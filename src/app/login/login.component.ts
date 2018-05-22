@@ -36,10 +36,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     private websocketDataServiceService: WebsocketDataServiceService,
     private router: Router
   ) {
-    this.loadClient();
-    if (this._client.logintoken) {
-      router.navigate(["/all-menu"]);
-    }
+    // this.loadClient();
+    // if (this._client.logintoken) {
+    //   router.navigate(["/all-menu"]);
+    // }
     this._subs.push(
       this.websocketDataServiceService.clientSource.subscribe(client => {
         this.readClient(client);
@@ -67,12 +67,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       })
     );
     // tslint:disable-next-line:max-line-length
-    this.websocketDataServiceService.heartbeat_interval = setInterval(
-      this.websocketDataServiceService.heartbeat.bind(
-        this.websocketDataServiceService
-      ),
-      1000 * 60
-    );
+    // this.websocketDataServiceService.heartbeat_interval = setInterval(
+    //   this.websocketDataServiceService.heartbeat.bind(
+    //     this.websocketDataServiceService
+    //   ),
+    //   1000 * 60
+    // );
   }
   //// END WEBSOCKET LAUNCHING
   /// OTHER FUNCTIONS
@@ -106,13 +106,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   loadClient() {
     sessionStorage.setItem("firstHandShake", "");
     sessionStorage.setItem("firstHeartBeat", "");
-    if (!this._client.gui || this._client.gui === undefined) {
+    //if (!this._client.gui || this._client.gui === undefined) {
       this._client = this.websocketDataServiceService.getClient();
       //this.websocketDataServiceService.refreshClient();
       console.log("client loaded");
-    } else {
-      this.saveClient();
-    }
+    // } else {
+    //   this.saveClient();
+    // }
   }
   /// INIT FUNCTIONS
 
@@ -143,7 +143,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             } else {
               this.saveClient();
               console.log("LOGIN OK");
-              this.router.navigate(["/index"]);
+              this.router.navigate(["/device-list"]);
             }
             break;
           case "get-client":
@@ -162,6 +162,8 @@ export class LoginComponent implements OnInit, OnDestroy {
               console.log(this._client.data["message"]);
             } else {
               console.log("shake hands ok");
+              console.log(this._client);
+              this.saveClient();
             }
             break;
           default:
