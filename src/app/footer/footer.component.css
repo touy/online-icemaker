@@ -1,6 +1,6 @@
 .bg-footer {
-  background: rgba(9, 248, 21, 0.198) !important;
-  color: whitesmoke !important;
+  background: #33e023e0 !important;
+  color: #fafafa !important;
 }
 
 .list-footer li a {
@@ -33,7 +33,7 @@
   margin-bottom: 30px;
 }
 #social {
-  color: #90a4ae !important;
+  color: #fafafa !important;
 }
 
 #social:hover {

@@ -123,8 +123,8 @@ td {
   cursor: pointer;
 }
 .bg-list:hover {
-  background: #aff587 !important;
-  color: red;
+  background: #33e023e0 !important;
+  color: rgb(151, 50, 50);
 }
 
 .resize-logo{

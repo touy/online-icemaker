@@ -13,7 +13,7 @@
 .menu-image1 {
   height: 150px;
   width: 150px;
-  background-color: yellowgreen;
+  background-color: #11cc00;
 }
 .image-size-one {
   height: 110px;
@@ -34,7 +34,7 @@
 .menu-image1:hover {
   height: 160px;
   width: 160px;
-  background-color: rgb(158, 231, 11);
+  background-color: #2ef61c;
   /* float: center; */
   transition: 0.5s;
 }

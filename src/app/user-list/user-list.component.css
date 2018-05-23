@@ -123,7 +123,8 @@ td {
   cursor: pointer;
 }
 .bg-list:hover {
-  background: #aff587 !important;
+  color:rgb(151, 50, 50);
+  background: #33e023e0 !important;
 }
 
 .size-add-people{
@@ -134,7 +135,6 @@ td {
 .size-add-people:hover{
   width: 220px !important;
   font-size: 14pt;
-  color:rgb(0, 0, 0);
   transition: 0.5s;
 }
 

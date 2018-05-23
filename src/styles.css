@@ -12,6 +12,7 @@ body{
 .bg-main-color:hover{
   transition: 0.3s;
   background: #7ec256 !important;
+  box-shadow:0 0 0 .1rem rgba(26, 236, 7, 0.616)
 }
 
 .bg-gray-color{
@@ -45,7 +46,7 @@ a{
 }
 
 .font-link{
-  color:#90a4ae !important;
+  color:#fafafa !important;
 }
 .font-link:hover{
   color:#455a64 !important;
