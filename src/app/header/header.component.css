@@ -1,5 +1,5 @@
 .bg-light {
-  background: #aff587 !important;
+  background: #11cc00 !important;
 }
 .ice-icon-header {
   width: 30px;
@@ -7,4 +7,9 @@
 }
 .dropdown-item {
   cursor: pointer;
+}
+.change-head-right-color:hover{
+  color:rgb(253, 252, 252) !important;
+  transition: 0.7s !important;
+  border-color: black;
 }
