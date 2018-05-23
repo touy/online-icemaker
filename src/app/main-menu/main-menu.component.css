@@ -6,9 +6,10 @@
   background: rgb(223, 221, 221) !important;
 }
 .twoone {
-  border: 1px solid yellowgreen !important;
+  border: 1px solid #11cc00 !important;
+  box-shadow:0 0 0 .1rem rgba(212, 250, 151, 0.753);
   padding: 40px;
-  background: rgb(223, 221, 221) !important;
+  background: #33e02309 !important;
 }
 .menu-image1 {
   height: 150px;
@@ -27,8 +28,9 @@
 }
 
 #border-icon-content {
-  border: 10px solid;
-  border-color: #ececec;
+  border: 1px solid;
+  border-color: rgb(218, 213, 213);
+  box-shadow: 0 0 0 .2rem #c7cec6;
 }
 
 .menu-image1:hover {

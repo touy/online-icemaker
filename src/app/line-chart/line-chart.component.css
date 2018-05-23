@@ -1,7 +1,6 @@
 .line-chart-background {
-  background: rgb(223, 221, 221) !important;
+  background: #37753218 !important;
+  border:1px solid #11cc0060;
+  box-shadow: 0 0 0 .3rem rgba(140, 243, 56, 0.116);
   padding: 33px;
-}
-#test {
-  background: rgba(1, 48, 255, 0.63);
 }
