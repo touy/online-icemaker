@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private websocketDataServiceService: WebsocketDataServiceService,
     private router: Router
   ) {
-    // this.loadClient();
+    this.loadClient();
     // if (this._client.logintoken) {
     //   router.navigate(["/all-menu"]);
     // }

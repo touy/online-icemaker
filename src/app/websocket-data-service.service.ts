@@ -395,6 +395,15 @@ export class WebsocketDataServiceService implements OnInit {
                   console.log(this._client.data['message']);
                 }
                 break;
+                case 'get-sub-users':
+                if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
+                  // console.log(this._client.data['message']);
+                } else {
+                  console.log(this._client.data['message']);
+                  this._currentSubUser=this._client.data.userinfo;
+                  this.refreshSubUser();
+                }
+                break;
               default:
                 break;
             }
@@ -413,6 +422,7 @@ export class WebsocketDataServiceService implements OnInit {
 
     });
     this.timeOut_runner = setTimeout(() => {
+      console.log('run shake hands');
       this.shakeHands();
     }, 1000 * 1);
   }
@@ -506,13 +516,14 @@ export class WebsocketDataServiceService implements OnInit {
     // // alert(sessionStorage.getItem('firstThread') + ' heartbeat');
     if (firstHandShake) {
       // this.stopService();
+      console.log('second shake hands');
       return;
     }
     sessionStorage.setItem('firstHandShake', '1');
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data['command'] = 'shake-hands';
     this._message.data.transaction = this.createTransaction();
-    // console.log('before shakehands' + JSON.stringify(this._message));
+    console.log('before shakehands' + JSON.stringify(this._message));
     this.sendMsg();
     // if (!this._client.gui || this._client.gui === undefined) {
     //   this._message = JSON.parse(JSON.stringify(this._client));
@@ -528,7 +539,7 @@ export class WebsocketDataServiceService implements OnInit {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data['command'] = 'login';
     this._message.data.user = loginuser;
-    // alert(JSON.stringify(this._message));
+    //alert(JSON.stringify(this._message));
     this._message.data.transaction = this.createTransaction();
     this.sendMsg();
   }
@@ -838,6 +849,8 @@ export class WebsocketDataServiceService implements OnInit {
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'register-new-user';
     this._message.data.user = u;
+    console.log(u);
+    
     this.sendMsg();
   }
   registerSaleUser(u) {

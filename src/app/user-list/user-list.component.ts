@@ -20,6 +20,7 @@ export class UserListComponent {
 private _message: Message;
 private _newUser: any = {};
 private _userDetailsStr = "";
+private _userList;
 private _server_event: Array<any> = [];
 private _client: Message = {
   gui: "",
@@ -97,12 +98,13 @@ constructor(
       this.readSubUser(msg);
     })
   );
-  this.websocketDataServiceService.heartbeat_interval = setInterval(
-    this.websocketDataServiceService.heartbeat.bind(
-      this.websocketDataServiceService
-    ),
-    1000 * 60
-  );
+ 
+  // this.websocketDataServiceService.heartbeat_interval = setInterval(
+  //   this.websocketDataServiceService.heartbeat.bind(
+  //     this.websocketDataServiceService
+  //   ),
+  //   1000 * 60
+  // );
 }
 //// END WEBSOCKET LAUNCHING
 
@@ -145,10 +147,12 @@ ngOnInit() {
   this._newUser = JSON.parse(JSON.stringify(this._client));
   this._newUser.data = {};
   this._newUser.data.user = {};
+  this._currentSubUser=[];
   this._message = JSON.parse(JSON.stringify(this._client));
   this._currentUserdetail = {};
   this._userDetailsStr = "";
   this._otherMessage = {};
+ 
 }
 ngOnDestroy() {
   console.log("STOP SERVICE");
@@ -232,6 +236,7 @@ str2ab(str) {
               console.log(this._client.data["message"]);
             } else {
               console.log("shake hands ok");
+              this.getSubUsers();
               // this.getDevices();
               // alert("get device don't work any more");
             }
@@ -272,6 +277,15 @@ str2ab(str) {
               console.log(this._client.data["message"]);
             } else {
               alert("Get-device-info is working");
+            }
+            break;
+          case "register-new-user":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
+            } else {
+              alert("Success to add new user");
             }
             break;
           default:
@@ -379,12 +393,16 @@ registerNewUser() {
 }
 
 registerSaleUser() {
-  const u = this._currentSubUser;
+  const u = this._newUser.data.user;
   this.websocketDataServiceService.registerSaleUser(u);
 }
 registerFinanceUser() {
-  const u = this._currentSubUser;
+  const u = this._newUser.data.user;
   this.websocketDataServiceService.registerFinacneUser(u);
+}
+getSubUsers(){
+  console.log('get subusers');
+  this.websocketDataServiceService.getSubUsers();
 }
 
 }

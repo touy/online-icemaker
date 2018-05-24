@@ -3,7 +3,9 @@
    /* background: rgb(223, 221, 221) !important; */
 }
 .card {
-  background: rgb(223, 221, 221) !important;
+  background: #33e02309 !important;
+  border:1px solid #11cc0060;
+  box-shadow: 0 0 0 .3rem rgba(140, 243, 56, 0.116);
   border: none !important;
   padding: 30px;
 }
@@ -24,11 +26,17 @@ tr,th,td {
   background: rgba(235, 236, 236, 0.609) !important;
 }
 .bg-detail-product {
-  background: rgba(235, 236, 236, 0.609) !important;
+  background: #33e02309 !important;
+  border:1px solid #11cc0060;
+  box-shadow: 0 0 0 .3rem rgba(140, 243, 56, 0.116);
   padding: 30px;
 }
 
 .form-control {
   border: none !important;
   background: rgba(235, 236, 236, 0.609) !important;
+}
+
+.card-body{
+  padding:30px;
 }
