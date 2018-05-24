@@ -79,10 +79,11 @@ export class WebsocketDataServiceService implements OnInit {
     this.currentBillSource.next(this._currentBill);
   }
   public refreshSubUser() {
-    this.currentUserSource.next(this._currentSubUser);
+    // alert('refres sub user list');
+    this.currentSubUserSource.next(this._currentSubUser);
   }
   public refreshArraySubUser() {
-    this.currentUserSource.next(this._arraySubUser);
+    this.currentSubUserSource.next(this._arraySubUser);
   }
   public refreshArrayPayment() {
     this.currentPaymentSource.next(this._arrayPayment);
@@ -212,7 +213,8 @@ export class WebsocketDataServiceService implements OnInit {
             // this.setClient(this._client);
             this.refreshClient();
             console.log('return from server client');
-            console.log(this._client);
+            //console.log(this._client);
+            // alert (this._client.data['command']);
             switch (this._client.data['command']) {
               case 'heart-beat':
                 if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
@@ -399,7 +401,8 @@ export class WebsocketDataServiceService implements OnInit {
                 if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
                   // console.log(this._client.data['message']);
                 } else {
-                  console.log(this._client.data['message']);
+                  
+                  //console.log(this._client.data['message']);
                   this._currentSubUser=this._client.data.userinfo;
                   this.refreshSubUser();
                 }
@@ -419,7 +422,8 @@ export class WebsocketDataServiceService implements OnInit {
         console.log(error);
         sessionStorage.clear();
       }
-
+      this._client.data.command='';
+      this._client.data.Message='';
     });
     this.timeOut_runner = setTimeout(() => {
       console.log('run shake hands');
@@ -516,14 +520,14 @@ export class WebsocketDataServiceService implements OnInit {
     // // alert(sessionStorage.getItem('firstThread') + ' heartbeat');
     if (firstHandShake) {
       // this.stopService();
-      console.log('second shake hands');
+      //console.log('second shake hands');
       return;
     }
     sessionStorage.setItem('firstHandShake', '1');
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data['command'] = 'shake-hands';
     this._message.data.transaction = this.createTransaction();
-    console.log('before shakehands' + JSON.stringify(this._message));
+    //console.log('before shakehands' + JSON.stringify(this._message));
     this.sendMsg();
     // if (!this._client.gui || this._client.gui === undefined) {
     //   this._message = JSON.parse(JSON.stringify(this._client));

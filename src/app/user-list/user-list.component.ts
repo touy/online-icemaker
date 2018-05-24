@@ -1,3 +1,4 @@
+
 import { Component, Inject, OnInit, OnDestroy } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Router, RouterModule } from "@angular/router";
@@ -20,7 +21,8 @@ export class UserListComponent {
 private _message: Message;
 private _newUser: any = {};
 private _userDetailsStr = "";
-private _userList;
+private _selectedSubUsers: any;
+
 private _server_event: Array<any> = [];
 private _client: Message = {
   gui: "",
@@ -120,7 +122,9 @@ Add_New_Finances(new_finances) {
   this.modalService.open(new_finances, { centered: true });
 }
 
-Show_update_details(Alert_update_details) {
+Show_update_details(Alert_update_details,u) {
+  // alert(JSON.stringify(u));
+  this._selectedSubUsers=u;
   this.modalService.open(Alert_update_details, { centered: true });
   // alert(content);
 }
@@ -198,7 +202,7 @@ str2ab(str) {
       if (c !== undefined) {
         this._client = c;
         // this.saveClient();
-        console.log(c);
+       // console.log(c);
         switch (this._client.data["command"]) {
           case "heart-beat":
             if (
@@ -288,12 +292,19 @@ str2ab(str) {
               alert("Success to add new user");
             }
             break;
+            case "get-sub-users":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
+            } else {
+              console.log(this._client.data.message);
+            }
+            break;
           default:
             break;
+
         }
-        // console.log(this.heartbeat_interval);
-        // console.log(this._client);
-        // if (evt.data != '.') $('#output').append('<p>'+evt.data+'</p>');
       } else {
         // alert('data empty');
         console.log("data is empty");
@@ -301,6 +312,7 @@ str2ab(str) {
     } catch (error) {
       console.log(error);
     }
+ 
   }
 readNewUser(n): any {
   // this._newUser;
@@ -330,6 +342,8 @@ readBill(m: any) {
   }
 }
 readSubUser(m: any) {
+  console.log('read sub user list');
+  console.log(m);
   if (m !== undefined) {
     this._currentSubUser = m;
   }
