@@ -1,4 +1,3 @@
-
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 // import { Observable } from 'rxjs/Rx';
@@ -7,7 +6,7 @@ import { ChatService, Message } from './chat.service';
 import { v4 as uuid } from 'uuid';
 import { Moment } from 'moment';
 import * as moment from 'moment-timezone';
-//import * as PouchDB from 'pouchdb';
+//import PouchDB from 'pouchdb';
 import { PouchDBService } from './pouchdb.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
@@ -22,7 +21,7 @@ export class WebsocketDataServiceService implements OnInit {
   private _currentUserdetail: any;
   private _server_event: any = [];
   private _moment: Moment;
-  private _pouch: PouchDB.Database;
+ // private _pouch: PouchDB.Database;
   private _client: Message = {
     gui: '',
     username: '',
@@ -79,11 +78,10 @@ export class WebsocketDataServiceService implements OnInit {
     this.currentBillSource.next(this._currentBill);
   }
   public refreshSubUser() {
-    // alert('refres sub user list');
     this.currentSubUserSource.next(this._currentSubUser);
   }
   public refreshArraySubUser() {
-    this.currentSubUserSource.next(this._arraySubUser);
+    this.currentUserSource.next(this._arraySubUser);
   }
   public refreshArrayPayment() {
     this.currentPaymentSource.next(this._arrayPayment);
@@ -213,8 +211,7 @@ export class WebsocketDataServiceService implements OnInit {
             // this.setClient(this._client);
             this.refreshClient();
             console.log('return from server client');
-            //console.log(this._client);
-            // alert (this._client.data['command']);
+            console.log(this._client);
             switch (this._client.data['command']) {
               case 'heart-beat':
                 if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
@@ -397,19 +394,45 @@ export class WebsocketDataServiceService implements OnInit {
                   console.log(this._client.data['message']);
                 }
                 break;
-                case 'get-sub-users':
+              case 'get-sub-users':
                 if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
                   // console.log(this._client.data['message']);
                 } else {
-                  
-                  //console.log(this._client.data['message']);
-                  this._currentSubUser=this._client.data.userinfo;
+                  console.log(this._client.data['message']);
+                  this._currentSubUser = this._client.data.userinfo;
                   this.refreshSubUser();
                 }
+                break;
+              case 'update-sub-userinfo':
+                if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
+                  // console.log(this._client.data['message']);
+                } else {
+                  console.log(this._client.data['message']);
+                  this.refreshClient();
+                }
+                break;
+              case 'reset-password-sub-user':
+                if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
+                  // console.log(this._client.data['message']);
+                } else {
+                  console.log(this._client.data['message']);
+                  // this._client.data.user = this._client.data.user;
+                  this.refreshClient();
+                  // this.refreshSubUser();
+                }
+                break;
+              case 'get-devices':
+                this._currentDevice = this._client.data.deviceinfo;
+                this.refreshCurrentDevice();
+                break;
+              case 'get-device-info':
+              this._currentDevice = this._client.data.deviceinfo;
+                this.refreshCurrentDevice();
                 break;
               default:
                 break;
             }
+
             // console.log(this.heartbeat_interval);
             // console.log(this._client);
             // if (evt.data != '.') $('#output').append('<p>'+evt.data+'</p>');
@@ -422,11 +445,10 @@ export class WebsocketDataServiceService implements OnInit {
         console.log(error);
         sessionStorage.clear();
       }
-      this._client.data.command='';
-      this._client.data.Message='';
+      this._client.data.command = '';
+      this._client.data.message = '';
     });
     this.timeOut_runner = setTimeout(() => {
-      console.log('run shake hands');
       this.shakeHands();
     }, 1000 * 1);
   }
@@ -520,14 +542,13 @@ export class WebsocketDataServiceService implements OnInit {
     // // alert(sessionStorage.getItem('firstThread') + ' heartbeat');
     if (firstHandShake) {
       // this.stopService();
-      //console.log('second shake hands');
       return;
     }
     sessionStorage.setItem('firstHandShake', '1');
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data['command'] = 'shake-hands';
     this._message.data.transaction = this.createTransaction();
-    //console.log('before shakehands' + JSON.stringify(this._message));
+    // console.log('before shakehands' + JSON.stringify(this._message));
     this.sendMsg();
     // if (!this._client.gui || this._client.gui === undefined) {
     //   this._message = JSON.parse(JSON.stringify(this._client));
@@ -543,7 +564,7 @@ export class WebsocketDataServiceService implements OnInit {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data['command'] = 'login';
     this._message.data.user = loginuser;
-    //alert(JSON.stringify(this._message));
+    // alert(JSON.stringify(this._message));
     this._message.data.transaction = this.createTransaction();
     this.sendMsg();
   }
@@ -813,6 +834,22 @@ export class WebsocketDataServiceService implements OnInit {
     this._message.data.command = 'get-sub-users';
     this.sendMsg();
   }
+  resetPasswordSubUser(u) {
+    this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
+    this._message.data.user = u;
+    this._message.data.transaction = this.createTransaction();
+    this._message.data.command = 'reset-password-sub-user';
+    this.sendMsg();
+  }
+  updateSubUserinfo(u) {
+    this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
+    this._message.data.user = u;
+    this._message.data.transaction = this.createTransaction();
+    this._message.data.command = 'update-sub-userinfo';
+    this.sendMsg();
+  }
 
   getDevices() {
     this._message = JSON.parse(JSON.stringify(this._client));
@@ -823,13 +860,15 @@ export class WebsocketDataServiceService implements OnInit {
   }
   getDeviceInfo(d) {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'get-device-info';
-    this._message.data.deviceinfo = d;
+    this._message.data.device = d;
     this.sendMsg();
   }
   approvePayment(p) {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'approve-payment';
     this._message.data.payment = p;
@@ -837,12 +876,14 @@ export class WebsocketDataServiceService implements OnInit {
   }
   getAllPayment() {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'get-all-paymnet';
     this.sendMsg();
   }
   makePayment(p) {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'make-payment';
     this._message.data.payment = p;
@@ -850,15 +891,15 @@ export class WebsocketDataServiceService implements OnInit {
   }
   registerNewUser(u) {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'register-new-user';
     this._message.data.user = u;
-    console.log(u);
-    
     this.sendMsg();
   }
   registerSaleUser(u) {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'register-sale-user';
     this._message.data.user = u;
@@ -866,6 +907,7 @@ export class WebsocketDataServiceService implements OnInit {
   }
   registerFinacneUser(u) {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'register-finance-user';
     this._message.data.user = u;
@@ -873,67 +915,33 @@ export class WebsocketDataServiceService implements OnInit {
   }
   updateDeviceOwners(d) {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'update-devices-owners';
-    this._message.data.deviceinfo = d;
+    this._message.data.device = d;
     this.sendMsg();
   }
   updateDevice(d) {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'update-devices';
-    this._message.data.deviceinfo = d;
+    this._message.data.device = d;
     this.sendMsg();
   }
   getProductionTime() {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'get-production-time';
     this.sendMsg();
   }
   getLatestWorkingStatus() {
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'get-latest-working-status';
     this.sendMsg();
   }
 
-  //  uploadPhoto() {
-  //   this._client.data = {};
-  //   this._client.data['user'] = {};
-  //   var socketServerUrl = 'ws://localhost:6688/';
-  //   var files = [];
-  //   $('input[type=file]').change( (event) {
-  //     files = event.target.files;
-  //     if (files.length == 0) {
-  //       // alert('select files first !');
-  //       return false;
-  //     }
-  //     for (var i = 0; i < files.length; i++) {
-  //       var $transfer = $('<div />').addClass('transfer');
-  //       var $progress = $('<div />').addClass('progress')
-  //       var $progressBar = $('<div />').addClass('progressBar');
-  //       $progressBar.append($progress);
-  //       $transfer.append($progressBar);
-  //       $('#progresses').append($transfer);
-  //       // Creates the transfer
-  //       var transfer = new WebSocketFileTransfer({
-  //         url: socketServerUrl,
-  //         file: files[i],
-  //         blockSize: 1024,
-  //         type: WebSocketFileTransfer.binarySupported() ? 'binary' : 'base64',
-  //         $progress: $progress,
-  //         progress:  (event) {
-  //           this.$progress.css('width', event.percentage + '%');
-  //         },
-  //         success:  (event) {
-  //           this.$progress.addClass('finished');
-  //         }
-  //       });
-  //       // Starts the transfer
-  //       transfer.start();
-  //     }
-  //     return false;
-  //   });
-  // }
 }
