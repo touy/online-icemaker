@@ -18,17 +18,20 @@
       <table class="table table-bordered table-striped table-responsive">
         <thead class="thead-dark">
           <tr>
-            <th class="langlao" scope="col">username</th>
+            <th></th>
+            <th class="langlao" scope="col">username {{_currentSubUser.count}}</th>
             <th class="langlao" scope="col">phonenumber</th>
             <th class="langlao" scope="col">active</th>
             <th class="langlao" scope="col">lastupdate</th>
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let u of _currentSubUser.arr" (click)="Show_update_details(Alert_update_details)" class="bg-list" >
-                <th class="langlao" scope="row">{{u.username}}/th>
+            <tr *ngFor="let u of _currentSubUser.arr" (click)="Show_update_details(Alert_update_details,u)" class="bg-list" >
+                <th><img class="img-resize" [src]="u.photo.length?u.photo[0]:'../../assets/photo/Logo_replace_three.png'" alt=""></th>
+                <th class="langlao" scope="row">{{u.username}}</th>
                 <td class="phone-number">{{u.phonenumber}}</td>
-                <td>{{u.isactive}}</td>
+                <td>
+                  <input type="checkbox" class="form-check-input"  checked="u.isactive" ></td>
                 <td >{{u.lastupdate}}</td>
             </tr>
         </tbody>
@@ -236,43 +239,51 @@
     <div class="modal-body">
       <div class="">
         <div class="row pb-2">
-          <div class="col-12">
-            <img src="../../assets/photo/default-user.png" class="img-fluid rounded-circle mx-auto d-block">
+          <div class="col-md-2 offset-md-5 col-4 offset-4 rounded-circle">
+            <img [src]="_selectedSubUsers.photo.length?_selectedSubUsers.photo[0]:'../../assets/photo/Logo_replace_three.png'" class="img-fluid mx-auto d-block">
           </div>
         </div>
         <div class="d-block justify-content-center">
-          <label class="col-md-3 col-xs-3 btn-form-users btn-primary-form-users d-block mx-auto mt-3"> Select photo
+          <label class="col-md-3  col-5 btn-form-users btn-primary-form-users d-block mx-auto mt-3"> Select photo
             <input type="file" placeholder="file" hidden required>
           </label>
         </div>
-        <section id="form-add-users">
-          <div class="row col-md-10 offset-md-1 font-color-form-users">
-            <div class="group-control col-md-6 col-12 mt-4">
-              <label class="langlao mg-name" for="">ຊື່ຕູ້ນ້ຳກ້ອນ *</label>
-              <input class="form-control" type="text">
+        <form>
+          <section id="form-add-users">
+            <div class="row col-md-10 offset-md-1 font-color-form-users">
+              <div class="group-control col-md-6 col-12 mt-4">
+                <label class="langlao mg-name" for="">ຊື່ຜູ້ໃຊ້ *</label>
+                <!-- <div *ngIf="_selectedSubUsers.isactive">----CHECKED----</div> -->
+                <input class="form-control cursor-not-allowed" type="text" [value]="_selectedSubUsers.username" (input)="_selectedSubUsers.username=$event.target.value" disabled>
+              </div>
+              <div class="group-control col-md-6 col-12 mt-4">
+                <label class="langlao mg-name" for="">ເບີໂທລະສັບ *</label>
+                <input class="form-control cursor-not-allowed" type="number" [value]="_selectedSubUsers.phonenumber" (input)="_selectedSubUsers.username=$event.target.value" disabled>
+              </div>
+              <div class="group-control col-md-6 col-12 mt-4">
+                <label class="langlao mg-name" for="">Status *</label>
+                <div class="form-group form-control">
+                    <label class="m-0" for="">Active *</label>
+                    <input class="ml-3 checked-box-size" type="checkbox" [checked]="_selectedSubUsers.isactive" (change)="_selectedSubUsers.isactive=$event.target.checked">
+                </div>
+              </div>
+              <div class="group-control col-md-6 col-12 mt-4">
+                <label class="langlao mg-name" for="">Note *</label>
+                <input class="form-control" type="text" [value]="_selectedSubUsers.note" (input)="_selectedSubUsers.note=$event.target.value">
+              </div>
+              <div class="group-control col-12 mt-4">
+                <label class="langlao mg-name" for="">ໝາຍເຫດ *</label>
+                <textarea class="form-control" type="text" [value]="_selectedSubUsers.description" (input)="_selectedSubUsers.description=$event.target.value">
+                  </textarea>
+                  <div >{{_selectedSubUsers.totalgij}} - {{_selectedSubUsers.totalgijspent}} = {{_selectedSubUsers.gijvalue}} GIJ</div>
+              </div>
+              <div class="group-control col-12 mt-4 d-flex justify-content-center">
+                <button class="col-md-4 mg-btn col-6 btn btn-primary-form-users langlao" type="submit"><i class="far fa-check-square mr-1"></i>ອັບເດດ</button>
+                <button class="col-md-4 mg-btn col-6 btn btn-danger-form-users langlao" type="reset"><i class="fas fa-redo mr-1"></i>ຍົກເລີກ</button>
+              </div>
             </div>
-            <div class="group-control col-md-6 col-12 mt-4">
-              <label class="langlao mg-name" for="">ເລກ IMEI *</label>
-              <input class="form-control" type="text">
-            </div>
-            <div class="group-control col-md-6 col-12 mt-4">
-              <label class="langlao mg-name" for="">ຊື່ຜູ້ໃຊ້ *</label>
-              <input class="form-control" type="text">
-            </div>
-            <div class="group-control col-md-6 col-12 mt-4">
-              <label class="langlao mg-name" for="">ເບີໂທລະສັບ *</label>
-              <input class="form-control" type="text">
-            </div>
-            <div class="group-control col-12 mt-4">
-              <label class="langlao mg-name" for="">ໝາຍເຫດ *</label>
-              <input class="form-control" type="text">
-            </div>
-            <div class="group-control col-12 mt-4 d-flex justify-content-center">
-              <button class="col-md-4 mg-btn col-6 btn btn-primary-form-users langlao" type="submit"><i class="far fa-check-square mr-1"></i>ອັບເດດ</button>
-              <button class="col-md-4 mg-btn col-6 btn btn-danger-form-users langlao" type="reset"><i class="fas fa-redo mr-1"></i>ຍົກເລີກ</button>
-            </div>
-          </div>
-        </section>
+          </section>
+        </form>
       </div>
     </div>
     <div class="modal-footer">
