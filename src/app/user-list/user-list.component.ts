@@ -418,5 +418,14 @@ getSubUsers(){
   console.log('get subusers');
   this.websocketDataServiceService.getSubUsers();
 }
+updateSubUserinfo(){
+  let u=this._selectedSubUsers;
+  this.websocketDataServiceService.updateSubUserinfo(u);
+}
+resetPasswordSubUser(){
+  let u=this._selectedSubUsers;
+  this.websocketDataServiceService.resetPasswordSubUser(u);
+}
+
 
 }

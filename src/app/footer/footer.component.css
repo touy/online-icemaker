@@ -33,11 +33,11 @@
   margin-bottom: 30px;
 }
 #social {
-  color: #fafafa !important;
-}
-
-#social:hover {
   color: #455a64 !important;
+}
+ 
+#social:hover {
+  color: rgb(151, 50, 50) !important;
   transition: 0.5s;
 }
 

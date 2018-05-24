@@ -46,9 +46,9 @@ a{
 }
 
 .font-link{
-  color:#fafafa !important;
+  color:#455a64 !important;
 }
 .font-link:hover{
-  color:#455a64 !important;
+  color:rgb(151, 50, 50) !important;
   transition: 0.5s;
 }

@@ -135,3 +135,10 @@ td {
   width: 150px;
   border-radius:40px 40px 40px 40px;
 }
+.img-resize{
+  width: 80px;
+  height: 60px;
+}
+.cursor-not-allowed{
+  cursor: not-allowed;
+}
