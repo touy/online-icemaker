@@ -91,12 +91,7 @@ export class ListProductComponent implements OnInit, OnDestroy {
         this.readSubUser(msg);
       })
     );
-    this.websocketDataServiceService.heartbeat_interval = setInterval(
-      this.websocketDataServiceService.heartbeat.bind(
-        this.websocketDataServiceService
-      ),
-      1000 * 60
-    );
+
   }
   //// END WEBSOCKET LAUNCHING
 

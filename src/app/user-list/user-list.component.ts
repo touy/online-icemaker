@@ -54,6 +54,9 @@ constructor(
   private router: Router
 ) {
   this.loadClient();
+  // if (this._client.logintoken) {
+  //     router.navigate(["/main-menu"]);
+  //   }
   this._subs.push(
     this.websocketDataServiceService.clientSource.subscribe(client => {
       this.readClient(client);
@@ -156,7 +159,12 @@ ngOnInit() {
   this._currentUserdetail = {};
   this._userDetailsStr = "";
   this._otherMessage = {};
- 
+  this.runInit();
+}
+runInit(){
+  setTimeout(() => {
+    this.getSubUsers();
+  }, 1000);
 }
 ngOnDestroy() {
   console.log("STOP SERVICE");
@@ -240,9 +248,7 @@ str2ab(str) {
               console.log(this._client.data["message"]);
             } else {
               console.log("shake hands ok");
-              this.getSubUsers();
-              // this.getDevices();
-              // alert("get device don't work any more");
+              
             }
             break;
           case "get-transaction":
@@ -298,6 +304,7 @@ str2ab(str) {
             ) {
               console.log(this._client.data["message"]);
             } else {
+              console.log(this._client);
               console.log(this._client.data.message);
             }
             break;

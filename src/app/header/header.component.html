@@ -16,12 +16,18 @@
                         <button class="dropdown-item" type="button" [routerLink]="['/login']">
                             <i class="fas fa-user"></i> Sign In</button>
                         <hr>
-                        <button class="dropdown-item" type="button" [routerLink]="['/main-menu']">
+                        <button class="dropdown-item" type="button" (click) ="logout()">
                             <i class="fas fa-level-down-alt"></i> Logout</button>
                         <hr>
                         <button class="dropdown-item" type="button" [routerLink]="['/device-list']">
-                            <i class="far fa-address-book"></i> For Admin</button>
-                    </div>
+                            <i class="far fa-address-book"></i> Device management</button>
+                            <hr>
+                        <button class="dropdown-item" type="button" [routerLink]="['/user-list']">
+                            <i class="far fa-address-book"></i> User management</button>
+                        <hr>
+                        <button class="dropdown-item" type="button" [routerLink]="['/mix-chart']">
+                            <i class="far fa-address-book"></i> Production</button>
+                        </div>
                 </li>
             </ul>
         </div>

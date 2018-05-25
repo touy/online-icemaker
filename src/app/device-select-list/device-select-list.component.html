@@ -1,0 +1,55 @@
+<div>
+    <div class="scrolling-wrapper">
+        <div class="card">
+            <div class="select-device-list" *ngFor="let d of _currentDevice" (click)="selectDevice(d)">
+                <ul class="list-group">
+                    <img [src]="d.photo[0]?d.photo[0]:''">
+                    <li class="list-group-item list-group-item-success text-uppercase langlao">
+                        <i class="fas fa-question size-icon-device-select mr-1"></i> {{d.name}}</li>
+                    <li class="list-group-item list-group-item-success text-uppercase">
+                        <i class="fas fa-barcode size-icon-device-select mr-1"></i>: {{d.imei}}</li>
+                    <li class="list-group-item list-group-item-success text-uppercase">
+                        <i class="fas fa-signal size-icon-device-select mr-1"></i>: {{''}}</li>
+                    <li class="list-group-item list-group-item-success text-uppercase">
+                        <i class="fas fa-mobile-alt size-icon-device-select mr-1"></i>: {{d.phonenumber}}</li>
+                    <li class="list-group-item list-group-item-success text-uppercase">
+                        <i class="far fa-play-circle size-icon-device-select mr-1"></i>: {{''}}</li>
+                    <li class="list-group-item list-group-item-success text-uppercase">
+                        <i class="far fa-stop-circle size-icon-device-select mr-1"></i>: {{''}}</li>
+                    <!-- <li class="list-group-item list-group-item-success text-uppercase">total run: {{d.totalrun}}</li> -->
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="clearfix">
+        <div class="mt-2 mb-4 ">
+            <div class="months">
+                <nav>
+                    <ul class="pagination">
+                        <li *ngFor="let m of getYears()">
+                            <a [ngClass]="{'active': _selectedYear == m}" (click)="selectYear(m)">{{m}}</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+<div class="clearfix col-md-10 offset-md-1 col-12">
+    <div class="mt-2 mb-4 ">
+        <div class="months">
+            <nav>
+                <ul class="pagination">
+                    <li *ngFor="let m of getMonths()">
+                        <a [ngClass]="{'active': _selectedMonth == m}" (click)="selectMonth(m)">{{m}}</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+import { DeviceSelectListComponent } from './device-select-list/device-select-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -38,7 +39,8 @@ const routes: Routes = [
   { path: 'list-product', component:ListProductComponent},
   { path: 'device-list', component:DeviceListComponent},
   { path: 'user-list', component:UserListComponent},
-  { path: 'device-info', component:DeviceInfoComponent}
+  { path: 'device-info', component:DeviceInfoComponent},
+  { path: 'device-seletct-list', component:DeviceSelectListComponent}
 ]
 
 @NgModule({

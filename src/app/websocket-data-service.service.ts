@@ -14,6 +14,8 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class WebsocketDataServiceService implements OnInit {
 
   private _title = 'Websocket test';
+  private _selectedMonth;
+  private _selectedYear;
   private _url: string;
   private _message: any;
   private _newUser: any;
@@ -21,7 +23,7 @@ export class WebsocketDataServiceService implements OnInit {
   private _currentUserdetail: any;
   private _server_event: any = [];
   private _moment: Moment;
- // private _pouch: PouchDB.Database;
+  //private _pouch: PouchDB.Database;
   private _client: Message = {
     gui: '',
     username: '',
@@ -40,8 +42,7 @@ export class WebsocketDataServiceService implements OnInit {
   private _arrayBills: any;
   private _arrayPayment: any;
   private _arraySubUser: any;
-  public heartbeat_interval: number;
-
+  // public heartbeat_interval: number;
 
 
   private _otherMessage: any;
@@ -120,6 +121,8 @@ export class WebsocketDataServiceService implements OnInit {
       this._client.data['user'] = {};
     }
     this._message = JSON.parse(JSON.stringify(this._client));
+    this._selectedMonth = new Date().getMonth() + 1;
+    this._selectedYear = new Date().getFullYear;
   }
   constructor(private chatService: ChatService, private sanitizer: DomSanitizer) {
     //this._pouch = new PouchDB('_client');
@@ -209,19 +212,19 @@ export class WebsocketDataServiceService implements OnInit {
           } else {
             this._client = msg;
             // this.setClient(this._client);
-            this.refreshClient();
+            // this.refreshClient();
             console.log('return from server client');
             console.log(this._client);
             switch (this._client.data['command']) {
-              case 'heart-beat':
-                if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
-                  console.log(this._client.data['message']);
-                } else {
-                  // this._client.data['user'] = u;
-                  console.log(this._client.data['message']);
-                  // this.setClient(this._client);
-                }
-                break;
+              // case 'heart-beat':
+              //   if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
+              //     console.log(this._client.data['message']);
+              //   } else {
+              //     // this._client.data['user'] = u;
+              //     console.log(this._client.data['message']);
+              //     // this.setClient(this._client);
+              //   }
+              //   break;
               case 'ping':
                 if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
                   console.log(this._client.data['message']);
@@ -425,8 +428,12 @@ export class WebsocketDataServiceService implements OnInit {
                 this._currentDevice = this._client.data.deviceinfo;
                 this.refreshCurrentDevice();
                 break;
+              case 'get-devices-owner':
+                this._currentDevice = this._client.data.deviceinfo;
+                this.refreshCurrentDevice();
+                break;
               case 'get-device-info':
-              this._currentDevice = this._client.data.deviceinfo;
+                this._currentDevice = this._client.data.deviceinfo;
                 this.refreshCurrentDevice();
                 break;
               default:
@@ -448,6 +455,7 @@ export class WebsocketDataServiceService implements OnInit {
       this._client.data.command = '';
       this._client.data.message = '';
     });
+    console.log('call constructor');
     this.timeOut_runner = setTimeout(() => {
       this.shakeHands();
     }, 1000 * 1);
@@ -488,6 +496,7 @@ export class WebsocketDataServiceService implements OnInit {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data['user'] = {};
     this._message.data['command'] = 'ping';
+    this._message.data.message = 'ຍັງຈັບສັນຍານ GPS ບໍ່ໄດ້ ເລີຍບໍ່ທັນ ONLINE ແຕ່ໂທໄດ້, ຕັ້ງຄ່າໄດ້ແລ້ວ';
     this._message.data.transaction = this.createTransaction();
     // alert('PING');
     this.sendMsg();
@@ -507,32 +516,31 @@ export class WebsocketDataServiceService implements OnInit {
     // delete this.heartbeat_interval;
   }
 
-  heartbeat() {
-    this.getClient();
-    if (!this._client.gui) {
-      console.log('ERROR no shake hands');
-      return;
-    }
-    const firstHeartBeat = sessionStorage.getItem('firstHeartBeat');
-    // if (this.heartbeat_interval === undefined) {
-    //   return;
-    // }
-    // console.log('first heart beat' + firstHeartBeat);
-    if (firstHeartBeat !== this.heartbeat_interval + '' && firstHeartBeat) {
-      this.stopService(this.heartbeat_interval);
-      return;
-    }
-    // console.log('heartbeat ' + this.heartbeat_interval);
-    sessionStorage.setItem('firstHeartBeat', this.heartbeat_interval + '');
-    // // alert(sessionStorage.getItem('firstThread') + ' heartbeat');
-    this._message = JSON.parse(JSON.stringify(this._client));
-    this._message.data = {};
-    this._message.data['user'] = {};
-    this._message.data['command'] = 'heart-beat';
-    this._message.data['command2'] = 'interval ' + this.heartbeat_interval;
-    this.sendMsg();
-  }
-
+  // heartbeat() {
+  //   this.getClient();
+  //   if (!this._client.gui) {
+  //     console.log('ERROR no shake hands');
+  //     return;
+  //   }
+  //   const firstHeartBeat = sessionStorage.getItem('firstHeartBeat');
+  //   // if (this.heartbeat_interval === undefined) {
+  //   //   return;
+  //   // }
+  //   // console.log('first heart beat' + firstHeartBeat);
+  //   if (firstHeartBeat !== this.heartbeat_interval + '' && firstHeartBeat) {
+  //     this.stopService(this.heartbeat_interval);
+  //     return;
+  //   }
+  //   // console.log('heartbeat ' + this.heartbeat_interval);
+  //   sessionStorage.setItem('firstHeartBeat', this.heartbeat_interval + '');
+  //   // // alert(sessionStorage.getItem('firstThread') + ' heartbeat');
+  //   this._message = JSON.parse(JSON.stringify(this._client));
+  //   this._message.data = {};
+  //   this._message.data['user'] = {};
+  //   this._message.data['command'] = 'heart-beat';
+  //   this._message.data['command2'] = 'interval ' + this.heartbeat_interval;
+  //   this.sendMsg();
+  // }
 
   shakeHands() {
     if (!this._client.gui || this._client.gui === undefined) {
@@ -549,14 +557,14 @@ export class WebsocketDataServiceService implements OnInit {
     this._message.data['command'] = 'shake-hands';
     this._message.data.transaction = this.createTransaction();
     // console.log('before shakehands' + JSON.stringify(this._message));
-    this.sendMsg();
-    // if (!this._client.gui || this._client.gui === undefined) {
-    //   this._message = JSON.parse(JSON.stringify(this._client));
-    //   this._message.data['command'] = 'shake-hands';
-    //   this._message.data.transaction = this.createTransaction();
-    //   console.log('before shakehands' + JSON.stringify(this._message));
-    //   this.sendMsg();
-    // }
+    // this.sendMsg();
+    if (!this._client.gui || this._client.gui === undefined) {
+      this._message = JSON.parse(JSON.stringify(this._client));
+      this._message.data['command'] = 'shake-hands';
+      this._message.data.transaction = this.createTransaction();
+      console.log('before shakehands' + JSON.stringify(this._message));
+      this.sendMsg();
+    }
     // // alert('shake handds');
   }
 
@@ -858,6 +866,14 @@ export class WebsocketDataServiceService implements OnInit {
     this._message.data.command = 'get-devices';
     this.sendMsg();
   }
+  getDevicesOwner(u) {
+    this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
+    this._message.data.user = u;
+    this._message.data.transaction = this.createTransaction();
+    this._message.data.command = 'get-devices-owner';
+    this.sendMsg();
+  }
   getDeviceInfo(d) {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data = {};
@@ -929,12 +945,63 @@ export class WebsocketDataServiceService implements OnInit {
     this._message.data.device = d;
     this.sendMsg();
   }
-  getProductionTime() {
+  selectYear(y) {
+    this._selectedYear = y;
+  }
+
+  selectMonth(m) {
+    this._selectedMonth = m;
+  }
+  setInfoForGetProductionTime(d) {
+    if (!this._selectedYear) {
+      d.year = new Date().getFullYear();
+    }else{
+      d.year=this._selectedYear;
+    }
+    if (!this._selectedMonth) {
+      d.month = new Date().getMonth() + 1;
+    }else{
+      d.month=this._selectedMonth;
+    }
+    d.day = new Date().getDate();
+    d.dates = this.daysInMonth(d.month, d.year);
+  }
+  daysInMonth(month, year) {
+    return new Date(year, month, 0).getDate();
+  }
+  getProductionTime(d) {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data = {};
+    this._message.data.device = d;
+   
+    this.setInfoForGetProductionTime(this._message.data);
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'get-production-time';
-    this.sendMsg();
+    console.log(this._message.data);
+    //return;
+    if(0){
+      for (let index = 0; index <= this._message.data.dates; index++) {
+        const element = this._message.data.dates - index;
+        if (element === 0) { break; }
+        setTimeout(() => {
+          const e = element;
+          if (new Date().getDate() >= e) {
+            this._message.data.day = e;
+          }
+          this.sendMsg();
+        }, 2000);
+      }
+    }
+
+    // TEST FIRST
+
+    this._message.data.day=2;
+    this._message.data.month=5;
+    this._message.data.year=2018;
+      this.sendMsg();
+    
+    
+
   }
   getLatestWorkingStatus() {
     this._message = JSON.parse(JSON.stringify(this._client));

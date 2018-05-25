@@ -142,6 +142,10 @@ td {
   width: 150px;
   border-radius:40px 40px 40px 40px;
 }
+.resize-logo{
+  width: 120px;
+  height: 90px;
+}
 
 .img-resize{
   width: 50px;

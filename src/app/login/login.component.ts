@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   saveClient() {
     this.websocketDataServiceService.setClient(this._client);
-    console.log(JSON.stringify(this._client));
+   // console.log(JSON.stringify(this._client));
   }
   loadClient() {
     sessionStorage.setItem("firstHandShake", "");
@@ -141,9 +141,11 @@ export class LoginComponent implements OnInit, OnDestroy {
             ) {
               console.log(this._client.data["message"]);
             } else {
+              this._client.data['message']='';
+              this._client.data['command']='';
               this.saveClient();
               console.log("LOGIN OK");
-              this.router.navigate(["/device-list"]);
+              this.router.navigate(["/user-list"]);
             }
             break;
           case "get-client":

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import * as Rx from 'rxjs';
 import { Buffer } from 'buffer';
 // import { share } from 'rxjs/Operators';
-
 @Injectable()
 export class WebsocketService {
   constructor() { }
@@ -39,15 +38,11 @@ export class WebsocketService {
             this.create(this.url);
           }
           // console.log(data);
-          const buf = Buffer.from(JSON.stringify(data));
+          const buf = Buffer.from(Buffer.from(JSON.stringify(data)).toString('base64'));
           this.ws.send(buf);
         }
       }
     };
     return Rx.Subject.create(observer, observable);
-  }
-  getWSstate(){
-    console.log(this.ws.readyState);
-    return this.ws.readyState;
   }
 }

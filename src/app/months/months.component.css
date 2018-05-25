@@ -40,7 +40,7 @@
   height: 50px;
   left: 50%;
   margin-left: -25px;
-  border-radius: 100%;
+  /* border-radius: 100%; */
   border: 2px solid rgba(167, 247, 121, 0.767) !important;
   transition: all 0.4s;
   background: rgba(245, 242, 242, 0.863);
@@ -54,7 +54,7 @@
   position: absolute;
   background: rgb(153, 151, 151);
   top: 25px;
-  height: 2px;
+  height: 1px;
 }
 
 .pagination > li:first-of-type:after {
@@ -80,7 +80,10 @@
 .pagination > li:hover a {
   color: #fff;
 }
-
+.active{
+  background: linear-gradient(to right, rgb(22, 243, 2) , rgb(11, 141, 39));
+  color:#fff !important;
+}
 .pagination > li:hover a:before {
   background: linear-gradient(
     to right,

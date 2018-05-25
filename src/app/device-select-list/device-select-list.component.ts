@@ -9,23 +9,19 @@ import { WebsocketService } from "../websocket.service";
 import { ElementRef,ViewChild} from '@angular/core';
 
 @Component({
-  selector: 'app-device-list',
-  templateUrl: './device-list.component.html',
-  styleUrls: ['./device-list.component.css'],
+  selector: 'app-device-select-list',
+  templateUrl: './device-select-list.component.html',
+  styleUrls: ['./device-select-list.component.css','../months/months.component.css'],
   providers: [WebsocketDataServiceService, ChatService, WebsocketService]
 })
 
-export class DeviceListComponent {
+export class DeviceSelectListComponent {
   closeResult: string;
   @ViewChild('Alert_update_details') Alert_update_details: ElementRef;
   
 private _message: Message;
-private _newUser: any = {};
-private _newDevice: any = {};
 private _deviceInfo: any [] ;
-private _userDetailsStr = "";
-private _selectedSubUsers: any;
-
+private _selectedDevice:any;
 private _server_event: Array<any> = [];
 private _client: Message = {
   gui: "",
@@ -43,7 +39,7 @@ private _subs: any = [];
 private _trans: any = [];
 
 //// ICE-MAKER
-private _selectedDevice: any;
+
 private _currentDevice: any;
 private _arrayDevices: any;
 private _currentPayment: any;
@@ -52,6 +48,9 @@ private _currentBill: any;
 private _arrayBills: any;
 private _arrayPayment: any;
 
+
+private _selectedMonth=new Date().getMonth()+1;
+private _selectedYear=new Date().getFullYear();
 /// WEBSOCKET LAUNCHING
 constructor(
   private modalService: NgbModal,
@@ -68,59 +67,22 @@ constructor(
     })
   );
   this._subs.push(
-    this.websocketDataServiceService.newUserSource.subscribe(client => {
-      this._newUser = client;
-      this.readNewUser(client);
+    this.websocketDataServiceService.currentDeviceSource.subscribe(m => {
+      this.readDevice(m);
     })
   );
+
   // this._subs.push(this.websocketDataServiceService.eventSource.subscribe(events => {
   //   this._server_event = events;
   //   this.readServerEvent(events);
   // }));
   this._subs.push(
-    this.websocketDataServiceService.currentUserSource.subscribe(user => {
-      this.readCurrentUserDetail(user);
+    this.websocketDataServiceService.currentDeviceSource.subscribe(msg => {
+      this.readDevice(msg);
     })
   );
+ this._currentDevice=[];
 
-  this._subs.push(
-    this.websocketDataServiceService.otherSource.subscribe(msg => {
-      this.readOtherMessage(msg);
-    })
-  );
-  this._subs.push(
-    this.websocketDataServiceService.currentBillSource.subscribe(msg => {
-      this.readBill(msg);
-    })
-  );
-  this._subs.push(
-    this.websocketDataServiceService.currentDeviceSource.subscribe(msg => {
-      this.readDevice(msg);
-    })
-  );
-  this._subs.push(
-    this.websocketDataServiceService.currentPaymentSource.subscribe(msg => {
-      this.readPayment(msg);
-    })
-  );
-  this._subs.push(
-    this.websocketDataServiceService.currentSubUserSource.subscribe(msg => {
-      this.readSubUser(msg);
-    })
-  );
-  this._subs.push(
-    this.websocketDataServiceService.currentDeviceSource.subscribe(msg => {
-      this.readDevice(msg);
-    })
-  );
-  this._newDevice={};
- 
-  // this.websocketDataServiceService.heartbeat_interval = setInterval(
-  //   this.websocketDataServiceService.heartbeat.bind(
-  //     this.websocketDataServiceService
-  //   ),
-  //   1000 * 60
-  // );
 }
 //// END WEBSOCKET LAUNCHING
 
@@ -148,19 +110,15 @@ private clearJSONValue(u) {
 /// INIT FUNCTIONS
 // tslint:disable-next-line:use-life-cycle-interface
 ngOnInit() {
-  this._newUser = JSON.parse(JSON.stringify(this._client));
-  this._newUser.data = {};
-  this._newUser.data.user = {};
   this._currentSubUser=[];
-  this._message = JSON.parse(JSON.stringify(this._client));
-  this._currentUserdetail = {};
-  this._userDetailsStr = "";
+  this._message = JSON.parse(JSON.stringify(this._client));;
   this._otherMessage = {};
+  
   this.runInit();
 }
 runInit(){
   setTimeout(() => {
-    this.getDevicesOwner();
+    this.loadDevices();
   }, 1000);
 }
 ngOnDestroy() {
@@ -209,16 +167,6 @@ str2ab(str) {
         // this.saveClient();
        // console.log(c);
         switch (this._client.data["command"]) {
-          case "heart-beat":
-            if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
-            ) {
-              console.log(this._client.data["message"]);
-            } else {
-              // this._client.data['user'] = u;
-              console.log("heart beat ok");
-            }
-            break;
           case "ping":
             if (
               this._client.data["message"].toLowerCase().indexOf("error") > -1
@@ -246,38 +194,9 @@ str2ab(str) {
             } else {
               console.log("shake hands ok");
               // alert("will you get device ?");
-              this.getDevicesOwner();
+             // this.getDevicesOwner();
               // this.getDevices();
               // alert("get device don't work any more");
-            }
-            break;
-          case "get-transaction":
-            if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
-            ) {
-              console.log(this._client.data["message"]);
-            } else {
-              // // alert('change password OK');
-              console.log("get transaction id ok");
-            }
-            break;
-          case "check-transaction":
-            if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
-            ) {
-              console.log(this._client.data["message"]);
-            } else {
-              // // alert('change password OK');
-              console.log("check transaction id ok");
-            }
-            break;
-          case "get-all-paymnet":
-            if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
-            ) {
-              console.log(this._client.data["message"]);
-            } else {
-              alert("Get-all-paymnet is working");
             }
             break;
           case "get-device-info":
@@ -299,24 +218,7 @@ str2ab(str) {
               this.readDevice(this._client.data.deviceinfo);
             }
             break;
-          case "register-new-user":
-            if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
-            ) {
-              console.log(this._client.data["message"]);
-            } else {
-              alert("Success to add new user");
-            }
-            break;
-            case "get-sub-users":
-            if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
-            ) {
-              console.log(this._client.data["message"]);
-            } else {
-              console.log(this._client.data.message);
-            }
-            break;
+           
           default:
             break;
 
@@ -330,74 +232,19 @@ str2ab(str) {
     }
  
   }
-readNewUser(n): any {
-  // this._newUser;
-  if (n !== undefined) {
-    this._newUser.data = n.data;
-  }
-}
-readCurrentUserDetail(c: any): any {
-  // this._currentUserDetail
-  if (c !== undefined) {
-    this._currentUserdetail = c;
-  }
-}
-readOtherMessage(m: any): any {
-  // this._message
-  if (m !== undefined) {
-    this._message = m;
-  }
-}
-readBill(m: any) {
-  if (m !== undefined) {
-    if (Array.isArray(m)) {
-      this._currentBill = m;
-    } else {
-      this._arrayBills = m;
-    }
-  }
-}
-readSubUser(m: any) {
-  console.log('read sub user list');
-  console.log(m);
-  if (m !== undefined) {
-    this._currentSubUser = m;
-  }
-}
+
 readDevice(m: any) {
   if (m !== undefined) {
+    console.log('current device length')
     console.log(m.length);
     this._currentDevice = m;
-  }
-}
-readPayment(m: any) {
-  if (m !== undefined) {
-    if (Array.isArray(m)) {
-      this._currentPayment = m;
-    } else {
-      this._arrayPayment = m;
-    }
   }
 }
 
 /// END RECEIVING
 
 //// SENDING
-showNewMessage() {
-  this._client.data.message = "changed from show message";
-  // this._client.data.transaction = this.createTransaction(); // NEED TO BE DONE BEOFORE SEND MESSAGE
-  // this.websocketDataServiceService.refreshClient();
-  this.websocketDataServiceService.changeMessage(this._client);
-}
-setOtherMessage() {
-  const msg = {
-    title: "",
-    data: {},
-    other: {} // ...
-  };
-  // msg.data['transaction'] = this.createTransaction(); // NEED TO BE DONE BEOFORE SEND MESSAGE
-  this.websocketDataServiceService.setOtherMessage(msg);
-}
+
 shakeHands() {
   // this._client.data.transaction = this.createTransaction(); // NEED TO BE DONE BEOFORE SEND MESSAGE
   // this.websocketDataServiceService.refreshClient();
@@ -414,50 +261,44 @@ ping_test() {
 /////////////// END SENDING
 /// ICEMAKER ----------------------------------------
 
-registerNewUser() {
-  const u = this._newUser.data.user;
-  this.websocketDataServiceService.registerNewUser(u);
+
+loadDevices(){
+  console.log('loading devices');
+ this.websocketDataServiceService.getDevices();
+  }
+  
+  getToday(){
+    return new Date().getDate();
+  }
+  getYears(){
+    let items: number[] = [];
+    for(var i =new Date().getFullYear()-2; i <= new Date().getFullYear()+1; i++){
+      items.push(i);
+    }
+    return items;
+  }
+  getMonths(){
+    let items: number[] = [];
+    for(var i = 1; i <= 12; i++){
+      items.push(i);
+    }
+    return items;
+  }
+  selectYear(y){
+    this._selectedYear=y;
+    this.websocketDataServiceService.selectYear(y);
+  }
+
+  selectMonth(m){
+    if(m===undefined) return;
+    this._selectedDevice.
+    this._selectedMonth=m;
+    this.websocketDataServiceService.selectMonth(m);
+  }
+  selectDevice(d){
+    this._selectedDevice=d;
+   this.websocketDataServiceService.getProductionTime(this._selectedDevice);
+  }
+
 }
 
-registerSaleUser() {
-  const u = this._newUser.data.user;
-  this.websocketDataServiceService.registerSaleUser(u);
-}
-registerFinanceUser() {
-  const u = this._newUser.data.user;
-  this.websocketDataServiceService.registerFinacneUser(u);
-}
-getSubUsers(){
-  console.log('get subusers');
-  this.websocketDataServiceService.getSubUsers();
-}
-updateSubUserinfo(){
-  let u=this._selectedSubUsers;
-  this.websocketDataServiceService.updateSubUserinfo(u);
-}
-resetPasswordSubUser(){
-  let u=this._selectedSubUsers;
-  this.websocketDataServiceService.resetPasswordSubUser(u);
-}
-addDevice(){
-  let d=this._newDevice;
-this.websocketDataServiceService.updateDevice(d);
-}
-updateDevice(){
-  let d=this._selectedDevice;
-this.websocketDataServiceService.updateDevice(d);
-}
-updateDeviceOwners(){
-  let d=this._selectedDevice;
-this.websocketDataServiceService.updateDeviceOwners(d);
-}
-getDeviceInfo(){
-  let d=this._selectedDevice;
-this.websocketDataServiceService.getDeviceInfo(d);
-}
-getDevicesOwner(){
-  console.log('get user list');
-  let u={username:this._client.username};
-this.websocketDataServiceService.getDevicesOwner(u);
-}
-}

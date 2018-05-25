@@ -27,6 +27,7 @@ import { ListProductComponent } from './list-product/list-product.component';
 import { DeviceListComponent } from './device-list/device-list.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { DeviceInfoComponent } from './device-info/device-info.component';
+import { DeviceSelectListComponent } from './device-select-list/device-select-list.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { DeviceInfoComponent } from './device-info/device-info.component';
     ListProductComponent,
     DeviceListComponent,
     UserListComponent,
-    DeviceInfoComponent
+    DeviceInfoComponent,
+    DeviceSelectListComponent
   ],
   imports: [
     NgbModule.forRoot(),
