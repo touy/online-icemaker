@@ -55,7 +55,7 @@
     padding: none !important;
 }
 
-.size-icon-device-select{
-    /* line-height: 0px !important; */
-    /* font-size: 14pt; */
+
+.cursor-production-details{
+    cursor: pointer;
 }

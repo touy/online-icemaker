@@ -76,7 +76,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     this._subs.push(this.websocketDataServiceService.currentSubUserSource.subscribe(msg => {
       this.readSubUser(msg);
     }));
-    this.websocketDataServiceService.heartbeat_interval = setInterval(this.websocketDataServiceService.heartbeat.bind(this.websocketDataServiceService), 1000 * 60);
+    //this.websocketDataServiceService.heartbeat_interval = setInterval(this.websocketDataServiceService.heartbeat.bind(this.websocketDataServiceService), 1000 * 60);
 
   }
   //// END WEBSOCKET LAUNCHING

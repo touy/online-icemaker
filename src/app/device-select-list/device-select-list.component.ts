@@ -16,6 +16,12 @@ import { ElementRef,ViewChild} from '@angular/core';
 })
 
 export class DeviceSelectListComponent {
+  refreshYear(): any {
+    this.websocketDataServiceService.refreshYear();
+  }
+  refreshMonth(): any {
+    this.websocketDataServiceService.refreshMonth();
+  }
   closeResult: string;
   @ViewChild('Alert_update_details') Alert_update_details: ElementRef;
   
@@ -37,7 +43,7 @@ private _currentUserdetail: any = {};
 private _otherMessage: any = {};
 private _subs: any = [];
 private _trans: any = [];
-
+private productioncollection:any [];
 //// ICE-MAKER
 
 private _currentDevice: any;
@@ -66,11 +72,6 @@ constructor(
       this.readClient(client);
     })
   );
-  this._subs.push(
-    this.websocketDataServiceService.currentDeviceSource.subscribe(m => {
-      this.readDevice(m);
-    })
-  );
 
   // this._subs.push(this.websocketDataServiceService.eventSource.subscribe(events => {
   //   this._server_event = events;
@@ -79,6 +80,23 @@ constructor(
   this._subs.push(
     this.websocketDataServiceService.currentDeviceSource.subscribe(msg => {
       this.readDevice(msg);
+    })
+  );
+  this._subs.push(
+    this.websocketDataServiceService.currentBillSource.subscribe(msg => {
+      console.log('from sub current bills');
+      this.readBill(msg);
+    })
+  );
+
+  this._subs.push(
+    this.websocketDataServiceService.monthSource.subscribe(msg => {
+      this._selectedMonth=msg;
+    })
+  );
+  this._subs.push(
+    this.websocketDataServiceService.yearSource.subscribe(msg => {
+      this._selectedYear=msg;
     })
   );
  this._currentDevice=[];
@@ -141,24 +159,7 @@ loadClient() {
 /// INIT FUNCTIONS
 
 /// *************RECEIVING  */
-ab2str(arrayBuffer) {
-  let binaryString = "";
-  const bytes = new Uint8Array(arrayBuffer),
-    length = bytes.length;
-  for (let i = 0; i < length; i++) {
-    binaryString += String.fromCharCode(bytes[i]);
-  }
-  return binaryString;
-}
 
-str2ab(str) {
-  const buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
-  const bufView = new Uint8Array(buf);
-  for (let i = 0, strLen = str.length; i < strLen; i++) {
-    bufView[i] = str.charCodeAt(i);
-  }
-  return buf;
-}
   readClient(c): any {
     // this._client
     try {
@@ -167,38 +168,6 @@ str2ab(str) {
         // this.saveClient();
        // console.log(c);
         switch (this._client.data["command"]) {
-          case "ping":
-            if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
-            ) {
-              console.log(this._client.data["message"]);
-            } else {
-              console.log(this._client.data["message"]);
-            }
-            break;
-          case "get-client":
-            if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
-            ) {
-              console.log(this._client.data["message"]);
-            } else {
-              console.log("get-client OK");
-            }
-            break;
-          case "shake-hands":
-            if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
-            ) {
-              // // console.log(this._client);
-              console.log(this._client.data["message"]);
-            } else {
-              console.log("shake hands ok");
-              // alert("will you get device ?");
-             // this.getDevicesOwner();
-              // this.getDevices();
-              // alert("get device don't work any more");
-            }
-            break;
           case "get-device-info":
             if (
               this._client.data["message"].toLowerCase().indexOf("error") > -1
@@ -218,7 +187,16 @@ str2ab(str) {
               this.readDevice(this._client.data.deviceinfo);
             }
             break;
-           
+            case "get-production-time":
+            if (
+              this._client.data["message"].toLowerCase().indexOf("error") > -1
+            ) {
+              console.log(this._client.data["message"]);
+            } else {
+              console.log("Get-production-time is working");
+              this.readBill(this._client.data.icemakerbill);
+            }
+            break;
           default:
             break;
 
@@ -238,6 +216,14 @@ readDevice(m: any) {
     console.log('current device length')
     console.log(m.length);
     this._currentDevice = m;
+  }
+}
+readBill(m: any) {
+  if (m !== undefined) {
+    console.log('current bill length')
+    console.log(m);
+    this._currentBill = m;
+    //this.collectProduction(m);
   }
 }
 
@@ -287,6 +273,7 @@ loadDevices(){
   selectYear(y){
     this._selectedYear=y;
     this.websocketDataServiceService.selectYear(y);
+    this.refreshYear();
   }
 
   selectMonth(m){
@@ -294,9 +281,11 @@ loadDevices(){
     this._selectedDevice.
     this._selectedMonth=m;
     this.websocketDataServiceService.selectMonth(m);
+    this.refreshMonth();
   }
   selectDevice(d){
     this._selectedDevice=d;
+   // this.productioncollection=[];
    this.websocketDataServiceService.getProductionTime(this._selectedDevice);
   }
 
