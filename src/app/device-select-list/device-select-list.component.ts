@@ -84,7 +84,7 @@ constructor(
   );
   this._subs.push(
     this.websocketDataServiceService.currentBillSource.subscribe(msg => {
-      console.log('from sub current bills');
+      console.log('from device select bills');
       this.readBill(msg);
     })
   );
@@ -271,16 +271,18 @@ loadDevices(){
     return items;
   }
   selectYear(y){
+    if(y===undefined) return;
     this._selectedYear=y;
     this.websocketDataServiceService.selectYear(y);
+    console.log('select year '+y);
     this.refreshYear();
   }
 
   selectMonth(m){
     if(m===undefined) return;
-    this._selectedDevice.
     this._selectedMonth=m;
     this.websocketDataServiceService.selectMonth(m);
+    console.log('select month '+m);
     this.refreshMonth();
   }
   selectDevice(d){

@@ -55,7 +55,7 @@ export class WebsocketDataServiceService implements OnInit {
   public currentUserSource = new BehaviorSubject<any>(this._currentUserdetail);
   public eventSource = new BehaviorSubject<any>(this._server_event);
   public daySource = new BehaviorSubject<any>(this._currentDay);
-  public monthSource = new BehaviorSubject<any>(this._currentMonth);
+  public monthSource = new BehaviorSubject<any>(this._selectedMonth);
   public yearSource = new BehaviorSubject<any>(this._currentYear);
   public otherSource = new BehaviorSubject<any>(this._otherMessage);
   private timeOut_runner: NodeJS.Timer;
@@ -123,10 +123,12 @@ export class WebsocketDataServiceService implements OnInit {
     this.daySource.next(this._currentDay);
   }
   public refreshMonth() {
-    this.monthSource.next(this._currentMonth);
+    console.log('refresh month'+this._selectedMonth);
+    this.monthSource.next(this._selectedMonth);
   }
   public refreshYear() {
-    this.yearSource.next(this._currentYear);
+    console.log('refresh year'+this._selectedYear);
+    this.yearSource.next(this._selectedYear);
   }
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
@@ -136,7 +138,7 @@ export class WebsocketDataServiceService implements OnInit {
     }
     this._message = JSON.parse(JSON.stringify(this._client));
     this._selectedMonth = new Date().getMonth() + 1;
-    this._selectedYear = new Date().getFullYear;
+    this._selectedYear = new Date().getFullYear();
   }
   constructor(private chatService: ChatService, private sanitizer: DomSanitizer) {
     //this._pouch = new PouchDB('_client');

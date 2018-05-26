@@ -188,6 +188,7 @@ constructor(
   // }));
   this._subs.push(
     this.websocketDataServiceService.currentBillSource.subscribe(msg => {
+      console.log('from device select bills');
       this.readBill(msg);
     })
   );
@@ -202,14 +203,14 @@ constructor(
   this._subs.push(
     this.websocketDataServiceService.yearSource.subscribe(msg => {
       this.year=msg;
-      console.log('new month '+this.year);
+      console.log('new year '+this.year);
       console.log('clear productioncollectoin');
       this.productioncollection=[];
     })
   );
 
  this._currentDevice=[];
-
+console.log('load line chart');
 }
 //// END WEBSOCKET LAUNCHING
 
