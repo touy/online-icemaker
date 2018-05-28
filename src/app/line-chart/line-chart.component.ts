@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, OnDestroy } from "@angular/core";
+import { Component, Inject, OnInit, OnDestroy, Input ,IterableDiffers, DoCheck } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Router, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms"; // <<<< import it here
@@ -16,48 +16,56 @@ import { ElementRef,ViewChild} from '@angular/core';
   styleUrls: ["./line-chart.component.css"],
   providers: [WebsocketDataServiceService, ChatService, WebsocketService]
 })
-export class LineChartComponent {
+export class LineChartComponent implements DoCheck {
+
+  ngDoCheck() {
+    var changes = this.differ.diff(this.productionCollection);
+    if (changes) {
+      console.log(changes);
+      console.log('line chart get new device'+this.productionCollection.length);
+      this.bindLineChart();
+    }
+  }
+
+  @Input() productionCollection:any[];
+  @Input() differ: any;
+  @Input() _selectedMonth=new Date().getMonth()+1;
+  @Input() _selectedYear=new Date().getFullYear();
+  
   public lineChartData: Array<any> = [
     { data: [10, 20, 16, 18, 15, 16, 17, 18, 16, 20], label: "Working hours" },
     { data: [15, 24, 15, 15, 15, 15, 15, 16, 16, 16], label: "Resting hours" },
     { data: [12, 10, 1, 0, 0, 16, 5, 4, 4, 4, 4, 4, 4], label: "Problem hours" }
   ];
-  private productioncollection:any[];
+ 
   private month = 1;
   private day = 1;
   private year=1;
   sortProduction(){
-    this.productioncollection.sort(function(a, b){return a.day - b.day});
+    this.productionCollection.sort(function(a, b){return a.day - b.day});
   }
-  collectProduction(icemakerbill){
-    let array=this.productioncollection;
-    for (let index = 0; index < array.length; index++) {
-      const element = array[index];
-      if(element.day==icemakerbill.day&&element.month==icemakerbill.month&&element.year==icemakerbill.year){
-        this.productioncollection[index]=icemakerbill;
-      }else{
-        this.productioncollection.push(icemakerbill);
-      }
-    }
-    this._currentBill=this.productioncollection;
 
-   this.bindLineChart();
-  }
   bindLineChart(){
     this.sortProduction();
     this.lineChartData=[];
-    let w={data:[],label:'Working hours'};
-    let p={data:[],label:'Resting hours'};
-    let pr={data:[],label:'Problem hours'};
-    for (let index = 0; index < this.productioncollection.length; index++) {
-      const element = this.productioncollection[index];
+    let w=[];
+    let p=[];
+    let pr=[];
+    for (let index = 0; index < this.productionCollection.length; index++) {
+      const element = this.productionCollection[index];
       if(element.productiontime){
-        w.data.push(element.productiontime.working);
-        p.data.push(element.productiontime.parking);
-        pr.data.push(element.productiontime.problem);
+        w.push(element.productiontime.working);
+        p.push(element.productiontime.parking);
+        pr.push(element.productiontime.problem);
       }
+     // console.log([w,p,pr]);
     }
-    this.lineChartData.push([w,p,pr]);
+    //this.lineChartData.push([w,p,pr]);
+    this.lineChartData=[
+      { data: w, label: "Working hours" },
+      { data: p, label: "Resting hours" },
+      { data: pr, label: "Problem hours" }
+    ];
   }
   daysInMonth(month, year): any[] {
     let d = new Date(year, month, 0).getDate();
@@ -165,14 +173,15 @@ private _arrayBills: any;
 private _arrayPayment: any;
 
 
-private _selectedMonth=new Date().getMonth()+1;
-private _selectedYear=new Date().getFullYear();
+
 /// WEBSOCKET LAUNCHING
 constructor(
   private modalService: NgbModal,
   private websocketDataServiceService: WebsocketDataServiceService,
-  private router: Router
+  private router: Router,
+  private differs: IterableDiffers
 ) {
+  this.differ = differs.find([]).create(null);
   this.loadClient();
   // if (this._client.logintoken) {
   //     router.navigate(["/main-menu"]);
@@ -180,32 +189,6 @@ constructor(
   this._subs.push(
     this.websocketDataServiceService.clientSource.subscribe(client => {
       this.readClient(client);
-    })
-  );
-  // this._subs.push(this.websocketDataServiceService.eventSource.subscribe(events => {
-  //   this._server_event = events;
-  //   this.readServerEvent(events);
-  // }));
-  this._subs.push(
-    this.websocketDataServiceService.currentBillSource.subscribe(msg => {
-      console.log('from device select bills');
-      this.readBill(msg);
-    })
-  );
-  this._subs.push(
-    this.websocketDataServiceService.monthSource.subscribe(msg => {
-      this.month=msg;
-      console.log('new month '+this.month);
-      console.log('clear productioncollectoin');
-      this.productioncollection=[];
-    })
-  );
-  this._subs.push(
-    this.websocketDataServiceService.yearSource.subscribe(msg => {
-      this.year=msg;
-      console.log('new year '+this.year);
-      console.log('clear productioncollectoin');
-      this.productioncollection=[];
     })
   );
 
@@ -287,16 +270,7 @@ loadClient() {
               console.log(this._client.data["message"]);
             }
             break;
-            case "get-production-time":
-            if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
-            ) {
-              console.log(this._client.data["message"]);
-            } else {
-              console.log("Get-production-time is working");
-              this.readBill(this._client.data.icemakerbill);
-            }
-            break;
+            
            
           default:
             break;
@@ -312,18 +286,6 @@ loadClient() {
  
   }
 
-  readBill(m: any) {
-  if (m !== undefined) {
-    console.log('current bill length')
-    console.log(m);
-    //this._currentBill = m;
-    console.log(m);
-    this._currentBill=m;
-    //this.productioncollection=this._currentBill;
-    this.collectProduction(m);
-    
-  }
-}
 
 /// END RECEIVING
 

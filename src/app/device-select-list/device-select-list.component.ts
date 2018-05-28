@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, OnDestroy } from "@angular/core";
+import { Component, Inject, OnInit, OnDestroy, Input, Output,EventEmitter } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Router, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms"; // <<<< import it here
@@ -16,16 +16,10 @@ import { ElementRef,ViewChild} from '@angular/core';
 })
 
 export class DeviceSelectListComponent {
-  refreshYear(): any {
-    this.websocketDataServiceService.refreshYear();
-  }
-  refreshMonth(): any {
-    this.websocketDataServiceService.refreshMonth();
-  }
-  closeResult: string;
+  
   @ViewChild('Alert_update_details') Alert_update_details: ElementRef;
   
-private _message: Message;
+private _currentBill:any;
 private _deviceInfo: any [] ;
 private _selectedDevice:any;
 private _server_event: Array<any> = [];
@@ -37,26 +31,21 @@ private _client: Message = {
   loginip: "",
   data: {}
 };
-private _otherSource: any = {};
-private _loginUser = { username: "", password: "" };
-private _currentUserdetail: any = {};
-private _otherMessage: any = {};
-private _subs: any = [];
-private _trans: any = [];
-private productioncollection:any [];
+private _subs=[];
+
 //// ICE-MAKER
 
 private _currentDevice: any;
 private _arrayDevices: any;
-private _currentPayment: any;
-private _currentSubUser: any;
-private _currentBill: any;
-private _arrayBills: any;
-private _arrayPayment: any;
+
 
 
 private _selectedMonth=new Date().getMonth()+1;
 private _selectedYear=new Date().getFullYear();
+
+
+
+
 /// WEBSOCKET LAUNCHING
 constructor(
   private modalService: NgbModal,
@@ -73,32 +62,29 @@ constructor(
     })
   );
 
-  // this._subs.push(this.websocketDataServiceService.eventSource.subscribe(events => {
-  //   this._server_event = events;
-  //   this.readServerEvent(events);
-  // }));
   this._subs.push(
     this.websocketDataServiceService.currentDeviceSource.subscribe(msg => {
+      console.log('sub');
       this.readDevice(msg);
     })
   );
+
   this._subs.push(
-    this.websocketDataServiceService.currentBillSource.subscribe(msg => {
-      console.log('from device select bills');
-      this.readBill(msg);
+    this.websocketDataServiceService.currentBillSource.subscribe(client => {
+      this.readBill(client);
     })
   );
-
   this._subs.push(
     this.websocketDataServiceService.monthSource.subscribe(msg => {
       this._selectedMonth=msg;
     })
   );
-  this._subs.push(
+
     this.websocketDataServiceService.yearSource.subscribe(msg => {
+      console.log('get new select device year');
       this._selectedYear=msg;
     })
-  );
+
  this._currentDevice=[];
 
 }
@@ -128,10 +114,7 @@ private clearJSONValue(u) {
 /// INIT FUNCTIONS
 // tslint:disable-next-line:use-life-cycle-interface
 ngOnInit() {
-  this._currentSubUser=[];
-  this._message = JSON.parse(JSON.stringify(this._client));;
-  this._otherMessage = {};
-  
+
   this.runInit();
 }
 runInit(){
@@ -193,10 +176,11 @@ loadClient() {
             ) {
               console.log(this._client.data["message"]);
             } else {
-              console.log("Get-production-time is working");
-              this.readBill(this._client.data.icemakerbill);
+              console.log("Get-production is working");
+              //this.read(this._client.data.deviceinfo);
             }
             break;
+           
           default:
             break;
 
@@ -218,32 +202,21 @@ readDevice(m: any) {
     this._currentDevice = m;
   }
 }
-readBill(m: any) {
+readBill(m:any){
   if (m !== undefined) {
     console.log('current bill length')
-    console.log(m);
+    //console.log(m);
     this._currentBill = m;
-    //this.collectProduction(m);
+    this.sendProduction.emit(this._currentBill);
   }
 }
+
 
 /// END RECEIVING
 
 //// SENDING
 
-shakeHands() {
-  // this._client.data.transaction = this.createTransaction(); // NEED TO BE DONE BEOFORE SEND MESSAGE
-  // this.websocketDataServiceService.refreshClient();
-  this.websocketDataServiceService.shakeHands();
-  this.saveClient();
-}
-ping_test() {
-  // this._client.data.transaction = this.createTransaction(); // NEED TO BE DONE BEOFORE SEND MESSAGE
-  // this.websocketDataServiceService.refreshClient();
-  this._client.data.message += " HERE in app component";
-  // console.log(this._client);
-  this.websocketDataServiceService.ping_test();
-}
+
 /////////////// END SENDING
 /// ICEMAKER ----------------------------------------
 
@@ -275,7 +248,7 @@ loadDevices(){
     this._selectedYear=y;
     this.websocketDataServiceService.selectYear(y);
     console.log('select year '+y);
-    this.refreshYear();
+    this.sendYear.emit(this._selectedYear );
   }
 
   selectMonth(m){
@@ -283,13 +256,22 @@ loadDevices(){
     this._selectedMonth=m;
     this.websocketDataServiceService.selectMonth(m);
     console.log('select month '+m);
-    this.refreshMonth();
+    this.sendMonth.emit(this._selectedMonth);
   }
   selectDevice(d){
     this._selectedDevice=d;
-   // this.productioncollection=[];
+   this.sendDevice.emit(this._selectedDevice);
    this.websocketDataServiceService.getProductionTime(this._selectedDevice);
   }
+
+
+
+  @Input()  str: string;
+  @Output() sendDevice = new EventEmitter<any>();
+  @Output() sendProduction = new EventEmitter<any>();
+  @Output() sendYear = new EventEmitter<any>();
+  @Output() sendMonth = new EventEmitter<any>();
+
 
 }
 

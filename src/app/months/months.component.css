@@ -54,7 +54,7 @@
   position: absolute;
   background: rgb(153, 151, 151);
   top: 25px;
-  height: 1px;
+  /* height: 1px; */
 }
 
 .pagination > li:first-of-type:after {

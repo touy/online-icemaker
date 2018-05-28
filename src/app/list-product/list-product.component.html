@@ -19,46 +19,24 @@
                                 <th class="langlao ct">ປະລິມານ</th>
                                 <th class="langlao ct">ລາຄາ</th>
                                 <th class="langlao ct">ຈຳນວນ</th>
-                                <th class="langlao ct">ຊຳລະແລ້ວ</th>
+                                <th class="langlao ct">ຊຳລະ</th>
                                 <th class="langlao ct">ວັນທີຊຳລະ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="langlao ct">ວັນທີ 1</th>
-                                <th>010518</th>
-                                <td>10</td>
-                                <td>80</td>
-                                <td>250</td>
-                                <td>2000</td>
+                            <tr *ngFor="let b of _productioncollection">
+                                <th class="langlao ct">{{b.day}}/{{b.month}}/{{b.year}}</th>
+                                <th>{{b.sn}}</th>
+                                <td>{{b.productiontime.working}}</td>
+                                <td>{{b.effeciency*b.productiontime.working}}</td>
+                                <td>{{b.rate}}</td>
+                                <td>{{b.totalvalue}}</td>
                                 <td>
-                                    <input type="checkbox">
+                                    <input type="checkbox" checked="b.isdone" [disabled]="b.paidtime===undefined?null:true">
                                 </td>
-                                <td>12.12.2022</td>
-                            </tr>
-                            <tr>
-                                <th class="langlao ct">ວັນທີ 2</th>
-                                <th>010518</th>
-                                <td>10</td>
-                                <td>80</td>
-                                <td>250</td>
-                                <td>2000</td>
-                                <td>
-                                    <input type="checkbox">
+                                <td>{{b.paidtime}}
+                                    <input type="checkbox" [disabled]="b.paidtime===undefined?false:true" checked="b.isinvoice===undefined?b.isinvoice=false:b.isinvoice" >
                                 </td>
-                                <td>12.12.2022</td>
-                            </tr>
-                            <tr>
-                                <th class="langlao ct">ວັນທີ 3</th>
-                                <th>010518</th>
-                                <td>10</td>
-                                <td>80</td>
-                                <td>250</td>
-                                <td>2000</td>
-                                <td>
-                                    <input type="checkbox">
-                                </td>
-                                <td>12.12.2022</td>
                             </tr>
                         </tbody>
                     </table>

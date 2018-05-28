@@ -4,12 +4,21 @@
     </div>
     <div class="mt-3">
         <h1 class="text-center">device-select-list</h1>
-        <app-device-select-list></app-device-select-list>
+        <app-device-select-list 
+        (sendMonth)="onSendMonth($event)"
+        (sendYear)="onSendYear($event)"
+        (sendProduction)="onSendProduction($event)"
+        (sendDevice)="onSelectCurrentDevice($event)"
+        ></app-device-select-list>
     </div>
     <div class="card mt-3">
         <div class="row">
             <div class="col-12">
-                <app-line-chart></app-line-chart>
+                <app-line-chart
+                [productionCollection]="productionCollection"
+                [_selectedMonth]="_selectedMonth"
+                [_selectedYear]="_selectedYear"
+                ></app-line-chart>
             </div>
         </div>
     </div>
