@@ -85,6 +85,11 @@
   color:#fff !important;
   /* width:100%; */
 }
+.selected-year{
+  background: linear-gradient(to right, rgb(22, 243, 2) , rgb(11, 141, 39)) !important;
+  color:rgb(255, 255, 255) !important;
+  /* width:100%; */
+}
 .pagination > li:hover a:before {
   background: linear-gradient(
     to right,
