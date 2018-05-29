@@ -33,7 +33,11 @@
     </div>
     <div class="mt-5 mb-5 justify-content-center">
         <div class="list-product">
-            <app-list-product></app-list-product>
+            <app-list-product 
+            [productionCollection]="productionCollection">
+            [_selectedMonth]="_selectedMonth"
+                [_selectedYear]="_selectedYear"
+        </app-list-product>
         </div>
     </div>
 </div>

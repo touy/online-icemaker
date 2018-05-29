@@ -24,10 +24,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let b of _productioncollection">
+                            <tr *ngFor="let b of productionCollection">
                                 <th class="langlao ct">{{b.day}}/{{b.month}}/{{b.year}}</th>
                                 <th>{{b.sn}}</th>
-                                <td>{{b.productiontime.working}}</td>
+                                <td>{{b.productiontime.working | number:'4.5-5'}} </td>
                                 <td>{{b.effeciency*b.productiontime.working}}</td>
                                 <td>{{b.rate}}</td>
                                 <td>{{b.totalvalue}}</td>
