@@ -284,6 +284,11 @@ import { ElementRef,ViewChild} from '@angular/core';
       }
    
     }
+
+    gotopay(){
+      sessionStorage.setItem('PD',JSON.stringify(this.productionCollection));
+      this.router.navigate(['/pay-bill']);
+    }
   
   
   /// END RECEIVING
