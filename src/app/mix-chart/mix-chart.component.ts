@@ -98,14 +98,11 @@ onSendProduction(e){
     const element = array[index];
     if(e.day===element.day&&e.month===element.month&&e.year==element.year&&element.imei===element.imei){
       this.productionCollection[index]=e;
-      
-      this.productionCollection.push(e);// TEST
       return;
     }
   }
   this.productionCollection.push(e);
-
-  console.log(e);
 }
+
 }
 

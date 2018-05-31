@@ -10,6 +10,9 @@
         <div class="responsive">
             <div class="col-12">
                 <form method="POST " action="">
+                    <div>Total: {{getAverageProduction().tt | number:'1.2-2'}} H - {{getAverageProduction().ttkg | number:'1.2-2'}} KG</div>
+                    <div>Average: {{getAverageProduction().av | number:'1.2-2'}} H - {{getAverageProduction().avkg | number:'1.2-2'}} KG</div>
+                    
                     <table class="table table-bordered table-responsive ml-6">
                         <thead>
                             <tr>
@@ -24,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let b of productionCollection">
+                            <tr *ngFor="let b of productionCollection" [style.background-color]="getColor(b.productiontime.working)">
                                 <th class="langlao ct"></th>
                                 <th>{{b.sn}}</th>
                                 <td>{{b.productiontime.working | number:'1.2-2'}}</td>
@@ -32,10 +35,10 @@
                                 <td>{{b.rate}}</td>
                                 <td>{{b.totalvalue | number:'1.2-2'}}</td>
                                 <td>
-                                    <input type="checkbox" checked="b.isdone" [disabled]="b.paidtime===undefined?null:true">
+                                    <input type="checkbox" checked="!b.isdone" [disabled]="b.paidtime===undefined?true:null">
                                 </td>
                                 <td>{{b.day}}/{{b.month}}/{{b.year}}
-                                    <input type="checkbox" [disabled]="b.paidtime===undefined?false:true" checked="b.isinvoice===undefined?b.isinvoice=false:b.isinvoice" >
+                                    <input type="checkbox" [disabled]="b.paidtime===undefined?true:null" checked="b.isinvoice===undefined?b.isinvoice=false:b.isinvoice" >
                                 </td>
                             </tr>
                         </tbody>

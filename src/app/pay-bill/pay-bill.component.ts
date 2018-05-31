@@ -48,13 +48,29 @@ private productionCollection=[];
 
 private _currentDevice: any;
 private _arrayDevices: any;
-private _currentPayment: any;
 private _currentSubUser: any;
 private _currentBill: any;
 private _arrayBills: any;
 private _arrayPayment: any;
 private _currentDiscountBill:any;
-
+private _currentPayment = {
+  gui: '',
+  sn: '',
+  bills: [],//{imei:'',_id:'',gui:'',sn:'',workingtime:0,parking:0,problem:0,rate:0,totalvalue:0,effeciency:0,totalvalue:0,paidtime:''}
+  totalvalue: 0,
+  totaldiscount: 0,
+  totalpaid: 0,
+  preparedby: '',
+  imei: '',
+  invoicetime: '',
+  description: '',
+  paidby: '',
+  username: '',
+  paidtime: '',
+  approvedtime: '',
+  isapproved: false,
+  approveby: ''
+}
 
 /// WEBSOCKET LAUNCHING
 constructor(
@@ -81,7 +97,6 @@ console.log('load line chart');
 
 
 PopUp_add_discout(add_discout) {
-  this.addDiscount();
   this.modalService.open(add_discout, { centered: true });
 
 }
@@ -131,7 +146,7 @@ loadClient() {
 
   this._client = this.websocketDataServiceService.getClient();
   console.log("client loaded");
-
+  this.getTotalValue();
 }
 /// INIT FUNCTIONS
 
@@ -169,14 +184,64 @@ loadClient() {
     }
  
   }
-  //??????????????????????????/
-  popUp(){
-
+  //?????????????????????
+  getColor(value) {
+    if(value<1){
+      return 'red';
+    }
+    else if(value<1){
+      return 'white';
+    }
+    else{
+      return '';
+    }
   }
   ////??????????????????????????????????
   makePayment(){
-
-    //this.websocketDataServiceService.makePayment(this._currentPayment);
+    let array=this.productionCollection;
+    let bills=[];
+    for (let index = 0; index < array.length; index++) {
+      const element = array[index];
+      bills.push({
+      imei:element.imei,
+      _id:element.id,
+      gui:element.gui,
+      sn:element.sn,
+      working:element.productiontime.working,
+      parking:element.productiontime.parking,
+      problem:element.productiontime.problem,
+      rate:element.rate,
+      totalvalue:element.totalvalue,
+      effeciency:element.effeciency,
+      totaldiscount:element.totaldiscount,
+      description:element.description,
+      paidtime:''});
+    }
+    array=this.billDiscountCollection;
+    for (let index = 0; index < array.length; index++) {
+      const element = array[index];
+      bills.push({
+      imei:element.imei,
+      _id:element.id,
+      gui:element.gui,
+      sn:element.sn,
+      working:element.productiontime.working,
+      parking:element.productiontime.parking,
+      problem:element.productiontime.problem,
+      rate:element.rate,
+      totalvalue:-element.totalvalue,
+      effeciency:element.effeciency,
+      totaldiscount:-element.totaldiscount,
+      description:element.description,
+      paidtime:''});
+    }
+    this._currentPayment.bills=bills;
+    //alert(bills.length);
+    // this.websocketDataServiceService.makePayment(this._currentPayment);
+    sessionStorage.setItem('PM',JSON.stringify(this._currentPayment));
+    if(confirm('making payment: '+this._currentPayment.totalpaid)){
+      this.router.navigate(['/bill']);
+    }
   }
   ///??????????
   getTotalDiscount(){
@@ -186,17 +251,21 @@ loadClient() {
       const element = array[index];
       tt+=element.totalvalue;
     }
+    this._currentPayment.totaldiscount=tt;
     return -1*tt;
   }
   getTotalValue(){
     let tt=0;
     tt=this.getTotalDiscount();
-    
+    let t=0;
     let array=this.productionCollection;
     for (let index = 0; index < array.length; index++) {
       const element = array[index];
-      tt+=element.totalvalue;
+      t+=element.totalvalue;
     }
+    tt+=t;
+    this._currentPayment.totalvalue=t;
+    this._currentPayment.totalpaid=tt;
   return tt;
   }
   ///?????????????????????
@@ -209,6 +278,7 @@ loadClient() {
       }
     }
   }
+  
   //?????????????????????????
   deleteDiscountBill(b){
     let array=this.billDiscountCollection;
@@ -251,7 +321,7 @@ console.log(this._currentDiscountBill);
   }
   selectDiscount(b){
     this._currentDiscountBill=b;
-    this.popUp();
+   
   }
   ////// ????????????????????
   updateDiscountCalculation(e,i){
@@ -267,6 +337,11 @@ console.log(this._currentDiscountBill);
     this._currentDiscountBill.totalvalue= this._currentDiscountBill.rate*this._currentDiscountBill.effeciency*this._currentDiscountBill.productiontime.working;
     console.log(this._currentDiscountBill.effeciency);
     console.log(this._currentDiscountBill.productiontime.working);
+    this.getTotalValue();
+  }
+  //??????????????
+  confirmPayment(){
+    
   }
   //?????????????????????????????????
   addDiscount(){
@@ -296,7 +371,6 @@ console.log(this._currentDiscountBill);
     console.log(this._currentDiscountBill);
       this.billDiscountCollection.push(this._currentDiscountBill);
     }
-    
   }
 
 /// END RECEIVING

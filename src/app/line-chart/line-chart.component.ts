@@ -33,9 +33,9 @@ export class LineChartComponent implements DoCheck {
   @Input() _selectedYear=new Date().getFullYear();
   
   public lineChartData: Array<any> = [
-    { data: [10, 20, 16, 18, 15, 16, 17, 18, 16, 20], label: "Working hours" },
-    { data: [15, 24, 15, 15, 15, 15, 15, 16, 16, 16], label: "Resting hours" },
-    { data: [12, 10, 1, 0, 0, 16, 5, 4, 4, 4, 4, 4, 4], label: "Problem hours" }
+    { data: [], label: "Working hours" },
+    { data: [], label: "Resting hours" },
+    { data: [], label: "Problem hours" }
   ];
  
   private month = 1;

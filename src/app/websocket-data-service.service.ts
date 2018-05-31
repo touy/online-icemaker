@@ -1020,30 +1020,31 @@ export class WebsocketDataServiceService implements OnInit {
   daysInMonth(month, year) {
     return new Date(year, month, 0).getDate();
   }
-  getProductionTime(d) {
+   getProductionTime(d) {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data = {};
     this._message.data.device = d;
     this.setInfoForGetProductionTime(this._message.data);
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'get-production-time';
-    if (0) {
+    let td=new Date().getDate();
+  
+    
       for (let index = 0; index <= this._message.data.dates; index++) {
         const element = this._message.data.dates - index;
         if (element === 0) { break; }
-        setTimeout(() => {
-          const e = element;
+        setTimeout( () => { 
+        const e = element;
           if (new Date().getDate() >= e) {
+            console.log('get data from date '+e);
             this._message.data.day = e;
           }
-          this.sendMsg();
-        }, 2000);
-      }
+          this.sendMsg(); }, 1000*(index+1) );
     }
-    this._message.data.day = 2;
-    this._message.data.month = 5;
-    this._message.data.year = 2018;
-    this.sendMsg();
+    // this._message.data.day = 2;
+    // this._message.data.month = 5;
+    // this._message.data.year = 2018;
+    // this.sendMsg();
 
   }
   getLatestWorkingStatus() {

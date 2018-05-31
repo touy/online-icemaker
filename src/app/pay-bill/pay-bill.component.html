@@ -16,72 +16,100 @@
                     <table class="table w-100 table-bordered table-responsive ">
                         <thead>
                             <tr>
-                                <th class="langlao ct"><i class="fas fa-barcode"></i> <br>ລະຫັດ IMEI</th>
-                                <th class="langlao ct"><i class="far fa-clock"></i> <br>ຊົ່ວໂມງເຮັດວຽກ</th>
-                                <th class="langlao ct"><i class="fas fa-times"></i> <br>ປະສິດທິພາບ</th>
-                                <th class="langlao ct"><i class="fas fa-filter"></i> <br>rate</th>
-                                <th class="langlao ct"><i class="fas fa-filter"></i> <br>ປະລິມານ</th>
-                                <th colspan="4" class="langlao ct"><i class="far fa-money-bill-alt"></i> <br>ຈຳນວນເງິນ</th>
-                                <th><i class="fas fa-exclamation"></i> <br>Action</th>
+                                <th class="langlao ct">
+                                    <i class="fas fa-barcode"></i>
+                                    <br>ລະຫັດ IMEI</th>
+                                <th class="langlao ct">
+                                    <i class="far fa-clock"></i>
+                                    <br>ຊົ່ວໂມງເຮັດວຽກ</th>
+                                <th class="langlao ct">
+                                    <i class="fas fa-chart-pie"></i>
+                                    <br>ປະສິດທິພາບ</th>
+                                <th class="langlao ct">
+                                    <i class="fas fa-filter"></i>
+                                    <br>ປະລິມານ</th>
+                                <th class="langlao text-uppercase ct">
+                                    <i class="fas fa-donate"></i>
+                                    <br>rate</th>
+                                <th colspan="5" class="langlao ct">
+                                    <i class="far fa-money-bill-alt"></i>
+                                    <br>ຈຳນວນເງິນ</th>
+                                <th class="text-uppercase">
+                                    <i class="fas fa-exclamation"></i>
+                                    <br>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let b of productionCollection">
+                            <tr *ngFor="let b of productionCollection" [style.background-color,style.color]="getColor(b.productiontime.working)">
                                 <th>{{b.sn}}</th>
-                                <td>{{b.productiontime.working | number:'1.2-2'}}</td>
-                                <td>{{b.effeciency}}</td>
-                                <td>{{b.effeciency*b.productiontime.working | number:'1.2-2'}}</td>
-                                <td colspan="4">
-                                    <input type="number" disabled="disabled" class="langlao" id="remove-bd-input">{{b.totalvalue | number:'1.0-0'}}</td>
+                                <td class="langlao">{{b.productiontime.working | number:'1.2-2'}} ຊົ່ວໂມງ</td>
+                                <td class="langlao">{{b.effeciency}} ກິໂລ</td>
+                                <td class="langlao">{{b.effeciency*b.productiontime.working | number:'1.2-2'}} ກິໂລ</td>
+                                <td>{{b.rate}}</td>
+                                <td class="langlao">{{b.totalvalue | number:'1.0-0'}} ກີບ</td>
                             </tr>
                             <tr class="height-price">
                                 <td class="langlao add-column">
-                                    <a class="" id="add-color" (click)="PopUp_add_discout(add_discout)">
+                                    <a class="" id="add-color" (click)="addDiscount();PopUp_add_discout(add_discout)">
                                         <i class="fas fa-plus-circle mr-1"></i>ເພີ່ມຄູປ໋ອງສ່ວນຫລຸດ</a>
                                 </td>
-                                <th colspan="2" id="remove-border2"></th>
-                                <td class="langlao" id="free-space">ລວມ</td>
-                                <td colspan="5">{{getTotalDiscount()}}</td>
+                                <th colspan="3" id="remove-border2"></th>
+                                <td class="langlao" id="free-space">ລວມສ່ວນຫລຸດ</td>
+                                <td class="langlao" colspan="5">{{_currentPayment.totaldiscount}} ກີບ</td>
+                                <td></td>
                             </tr>
-                            <tr *ngFor="let b of billDiscountCollection" (click)="selectDiscount(b)">
+                            <tr *ngFor="let b of billDiscountCollection">
                                 <th>{{b.sn}}</th>
-                                <td>{{b.productiontime.working | number:'1.2-2'}}</td>
+                                <td class="langlao">{{b.productiontime.working | number:'1.0-0'}} ຊົ່ວໂມງ</td>
                                 <td>{{b.effeciency}}</td>
-                                <td>{{b.effeciency*b.productiontime.working | number:'1.2-2'}}</td>
-                                <td colspan="4">
-                                    <input type="number" class="langlao" id="remove-bd-input" >{{b.totalvalue | number:'1.2-2'}}</td>
+                                <td>{{b.effeciency*b.productiontime.working | number:'1.0-0'}}</td>
+                                <td>{{b.rate}}</td>
+                                <td colspan="5">{{b.totalvalue | number:'1.0-0'}}</td>
+                                <th class="langlao">
+                                    <a class="btn" (click)="selectDiscount(b);PopUp_add_discout(add_discout)">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteDiscountBill(b)">
+                                        <i class="far fa-trash-alt mr-1"></i>
+                                    </a>
+                                </th>
                             </tr>
                             <tr>
-                                <th colspan="3" id="remove-border"></th>
-                                <td class="langlao" id="free-space">ລວມ+ສ່ວນຫລຸດ</td>
-                                <td colspan="5">{{getTotalValue() | number:'1.0-0'}}</td>
+                                <th colspan="4" id="remove-border"></th>
+                                <td class="langlao" id="free-space">ລວມເງິນ</td>
+                                <td class="langlao" colspan="5">{{_currentPayment.totalvalue | number:'1.0-0'}} ກີບ</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" id="remove-border"></th>
+                                <td class="langlao" id="free-space">ລວມເງິນທີ່ຕ້ອງຈ່າຍ</td>
+                                <td class="langlao" colspan="5">{{_currentPayment.totalpaid | number:'1.0-0'}} ກີບ</td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>
                 </form>
             </div>
         </div>
-        <button class="col-3 btn d-block mx-auto btn-primary langlao mt-4 mb-3" [routerLink]="['/bill']">ຮັບເງິນ + ພິມ</button>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label class="langlao" for="">ຈ່າຍໃຫ້</label>
+            <input class="form-control" [value]="_currentPayment.username" (input)="_currentPayment.username=$event.target.value" type="text">
+        </div>
+        <div class="col-md-6">
+            <label class="langlao" for="">ເພີ່ມເຕີມ</label>
+            <textarea class="form-control" name="" id="" cols="30" rows="1" [value]="_currentPayment.description" (input)="_currentPayment.description=$event.target.value"></textarea>
+        </div>
     </div>
 </div>
+<button class="col-3 btn d-block mx-auto btn-primary langlao mt-4 mb-3" (click)="makePayment()">ຮັບເງິນ + ພິມ</button>
 
-
-<!-- 
-<tr>                                
-        <th><input type="text" class="langlao" id="edit-text-bill" placeholder="000000">{{currentDiscountBill.sn}}AA</th>
-        <td ><input type="text" class="langlao" id="remove-bd-input" placeholder="0h">{{currentDiscountBill.productiontime.working | number:'1.2-2'}}</td>
-        <td><input type="text" class="langlao" id="remove-bd-input" placeholder="000000">{{currentDiscountBill.effeciency}}</td>
-        <td><input type="number" class="langlao" id="remove-bd-input" placeholder="000000">{{currentDiscountBill.effeciency*b.productiontime.working | number:'1.2-2'}}</td>
-        <td colspan="4"><input type="number" class="langlao" id="remove-bd-input" placeholder="1.000.000">{{currentDiscountBill.totalvalue | number:'1.2-2'}}</td>                               
-    </tr>
-<tr> -->
-
-<!-- <button class="col-3 d-block mx-auto btn btn-primary langlao" (click)="PopUp_add_discout(add_discout)">ເພີ່ມຄູປ໋ອງສ່ວນຫລຸດ</button> -->
 <div class="col-md-12">
     <div class="add-new-devices">
         <ng-template #add_discout let-c="close" let-d="dismiss" id="">
             <div class="modal-body">
-                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <button type="button" class="close" aria-label="Close" (click)="cancelAddDiscount();c('Close click')">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h1 class="text-center display-5 langlao mt-3">ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ລະບົບການໃຊ້ຄູປ໋ອງສ່ວນຫລຸດ</h1>
@@ -91,52 +119,71 @@
                 </p>
                 <hr>
                 <div class="add-discout">
-                    <section id="add-discout">
-                        <table class="table w-100 table-bordered table-responsive ">
+                    <section id="add-discout ">
+                        <table class="table table-bordered table-responsive col-md-10 offset-md-1">
                             <thead>
                                 <tr>
-                                    <th class="langlao ct"><i class="fas fa-barcode"></i> <br>ລະຫັດ SN</th>
-                                    <th class="langlao ct"><i class="far fa-clock"></i> <br>ຊົ່ວໂມງເຮັດວຽກ</th>
-                                    <th class="langlao ct"><i class="fas fa-times"></i> <br>ປະສິດທິພາບ</th>
-                                    <th class="langlao ct"><i class="fas fa-filter"></i> <br>rate</th>
-                                    <th class="langlao ct"><i class="fas fa-filter"></i> <br>ປະລິມານ</th>
-                                    <th colspan="4" class="langlao ct"><i class="far fa-money-bill-alt"></i> <br>ຈຳນວນເງິນ</th>
+                                    <th class="langlao ct1">
+                                        <i class="fas fa-barcode"></i>
+                                        <br>ລະຫັດ SN</th>
+                                    <th class="langlao">
+                                        <i class="far fa-clock"></i>
+                                        <br>ຊົ່ວໂມງເຮັດວຽກ</th>
+                                    <th class="langlao">
+                                        <i class="fas fa-chart-pie"></i>
+                                        <br>ປະສິດທິພາບ</th>
+                                    <th class="langlao">
+                                        <i class="fas fa-filter"></i>
+                                        <br>ປະລິມານ</th>
+                                    <th class="langlao">
+                                        <i class="fas fa-filter"></i>
+                                        <br>rate</th>
+                                    <th class="langlao">
+                                        <i class="far fa-money-bill-alt"></i>
+                                        <br>ຈຳນວນເງິນ</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr >
-                                    <th><input type="text" [value]="_currentDiscountBill.sn" disabled></th>
-                                    <td><input type="number" [value]="_currentDiscountBill.productiontime.working" (input)="updateDiscountCalculation($event.target.value,1)" ></td>
-                                    <td><input type="number" [value]="_currentDiscountBill.effeciency" (input)="updateDiscountCalculation($event.target.value,2)"></td>
-                                    <td><input type="number" [value]="_currentDiscountBill.rate" (input)="updateDiscountCalculation($event.target.value,3)"></td>
-                                    <td><input type="number" [value]="_currentDiscountBill.effeciency*_currentDiscountBill.productiontime.working" disabled></td>
-                                    <td colspan="4">{{_currentDiscountBill.totalvalue | number:'1.2-2'}}</td>
-                                </tr>                               
+                                <tr>
+                                    <th>
+                                        <input class="" type="text" [value]="_currentDiscountBill.sn" disabled>
+                                    </th>
+                                    <td>
+                                        <input class="re-size-2" type="number" [value]="_currentDiscountBill.productiontime.working"
+                                            (input)="updateDiscountCalculation($event.target.value,1)">
+                                    </td>
+                                    <td>
+                                        <input class="re-size-2" type="number" [value]="_currentDiscountBill.effeciency" (input)="updateDiscountCalculation($event.target.value,2)">
+                                    </td>
+                                    <td>
+                                        <input class="re-size-2" type="number" [value]="_currentDiscountBill.effeciency*_currentDiscountBill.productiontime.working"
+                                            disabled>
+                                    </td>
+                                    <td>
+                                        <input class="re-size-2" type="number" [value]="_currentDiscountBill.rate" (input)="updateDiscountCalculation($event.target.value,3)">
+                                    </td>
+                                    <td>{{_currentDiscountBill.totalvalue | number:'1.2-2'}}</td>
+                                </tr>
                             </tbody>
                         </table>
                         <form>
-                                <div class="row col-md-10 offset-md-1 font-color-form-users">
-                                  <div class="group-control col-md-6 col-12 mt-4">
-                                    <label class="langlao mg-name text-uppercase" for="serial">Serail Number *</label>
-                                    <input name="serial" class="form-control" required>
-                                  </div>
-                                  <div class="group-control col-md-6 col-12 mt-4">
-                                    <label class="langlao mg-name" for="phonenumber">ວັນ,ເດືອນ,ປີ *</label>
-                                    <input name="phonenumber" class="form-control" required>
-                                  </div>
-                                  <div class="group-control col-12 mt-4">
-                                    <label class="langlao mg-name" for="">ໝາຍເຫດ *</label>
-                                    <textarea class="form-control langlao" type="text">
-                                    </textarea> 
-                                  </div>
-                                  <div class="group-control col-12 mt-4 d-flex justify-content-center">
-                                    <button class="col-md-4 mg-btn col-6 btn btn-primary-form-users langlao" (click)="saveDicountBill();c('Close click')" type="submit">
-                                      <i class="far fa-registered mr-1"></i>ສຳເລັດ</button>
-                                    <button class="col-md-4 mg-btn col-6 btn btn-danger-form-users langlao" (click)="cancelAddDiscount();c('Close click')" type="reset">
-                                      <i class="fas fa-redo mr-1" ></i>ຍົກເລີກ</button>
-                                  </div>
+                            <div class="row col-md-10 offset-md-1 font-color-form-users">
+                                <div class="group-control col-md-6 col-12 mt-4">
+                                    <label class="langlao mg-name text-uppercase" for="serial">imei *</label>
+                                    <input name="serial" class="form-control" [value]="_currentDiscountBill.imei" disabled>
                                 </div>
-                              </form>
+                                <div class="group-control col-12 mt-4">
+                                    <label class="langlao mg-name" for="">ເພີ່ມເຕີມ *</label>
+                                    <textarea class="form-control langlao" type="text" [value]="_currentDiscountBill.description" (input)="_currentDiscountBill.description=$event.target.value"> </textarea>
+                                </div>
+                                <div class="group-control col-12 mt-4 d-flex justify-content-center">
+                                    <button class="col-md-4 mg-btn col-6 btn btn-primary-form-users langlao" (click)="saveDicountBill();c('Close click')" type="submit">
+                                        <i class="far fa-registered mr-1"></i>ສຳເລັດ</button>
+                                    <button class="col-md-4 mg-btn col-6 btn btn-danger-form-users langlao" (click)="cancelAddDiscount();c('Close click')" type="reset">
+                                        <i class="fas fa-redo mr-1"></i>ຍົກເລີກ</button>
+                                </div>
+                            </div>
+                        </form>
                     </section>
                 </div>
             </div>

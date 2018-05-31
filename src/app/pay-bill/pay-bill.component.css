@@ -9,10 +9,6 @@ td {
   border-left: none !important;
   border-right: none !important;
 }
-.langlao {
-  /* text-align: center !important; */
-  /* border:none; */
-}
 
 #remove-bd-input {
   border: none !important;
@@ -26,7 +22,9 @@ td {
   /* border-color:white !important; */
 }
 #remove-border2 {
-  border-bottom: 2px solid rgb(248, 242, 242) !important;
+  /* border-bottom: 2px solid rgb(248, 242, 242) !important; */
+  border-bottom: none !important;
+  border:none !important;
 }
 .display-6 {
   font-weight: bold;
@@ -64,7 +62,7 @@ td {
 #edit-text-bill {
   font-weight: bold;
   text-align: center !important;
-  border: none;
+  /* border: none; */
   background: none !important;
 }
 
@@ -109,7 +107,7 @@ tr,
 th,
 td {
   text-align: center !important;
-  width: 10%;
+  /* width: 10%; */
 }
 
 .btn-search {
@@ -248,4 +246,14 @@ td {
 }
 .cursor-not-allowed{
   cursor: not-allowed;
+}
+.ct1{
+  width:200px;
+}
+.text-left{
+  text-align: left !important;
+}
+.re-size-2{
+  width:120px !important;
+  text-align: center !important;
 }

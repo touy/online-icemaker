@@ -285,11 +285,82 @@ import { ElementRef,ViewChild} from '@angular/core';
    
     }
 
+    //???????????????
+    getColor(value) {
+      if(value<1){
+        return 'red';
+      }
+      else if(value<1){
+        return 'white';
+      }
+      else{
+        return '';
+      }
+    }
+
     gotopay(){
       sessionStorage.setItem('PD',JSON.stringify(this.productionCollection));
       this.router.navigate(['/pay-bill']);
     }
-  
+    getAverageProduction(){
+      let array=this.productionCollection;
+      let tt=0;
+      let rates=0;
+      let eff=0;
+      let max=0;
+      let min=24;
+      let mintime='';
+      let maxtime='';
+      for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        tt+=element.productiontime.working;
+        eff+=element.effeciency;
+        rates+=element.rate;
+        if(max<=element.productiontime.working){
+          max=element.productiontime.working;
+          
+        }
+        if(min>=element.productiontime.working){
+          min=element.productiontime.working;
+          
+        }
+      }
+      
+      for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        if(max===element.productiontime.working){
+          maxtime=`${element.day}.${element.month}.${element.year}, `;
+        }
+        if(min===element.productiontime.working){
+          mintime+=`${element.day}.${element.month}.${element.year}, `;
+        }
+      }
+      let av=tt/array.length;
+      rates=rates/array.length;
+      eff=eff/array.length;
+      
+      let str='';
+      let js:any={};
+      if(array.length){
+        str=`TT: ${tt} H/ ${tt*rates*eff} KG <br>
+      av:${av} H / ${av*eff} KG <br>
+      max:${max} H /${max*rates*eff} KG  ==> (${maxtime})<br>
+      min: ${min} H /${min*rates*eff} KG ==> (${mintime})` ;
+        js.tt=tt;
+        js.ttkg=tt*eff;
+        js.av=av;
+        js.avkg=av*eff;
+        js.max=max;
+        js.maxkg=max*rates*eff;
+        js.min=min;
+        js.minkg=min*rates*eff;
+        js.maxtime=maxtime;
+        js.mintime=mintime;
+      }
+      
+    
+      return js;
+    }
   
   /// END RECEIVING
   
