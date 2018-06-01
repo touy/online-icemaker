@@ -1,18 +1,133 @@
-   <!-- list-product "ລາຍການສຶນຄ້າ" -->
-   
+<!-- list-product "ລາຍການສຶນຄ້າ" -->
+
 <div class="list-product-bg">
-    <h3 class="display-6 text-center langlao">
+    <div class="mt-3">
+        <h3 class="langlao text-center mb-3">
+            <u>ຂໍ້ມູນສະເລ່ຍສະແດງລາຍລະອຽດ</u>
+        </h3>
+        <div class="row">
+            <!-- Total -->
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h5 class="langlao">ລວມຊົ່ວໂມງເຮັດວຽກ: {{getAverageProduction().tt | number:'1.2-2'}} H </h5>
+
+                        <p class="langlao">ປະລິມານທີ່ຜະລິດໃດ້: {{getAverageProduction().ttkg | number:'1.2-2'}} KG</p>
+                    </div>
+                    <div class="icon">
+                        <i class="far fa-clock"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">put something
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <!-- Average -->
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h5 class="langlao">ເວລາເຮັດວຽກ: {{getAverageProduction().av | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
+
+                        <p class="langlao">ປະລິມານຜະລິດໃດ້: {{getAverageProduction().avkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">put something
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                    <!-- ./col -->
+                </div>
+            </div>
+            <!-- Max KG -->
+            <div class="col-xl-4 col-lg-6 col-md-12 col-12">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h5 class="langlao">ເວລາເຮັດວຽກສູງສຸດ: {{getAverageProduction().max | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
+
+                        <p class="langlao">ປະລິມານຜະລິດໃດ້ສູງສຸດ: {{getAverageProduction().maxkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-sort-amount-up"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">put something
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <!-- Min KG -->
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h5 class="langlao">ເວລາເຮັດວຽກໜ້ອຍສຸດ: {{getAverageProduction().min | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
+
+                        <p class="langlao">ປະລິມານຜະລິດໃດ້ໜ້ອຍສຸດ: {{getAverageProduction().minkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-sort-amount-down"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">put something
+                        <i class="fas fa-sort-amount-down"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <!-- MaxTime -->
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h5 class="langlao">ວັນທີ່ເຮັດວຽກຫຼາຍສຸດ: {{getAverageProduction().maxtime}}</h5>
+                       <p class="langlao">ລວມປະລິມານທີ່ໃດ້ຮັບ:{{getAverageProduction().maxkg | number:'1.2-2'}} KG</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-long-arrow-alt-up"></i>
+                        <i class="fas fa-hourglass"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">put something
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <!-- MinTime -->
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h5 class="langlao">ວັນທີ່ເຮັດວຽກໜ້ອຍສຸດ: {{getAverageProduction().mintime}}</h5>
+                        <p class="langlao">ລວມປະລິມານທີ່ໃດ້ຮັບ:{{getAverageProduction().minkg | number:'1.2-2'}} KG</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                        <i class="far fa-hourglass"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">put something
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+    </div>
+    <h3 class="display-6 text-center langlao mt-3">
         <u>ລາຍການສິນຄ້າ</u>
     </h3>
-    
     <!-- list-product "ລາຍການສຶນຄ້າ" -->
-    <div class="mt-3">  
+    <div class="mt-3">
         <div class="responsive">
             <div class="col-12">
                 <form method="POST " action="">
-                    <div>Total: {{getAverageProduction().tt | number:'1.2-2'}} H - {{getAverageProduction().ttkg | number:'1.2-2'}} KG</div>
-                    <div>Average: {{getAverageProduction().av | number:'1.2-2'}} H - {{getAverageProduction().avkg | number:'1.2-2'}} KG</div>
-                    
+                    <div>
+                        <p class="langlao">ຊື່ລູກຄ້າ:{{_currentDevice.name}}</p>
+                    </div>
+
                     <table class="table table-bordered table-responsive ml-6">
                         <thead>
                             <tr>
@@ -22,23 +137,23 @@
                                 <th class="langlao ct">ປະລິມານ</th>
                                 <th class="langlao ct">ລາຄາ</th>
                                 <th class="langlao ct">ຈຳນວນ</th>
-                                <th class="langlao ct">ຊຳລະ</th>
                                 <th class="langlao ct">ວັນທີຊຳລະ</th>
+                                <th class="langlao ct">ຊຳລະ <input type="checkbox" (change)="selectAll()"/></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let b of productionCollection" [style.background-color]="getColor(b.productiontime.working)">
-                                <th class="langlao ct"></th>
+                            <tr *ngFor="let b of productionCollection" [style.background-color]="getColor(b.productiontime.working)" >
+                                <th class="langlao ct">{{b.imei}}</th>
                                 <th>{{b.sn}}</th>
                                 <td>{{b.productiontime.working | number:'1.2-2'}}</td>
                                 <td>{{b.effeciency*b.productiontime.working | number:'1.2-2'}}</td>
                                 <td>{{b.rate}}</td>
                                 <td>{{b.totalvalue | number:'1.2-2'}}</td>
                                 <td>
-                                    <input type="checkbox" checked="!b.isdone" [disabled]="b.paidtime===undefined?true:null">
+                                    {{b.paidtime}}
                                 </td>
-                                <td>{{b.day}}/{{b.month}}/{{b.year}}
-                                    <input type="checkbox" [disabled]="b.paidtime===undefined?true:null" checked="b.isinvoice===undefined?b.isinvoice=false:b.isinvoice" >
+                                <input type="checkbox" [checked]="b.isinvoice" [disabled]="b.isdone" (change)="b.isinvoice = !b.isinvoice" >
+                                <td>
                                 </td>
                             </tr>
                         </tbody>

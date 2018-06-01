@@ -86,7 +86,8 @@ constructor(
     })
 
  this._currentDevice=[];
-
+ this._selectedMonth=new Date().getMonth()+1;
+ this. _selectedYear=new Date().getFullYear()
 }
 //// END WEBSOCKET LAUNCHING
 
@@ -263,7 +264,14 @@ loadDevices(){
    this.sendDevice.emit(this._selectedDevice);
    this.websocketDataServiceService.getProductionTime(this._selectedDevice);
   }
-
+  getSelectedDevice(d){
+    if(d&&this._selectedDevice){
+      if(this._selectedDevice.imei===d.imei)
+      return true;
+    }
+    
+    return false;
+  }
 
 
   @Input()  str: string;

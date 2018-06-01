@@ -19,7 +19,7 @@
     <div class="row float-left">
         <div class="col-12">
             <span class="input-group">
-                <label class="langlao mt-2">ຊື່ລູກຄ້າ:</label>
+                <label class="langlao">ຊື່ລູກຄ້າ:</label>
                 {{_currentPayment.username}}
             </span>
             <span class="input-group mt-2">
@@ -33,6 +33,7 @@
         <div class="d-flex justify-content-center">
             <div class="">
                 <form method="POST " action="">
+                    current device: {{_currentDevice.name}}
                     <table class="table table-bordered table-responsive">
                         <thead>
                             <tr>
@@ -95,4 +96,119 @@
             </h6>
         </div>
     </div>
+    <div class="mt-3">
+            <h3 class="langlao text-center mb-3">
+                <u>ຂໍ້ມູນສະເລ່ຍສະແດງລາຍລະອຽດ</u>
+            </h3>
+            <div class="row">
+                <!-- Total -->
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h5 class="langlao">ລວມຊົ່ວໂມງເຮັດວຽກ: {{_reports.tt | number:'1.2-2'}} H </h5>
+    
+                            <p class="langlao">ປະລິມານທີ່ຜະລິດໃດ້: {{_reports.ttkg | number:'1.2-2'}} KG</p>
+                        </div>
+                        <div class="icon">
+                            <i class="far fa-clock"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">put something
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <!-- Average -->
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h5 class="langlao">ເວລາເຮັດວຽກ: {{_reports.av | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
+    
+                            <p class="langlao">ປະລິມານຜະລິດໃດ້: {{_reports.avkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">put something
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                        <!-- ./col -->
+                    </div>
+                </div>
+                <!-- Max KG -->
+                <div class="col-xl-4 col-lg-6 col-md-12 col-12">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h5 class="langlao">ເວລາເຮັດວຽກສູງສຸດ: {{_reports.max | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
+    
+                            <p class="langlao">ປະລິມານຜະລິດໃດ້ສູງສຸດ: {{_reports.maxkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-sort-amount-up"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">put something
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <!-- Min KG -->
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h5 class="langlao">ເວລາເຮັດວຽກໜ້ອຍສຸດ: {{_reports.min | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
+    
+                            <p class="langlao">ປະລິມານຜະລິດໃດ້ໜ້ອຍສຸດ: {{_reports.minkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-sort-amount-down"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">put something
+                            <i class="fas fa-sort-amount-down"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <!-- MaxTime -->
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h5 class="langlao">ວັນທີ່ເຮັດວຽກຫຼາຍສຸດ: {{_reports.maxtime}}</h5>
+                           <p class="langlao">ລວມປະລິມານທີ່ໃດ້ຮັບ:{{_reports.maxkg | number:'1.2-2'}} KG</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-long-arrow-alt-up"></i>
+                            <i class="fas fa-hourglass"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">put something
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <!-- MinTime -->
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h5 class="langlao">ວັນທີ່ເຮັດວຽກໜ້ອຍສຸດ: {{_reports.mintime}}</h5>
+                            <p class="langlao">ລວມປະລິມານທີ່ໃດ້ຮັບ:{{_reports.minkg | number:'1.2-2'}} KG</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-long-arrow-alt-down"></i>
+                            <i class="far fa-hourglass"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">put something
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
 </div>

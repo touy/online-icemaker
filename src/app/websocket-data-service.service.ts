@@ -9,6 +9,7 @@ import * as moment from 'moment-timezone';
 //import PouchDB from 'pouchdb';
 import { PouchDBService } from './pouchdb.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+// import { INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic';
 
 @Injectable()
 export class WebsocketDataServiceService implements OnInit {
@@ -1029,17 +1030,27 @@ export class WebsocketDataServiceService implements OnInit {
     this._message.data.command = 'get-production-time';
     let td=new Date().getDate();
   
-    
+      let i=0;
       for (let index = 0; index <= this._message.data.dates; index++) {
         const element = this._message.data.dates - index;
         if (element === 0) { break; }
-        setTimeout( () => { 
-        const e = element;
-          if (new Date().getDate() >= e) {
-            console.log('get data from date '+e);
+        const e = element
+        if (new Date().getMonth()+1!==this._message.data.month||new Date().getFullYear()!==this._message.data.year) {
+          setTimeout( () => { 
+            console.log('GET DATA DATE '+e);
             this._message.data.day = e;
-          }
-          this.sendMsg(); }, 1000*(index+1) );
+            this.sendMsg();
+        }, 1000*((i++)+1) );
+        }else if(new Date().getDate() >= e) {
+          setTimeout( () => { 
+            console.log('GET DATA DATE '+e);
+            this._message.data.day = e;
+            this.sendMsg();
+          }, 1000*((i++)+1) );
+        }else{
+          console.log('ignore');
+        }
+          
     }
     // this._message.data.day = 2;
     // this._message.data.month = 5;

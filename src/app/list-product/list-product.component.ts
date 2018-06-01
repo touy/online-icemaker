@@ -163,7 +163,6 @@ import { ElementRef,ViewChild} from '@angular/core';
   
   //// ICE-MAKER
   
-  private _currentDevice: any;
   private _arrayDevices: any;
   private _currentPayment: any;
   private _currentSubUser: any;
@@ -297,9 +296,38 @@ import { ElementRef,ViewChild} from '@angular/core';
         return '';
       }
     }
-
+    selectAll(){
+      let array=this.productionCollection;
+      for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        //console.log(element.isinvoice);
+        if(element.isinvoice===undefined){
+          element.isinvoice=false;
+        }
+        if(!element.isdone){
+          element.isinvoice=!element.isinvoice;
+        }
+        
+      }
+    }
     gotopay(){
-      sessionStorage.setItem('PD',JSON.stringify(this.productionCollection));
+      let collection=[];
+      let array=this.productionCollection;
+      for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        console.log(element.isinvoice);
+        if(element.isinvoice===true){
+          collection.push(element);
+        }
+      }
+      if(!collection.length)
+        {
+          alert('Please select one');
+          return;
+        }
+      sessionStorage.setItem('PD',JSON.stringify(collection));
+      sessionStorage.setItem('CD',JSON.stringify(this._currentDevice));
+      sessionStorage.setItem('rep',JSON.stringify(this.getAverageProduction()));
       this.router.navigate(['/pay-bill']);
     }
     getAverageProduction(){
@@ -361,7 +389,8 @@ import { ElementRef,ViewChild} from '@angular/core';
     
       return js;
     }
-  
+
+    @Input()  _currentDevice: any;
   /// END RECEIVING
   
   //// SENDING

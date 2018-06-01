@@ -30,12 +30,13 @@ private _client: Message = {
   loginip: "",
   data: {}
 };
+
 private _otherSource: any = {};
 private _subs: any = [];
 private _trans: any = [];
 //// ICE-MAKER
 private _arrayPayment: any;
-
+private _currentDevice:any;
 private _currentPayment = {
   gui: '',
   sn: '',
@@ -54,7 +55,7 @@ private _currentPayment = {
   isapproved: false,
   approveby: ''
 }
-
+private _reports:any;
 /// WEBSOCKET LAUNCHING
 constructor(
   private modalService: NgbModal,
@@ -122,6 +123,15 @@ saveClient() {
 }
 loadClient() {
   let pd=sessionStorage.getItem('PM');
+  let cd=sessionStorage.getItem('CD');
+  let rep=sessionStorage.getItem('rep');
+  if(rep){
+    this._reports=JSON.parse(rep);
+  }
+  
+  if(cd){
+    this._currentDevice=JSON.parse(cd);
+  }
   if(!pd){
     /// to other page
     return;

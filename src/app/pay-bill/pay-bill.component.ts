@@ -135,10 +135,16 @@ saveClient() {
 }
 loadClient() {
   let pd=sessionStorage.getItem('PD');
+  let cd=sessionStorage.getItem('CD');
+  if(cd){
+    this._currentDevice=JSON.parse(cd);
+  }
+
   if(!pd){
     /// to other page
     return;
   }
+ 
   this.productionCollection=JSON.parse(pd);
   sessionStorage.setItem('PD','');
   sessionStorage.setItem("firstHandShake", "");
