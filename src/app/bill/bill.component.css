@@ -43,7 +43,7 @@ td {
 }
 
 .min-height-recieve {
-  margin-bottom: 160px;
+  margin-bottom: 60px;
 }
 .table {
   border: none !important;
@@ -64,7 +64,7 @@ td {
 
 /* .........///////////////////........... */
 .select-device-list{
-  /* width: 330px !important; */
+  width: 450px !important;
 }
 
 .size-icon-one{
