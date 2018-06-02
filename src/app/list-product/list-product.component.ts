@@ -22,6 +22,7 @@ import { ElementRef,ViewChild} from '@angular/core';
       if (changes) {
         console.log(changes);
         console.log('line chart get new device'+this.productionCollection.length);
+        this.getAverageProduction();
         this.bindLineChart();
       }
     }
@@ -169,7 +170,7 @@ import { ElementRef,ViewChild} from '@angular/core';
   private _currentBill: any;
   private _arrayBills: any;
   private _arrayPayment: any;
-  
+  private _averageCollection:any={};
   
   
   /// WEBSOCKET LAUNCHING
@@ -287,7 +288,7 @@ import { ElementRef,ViewChild} from '@angular/core';
     //???????????????
     getColor(value) {
       if(value<1){
-        return 'red';
+        return '#ccd2d3';
       }
       else if(value<1){
         return 'white';
@@ -320,10 +321,10 @@ import { ElementRef,ViewChild} from '@angular/core';
           collection.push(element);
         }
       }
-      if(!collection.length)
+      // if(!collection.length)
         {
-          alert('Please select one');
-          return;
+          // alert('Please select one');
+          // return;
         }
       sessionStorage.setItem('PD',JSON.stringify(collection));
       sessionStorage.setItem('CD',JSON.stringify(this._currentDevice));
@@ -337,8 +338,8 @@ import { ElementRef,ViewChild} from '@angular/core';
       let eff=0;
       let max=0;
       let min=24;
-      let mintime='';
-      let maxtime='';
+      let mintime=[];
+      let maxtime=[];
       for (let index = 0; index < array.length; index++) {
         const element = array[index];
         tt+=element.productiontime.working;
@@ -357,10 +358,10 @@ import { ElementRef,ViewChild} from '@angular/core';
       for (let index = 0; index < array.length; index++) {
         const element = array[index];
         if(max===element.productiontime.working){
-          maxtime=`${element.day}.${element.month}.${element.year}, `;
+          maxtime.push(`${element.day}.${element.month}.${element.year}`);
         }
         if(min===element.productiontime.working){
-          mintime+=`${element.day}.${element.month}.${element.year}, `;
+          mintime.push(`${element.day}.${element.month}.${element.year}`);
         }
       }
       let av=tt/array.length;
@@ -386,7 +387,7 @@ import { ElementRef,ViewChild} from '@angular/core';
         js.mintime=mintime;
       }
       
-    
+    this._averageCollection=js;
       return js;
     }
 

@@ -9,17 +9,17 @@
             <!-- Total -->
             <div class="col-xl-4 col-lg-6 col-md-6 col-12">
                 <!-- small box -->
-                <div class="small-box bg-success">
+                <div class="small-box bg-total-color">
                     <div class="inner">
-                        <h5 class="langlao">ລວມຊົ່ວໂມງເຮັດວຽກ: {{getAverageProduction().tt | number:'1.2-2'}} H </h5>
+                        <h5 class="langlao">ລວມຊົ່ວໂມງເຮັດວຽກ: <small>{{_averageCollection.tt | number:'1.2-2'}} H</small></h5>
 
-                        <p class="langlao">ປະລິມານທີ່ຜະລິດໃດ້: {{getAverageProduction().ttkg | number:'1.2-2'}} KG</p>
+                        <h6 class="langlao">ລວມປະລິມານທີ່ຜະລິດໃດ້:<small>{{_averageCollection.ttkg | number:'1.2-2'}} KG</small></h6>
                     </div>
                     <div class="icon">
                         <i class="far fa-clock"></i>
                     </div>
-                    <a href="#" class="small-box-footer">put something
-                        <i class="fa fa-arrow-circle-right"></i>
+                    <a href="#" class="small-box-footer">TOTAL
+                        <!-- <i class="far fa-clock"></i> -->
                     </a>
                 </div>
             </div>
@@ -27,35 +27,35 @@
             <!-- Average -->
             <div class="col-xl-4 col-lg-6 col-md-6 col-12">
                 <!-- small box -->
-                <div class="small-box bg-info">
+                <div class="small-box bg-average-color">
                     <div class="inner">
-                        <h5 class="langlao">ເວລາເຮັດວຽກ: {{getAverageProduction().av | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
+                        <h5 class="langlao">ເວລາເຮັດວຽກ: <small>{{_averageCollection.av | number:'1.2-2'}} H ຕໍ່ວັນ</small></h5>
 
-                        <p class="langlao">ປະລິມານຜະລິດໃດ້: {{getAverageProduction().avkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
+                        <h6 class="langlao">ປະລິມານຜະລິດໃດ້: <small>{{_averageCollection.avkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</small></h6>
                     </div>
                     <div class="icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <a href="#" class="small-box-footer">put something
-                        <i class="fa fa-arrow-circle-right"></i>
+                    <a href="#" class="small-box-footer">Average
+                        <!-- <i class="fa fa-arrow-circle-right"></i> -->
                     </a>
                     <!-- ./col -->
                 </div>
             </div>
-            <!-- Max KG -->
-            <div class="col-xl-4 col-lg-6 col-md-12 col-12">
+            <!-- Max KG and Time -->
+            <div class="col-xl-4 col-lg-6 col-md-6 col-12">
                 <!-- small box -->
-                <div class="small-box bg-warning">
+                <div class="small-box bg-maxtime-color">
                     <div class="inner">
-                        <h5 class="langlao">ເວລາເຮັດວຽກສູງສຸດ: {{getAverageProduction().max | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
+                        <h5 class="langlao">ເວລາເຮັດວຽກສູງສຸດ: <small>{{_averageCollection.max | number:'1.2-2'}} H ຕໍ່ວັນ</small></h5>
 
-                        <p class="langlao">ປະລິມານຜະລິດໃດ້ສູງສຸດ: {{getAverageProduction().maxkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
+                        <h6 class="langlao"><small>ປະລິມານຜະລິດໃດ້ສູງສຸດ: {{_averageCollection.maxkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</small></h6>
                     </div>
                     <div class="icon">
                         <i class="fas fa-sort-amount-up"></i>
                     </div>
-                    <a href="#" class="small-box-footer">put something
-                        <i class="fa fa-arrow-circle-right"></i>
+                    <a href="#" class="small-box-footer">MAX WORKING AND MAX TIME
+                        <!-- <i class="fa fa-arrow-circle-right"></i> -->
                     </a>
                 </div>
             </div>
@@ -63,52 +63,61 @@
             <!-- Min KG -->
             <div class="col-xl-4 col-lg-6 col-md-6 col-12">
                 <!-- small box -->
-                <div class="small-box bg-danger">
+                <div class="small-box bg-mintime-color">
                     <div class="inner">
-                        <h5 class="langlao">ເວລາເຮັດວຽກໜ້ອຍສຸດ: {{getAverageProduction().min | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
+                        <h5 class="langlao">ເວລາເຮັດວຽກໜ້ອຍສຸດ: <small> {{_averageCollection.min | number:'1.2-2'}} H ຕໍ່ວັນ</small> </h5>
 
-                        <p class="langlao">ປະລິມານຜະລິດໃດ້ໜ້ອຍສຸດ: {{getAverageProduction().minkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
+                        <h6 class="langlao"><small>ປະລິມານຜະລິດໃດ້ໜ້ອຍສຸດ: {{_averageCollection.minkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</small></h6>
                     </div>
                     <div class="icon">
                         <i class="fas fa-sort-amount-down"></i>
                     </div>
-                    <a href="#" class="small-box-footer">put something
-                        <i class="fas fa-sort-amount-down"></i>
+                    <a href="#" class="small-box-footer">MIN
+                        <!-- <i class="fas fa-sort-amount-down"></i> -->
                     </a>
                 </div>
             </div>
             <!-- ./col -->
-            <!-- MaxTime -->
+            <!-- MaxDay -->
             <div class="col-xl-4 col-lg-6 col-md-6 col-12">
                 <!-- small box -->
-                <div class="small-box bg-success">
+                <div class="small-box bg-maxday-color">
                     <div class="inner">
-                        <h5 class="langlao">ວັນທີ່ເຮັດວຽກຫຼາຍສຸດ: {{getAverageProduction().maxtime}}</h5>
-                       <p class="langlao">ລວມປະລິມານທີ່ໃດ້ຮັບ:{{getAverageProduction().maxkg | number:'1.2-2'}} KG</p>
+                        <h5 class="langlao">ວັນທີ່ເຮັດວຽກຫຼາຍສຸດ: 
+                            <ul class="nav" *ngFor="let m of _averageCollection.maxtime">
+                            <li class="mr-3 mt-2"><u class="size-of-mindy"><small>{{m}}</small></u> 
+                            </li>
+                        </ul>
+                    </h5>
+                       <h6 class="langlao"><small>ລວມປະລິມານທີ່ໃດ້ຮັບ:{{_averageCollection.maxkg | number:'1.2-2'}} KG</small></h6>
                     </div>
                     <div class="icon">
                         <i class="fas fa-long-arrow-alt-up"></i>
                         <i class="fas fa-hourglass"></i>
                     </div>
-                    <a href="#" class="small-box-footer">put something
-                        <i class="fa fa-arrow-circle-right"></i>
+                    <a href="#" class="small-box-footer">LIST MAX OF DAYS WORKING
+                        <!-- <i class="fa fa-arrow-circle-right"></i> -->
                     </a>
                 </div>
             </div>
             <!-- ./col -->
-            <!-- MinTime -->
+            <!-- MinDay -->
             <div class="col-xl-4 col-lg-6 col-md-6 col-12">
                 <!-- small box -->
-                <div class="small-box bg-danger">
+                <div class="small-box bg-minday-color">
                     <div class="inner">
-                        <h5 class="langlao">ວັນທີ່ເຮັດວຽກໜ້ອຍສຸດ: {{getAverageProduction().mintime}}</h5>
-                        <p class="langlao">ລວມປະລິມານທີ່ໃດ້ຮັບ:{{getAverageProduction().minkg | number:'1.2-2'}} KG</p>
+                        <h5 class="langlao">ວັນທີ່ເຮັດວຽກໜ້ອຍສຸດ: 
+                            <ul class="nav">
+                                <li class="mr-3 mt-2 size-of-mindy" *ngFor="let m of _averageCollection.mintime"><u><small>{{m}}</small></u> 
+                                </li>
+                            </ul></h5>
+                        <h6 class="langlao"><small>ລວມປະລິມານທີ່ໃດ້ຮັບ:{{_averageCollection.minkg | number:'1.2-2'}} KG</small></h6>
                     </div>
                     <div class="icon">
                         <i class="fas fa-long-arrow-alt-down"></i>
                         <i class="far fa-hourglass"></i>
                     </div>
-                    <a href="#" class="small-box-footer">put something
+                    <a href="#" class="small-box-footer">LIST MIN OF DAYS WORKING
                         <i class="fa fa-arrow-circle-right"></i>
                     </a>
                 </div>

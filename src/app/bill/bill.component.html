@@ -83,10 +83,11 @@
             </div>
         </div>
     </div>
-    <div class="q3">
+    <div class="comment">
         <div class="discription-left">
             <label class="langlao">ເພີ່ມເຕີມ</label>
-            <textarea class="form-control langlao"  id="" rows="1" [value]="_currentPayment.description" (input)="_currentPayment.description($event.target.value)" disabled></textarea>
+            <textarea class="form-control langlao" id="" rows="1" [value]="_currentPayment.description" (input)="_currentPayment.description($event.target.value)"
+                disabled></textarea>
         </div>
     </div>
     <div class="mt-5 mb-5 mr-5">
@@ -96,119 +97,139 @@
             </h6>
         </div>
     </div>
-    <div class="mt-3">
-            <h3 class="langlao text-center mb-3">
-                <u>ຂໍ້ມູນສະເລ່ຍສະແດງລາຍລະອຽດ</u>
-            </h3>
-            <div class="row">
-                <!-- Total -->
-                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h5 class="langlao">ລວມຊົ່ວໂມງເຮັດວຽກ: {{_reports.tt | number:'1.2-2'}} H </h5>
-    
-                            <p class="langlao">ປະລິມານທີ່ຜະລິດໃດ້: {{_reports.ttkg | number:'1.2-2'}} KG</p>
-                        </div>
-                        <div class="icon">
-                            <i class="far fa-clock"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">put something
-                            <i class="fa fa-arrow-circle-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <!-- Average -->
-                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h5 class="langlao">ເວລາເຮັດວຽກ: {{_reports.av | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
-    
-                            <p class="langlao">ປະລິມານຜະລິດໃດ້: {{_reports.avkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">put something
-                            <i class="fa fa-arrow-circle-right"></i>
-                        </a>
-                        <!-- ./col -->
-                    </div>
-                </div>
-                <!-- Max KG -->
-                <div class="col-xl-4 col-lg-6 col-md-12 col-12">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h5 class="langlao">ເວລາເຮັດວຽກສູງສຸດ: {{_reports.max | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
-    
-                            <p class="langlao">ປະລິມານຜະລິດໃດ້ສູງສຸດ: {{_reports.maxkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-sort-amount-up"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">put something
-                            <i class="fa fa-arrow-circle-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <!-- Min KG -->
-                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h5 class="langlao">ເວລາເຮັດວຽກໜ້ອຍສຸດ: {{_reports.min | number:'1.2-2'}} H ຕໍ່ວັນ</h5>
-    
-                            <p class="langlao">ປະລິມານຜະລິດໃດ້ໜ້ອຍສຸດ: {{_reports.minkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-sort-amount-down"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">put something
-                            <i class="fas fa-sort-amount-down"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <!-- MaxTime -->
-                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h5 class="langlao">ວັນທີ່ເຮັດວຽກຫຼາຍສຸດ: {{_reports.maxtime}}</h5>
-                           <p class="langlao">ລວມປະລິມານທີ່ໃດ້ຮັບ:{{_reports.maxkg | number:'1.2-2'}} KG</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-long-arrow-alt-up"></i>
-                            <i class="fas fa-hourglass"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">put something
-                            <i class="fa fa-arrow-circle-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <!-- MinTime -->
-                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h5 class="langlao">ວັນທີ່ເຮັດວຽກໜ້ອຍສຸດ: {{_reports.mintime}}</h5>
-                            <p class="langlao">ລວມປະລິມານທີ່ໃດ້ຮັບ:{{_reports.minkg | number:'1.2-2'}} KG</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-long-arrow-alt-down"></i>
-                            <i class="far fa-hourglass"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">put something
-                            <i class="fa fa-arrow-circle-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- ./col -->
-            </div>
-        </div>
-</div>
+
+    <!-- List report -->
+    <div class="select-device-list mt-3">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <i class="far fa-clock size-icon-one"></i>:
+                <b>ລວມຊົ່ວໂມງທັງໝົດທີ່ເຮັດວຽກ:
+                    <small>{{_reports.tt | number:'1.2-2'}} H</small>
+                </b>
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <i class="far fa-clock size-icon-one"></i>:
+                <b>ລວມປະລິມານທັງໝົດທີ່ຜະລິດໃດ້:
+                    <small>{{_reports.ttkg | number:'1.2-2'}} KG</small>
+                </b>
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <i class="fas fa-chart-line size-icon-two"></i>:
+                <b>ເວລາເຮັດວຽກ:
+                    <small>{{_reports.av | number:'1.2-2'}} H ຕໍ່ວັນ</small>
+                </b>
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <i class="fas fa-chart-line size-icon-two"></i>:
+                <b>ປະລິມານຜະລິດໃດ້:
+                    <small>{{_reports.avkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</small>
+                </b>
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <i class="fas fa-sort-amount-up size-icon-three"></i>:
+                <b>ເວລາເຮັດວຽກສູງສຸດ:
+                    <small>{{_reports.max | number:'1.2-2'}} H ຕໍ່ວັນ</small>
+                </b>
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <i class="fas fa-sort-amount-up size-icon-three"></i>:
+                <b>ປະລິມານຜະລິດໃດ້ສູງສຸດ:
+                    <small>{{_reports.maxkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</small>
+                </b>
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <i class="fas fa-sort-amount-down size-icon-four"></i>:
+                <b>ເວລາເຮັດວຽກໜ້ອຍສຸດ:
+                    <small>{{_reports.min | number:'1.2-2'}} H ຕໍ່ວັນ</small>
+                </b>
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <i class="fas fa-sort-amount-down size-icon-four"></i>:
+                <b>ປະລິມານຜະລິດໃດ້ໜ້ອຍສຸດ:
+                    <small>{{_reports.minkg | number:'1.2-2'}} KG ຕໍ່ເດືອນ</small>
+                </b>
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <span class="size-icon-five">
+                    <i class="fas fa-long-arrow-alt-up"></i>
+                    <i class="fas fa-hourglass"></i>:</span>
+                <b>ວັນທີ່ເຮັດວຽກຫຼາຍສຸດ:
+                    <small>{{_reports.maxtime}} </small>
+                    <small>
+                        <u>
+                            <ul>
+                                <li>{{_reports.maxtime}} 12.12.2018</li>
+                            </ul>
+                        </u>
+                    </small>
+                </b>
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <span class="size-icon-five">
+                    <i class="fas fa-long-arrow-alt-up"></i>
+                    <i class="fas fa-hourglass"></i>:</span>
+                <b>ລວມປະລິມານທີ່ໃດ້ຮັບ:
+                    <small>{{_reports.maxkg | number:'1.2-2'}} KG</small>
+                </b>
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <span class="size-icon-six">
+                    <i class="fas fa-long-arrow-alt-down"></i>
+                    <i class="far fa-hourglass"></i>:</span>
+                <b class="width-mintime">ວັນທີ່ເຮັດວຽກໜ້ອຍສຸດ:
+                    <small>
+                        <u>
+                            <ul>
+                                <li>{{_reports.mintime}} 12.12.2018</li>
+                            </ul>
+                        </u>
+                    </small>
+                    <small>
+                        <u>
+                            <ul>
+                                <li>{{_reports.mintime}} 12.12.2018</li>
+                            </ul>
+                        </u>
+                    </small>
+                    <small>
+                        <u>
+                            <ul>
+                                <li>{{_reports.mintime}} 12.12.2018</li>
+                            </ul>
+                        </u>
+                    </small>
+                    <small>
+                        <u>
+                            <ul>
+                                <li>{{_reports.mintime}} 12.12.2018</li>
+                            </ul>
+                        </u>
+                    </small>
+                    <small>
+                        <u>
+                            <ul>
+                                <li>{{_reports.mintime}} 12.12.2018</li>
+                            </ul>
+                        </u>
+                    </small>
+                    <small>
+                        <u>
+                            <ul>
+                                <li>{{_reports.mintime}} 12.12.2018</li>
+                            </ul>
+                        </u>
+                    </small>
+                </b>
+
+            </li>
+            <li class="list-group-item list-group-item-success text-uppercase langlao">
+                <span class="size-icon-six">
+                    <i class="fas fa-long-arrow-alt-down"></i>
+                    <i class="far fa-hourglass"></i>:</span>
+                <b>ລວມປະລິມານທີ່ໃດ້ຮັບ:
+                    <small>{{_reports.minkg | number:'1.2-2'}} KG</small>
+                </b>
+            </li>
+            <!-- <li class="list-group-item list-group-item-success text-uppercase">total run: {{d.totalrun}}</li> -->
+        </ul>
+    </div>

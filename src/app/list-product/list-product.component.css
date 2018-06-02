@@ -41,6 +41,10 @@ tr,th,td {
   padding:30px;
 }
 
+.size-of-minday{
+  width: 130px !important;
+}
+
 /* ....////  start css box here .... */
 
 .small-box {
@@ -59,8 +63,8 @@ tr,th,td {
   position: relative;
   text-align: center;
   padding: 3px 0;
-  color: #ffffff;
-  color: rgba(255, 255, 255, 0.8);
+  color: #ffffff5e;
+  color: rgba(255, 255, 255, 0.486);
   display: block;
   z-index: 10;
   background: rgba(0, 0, 0, 0.1);
@@ -72,8 +76,8 @@ tr,th,td {
   background: rgba(0, 0, 0, 0.15);
 }
 
-.small-box h3 {
-  font-size: 38px;
+.small-box h5 {
+  font-size: 12pt;
   font-weight: bold;
   margin: 0 0 10px 0;
   white-space: nowrap;
@@ -91,7 +95,7 @@ tr,th,td {
   margin-top: 5px;
 }
 
-.small-box h3, .small-box p {
+.small-box h5, .small-box p {
   z-index: 5;
 }
 
@@ -112,10 +116,28 @@ tr,th,td {
 .small-box:hover .icon {
   font-size: 95px;
 }
+.bg-total-color{
+  background: #04b42144 !important;
+}
+.bg-average-color{
+background: rgba(3, 169, 244, 0.2);
+}
+.bg-maxtime-color{
+  background: #f7c0c8;
+}
+.bg-mintime-color{
+  background: #ccd2d3;
+}
+.bg-maxday-color{
+  background: rgba(230, 230, 181, 0.863);
+}
+.bg-minday-color{
+  background: rgba(241, 202, 202, 0.418);
+}
 
-@media (max-width: 767.98px) {
+@media (max-width: 901px) {
   .small-box {
-    text-align: center;
+    text-align: left;
   }
   .small-box .icon {
     display: none;
