@@ -42,9 +42,9 @@ td {
   background: none !important;
 }
 
-/* .min-height {
-  margin-bottom: 280px;
-} */
+.min-height-recieve {
+  margin-bottom: 160px;
+}
 .table {
   border: none !important;
 }
