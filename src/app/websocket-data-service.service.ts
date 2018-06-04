@@ -561,7 +561,16 @@ export class WebsocketDataServiceService implements OnInit {
                 }
 
                 break;
+              case 'make-payment':
+                if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
+                  // console.log(this._client.data['message']);
+                } else {
+                  console.log(this._client.data['message']);
+                  this._currentPayment = this._client.data.payment;
+                  this.refreshPayment();
+                }
 
+                break;
               default:
                 break;
             }

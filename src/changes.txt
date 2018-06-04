@@ -3,7 +3,7 @@
 1. Fixed problem css on bill page but did not to test, 'cauze I can't load list form server. (02.6.2018)
 2. ແກ້ໄຂ ຫົວຂໍ້ ຂອງ ຂໍ້ມູນສະເລ່ຍສະແດງລາຍລະອຽດ ແກ້ໄຂຕົວໜັງສື ຕັດຕໍ່ເດືອນອອກ ທັງສອງ page listproduct and bill. (04.6.2018)
 3. ແກ້ໄຂການເພີ່ມຄູປ໋ອງສ່ວນຫລຸດ ແລະ ຕອນລົບຈຳນວນເງິນສ່ວນຫລຸດບໍ່ລົບອອກຈາກຕາຕະລາງ (04.6.2018)
-
+4. add case ' makepayment ' to websocket data service (04.6.2018)
 
                                     ສິ່ງທີ່ຕ້ອງແກ້ໄຂ
 #. ເງິນສ່ວນຫລຸດທີ່ຖືກລົບໄປຍັງບໍ່ທັນມາບວກກັບເງິນປະຈຸບັນ (04.6.2018)
