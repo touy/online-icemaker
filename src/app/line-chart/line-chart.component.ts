@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, OnDestroy, Input ,IterableDiffers, DoCheck } from "@angular/core";
+import { Component, Inject, OnInit, OnDestroy, Input ,IterableDiffers, DoCheck, SimpleChanges } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { Router, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms"; // <<<< import it here
@@ -22,17 +22,36 @@ export class LineChartComponent implements DoCheck {
     var changes = this.differ.diff(this.productionCollection);
     if (changes) {
       console.log(changes);
-      console.log('line chart get new device'+this.productionCollection.length);
+      // console.log('line chart get new device'+this.productionCollection.length);
+      // console.log('new Month year '+this._selectedMonth+' new year '+this._selectedYear);
+      
       this.bindLineChart();
     }
+    // console.log('do changes'+`${this._selectedMonth} ${this._selectedYear}`);
   }
+
+ngOnChanges(changes: SimpleChanges) {
+  if(changes){
+    
+    if(changes._selectedMonth){
+      this._selectedMonth=changes._selectedMonth.currentValue;
+    }
+    if(changes._selectedYear){
+      this._selectedYear=changes._selectedYear.currentValue;  
+    }
+    
+    this.setLInChartLabels(this._selectedMonth,this._selectedYear);
+  }
+    
+    //console.log('changes');
+}
 
   @Input() productionCollection:any[];
   @Input() differ: any;
   @Input() _selectedMonth=new Date().getMonth()+1;
   @Input() _selectedYear=new Date().getFullYear();
   
-  public lineChartData: Array<any> = [
+  public lineChartData: any[] = [
     { data: [], label: "Working hours" },
     { data: [], label: "Resting hours" },
     { data: [], label: "Problem hours" }
@@ -73,12 +92,25 @@ export class LineChartComponent implements DoCheck {
     for (let index = 0; index < d; index++) {
       arr.push(index + 1);
     }
+    //console.log('days in month');
+    //console.log(arr);
     return arr;
   }
+
+
+  private month_c=new Date().getMonth() + 1;
+changeDays(c){
+  this._selectedMonth=c;
+  this.month_c=c;
+  this.setLInChartLabels(this._selectedMonth,this._selectedYear);
+}
+
+
+
   setLInChartLabels(m, y) {
-    this.lineChartLabels = this.daysInMonth(m, y);
+    return this.lineChartLabels=this.daysInMonth(m, y);
   }
-  public lineChartLabels: Array<any> = this.daysInMonth(
+  public lineChartLabels: any[] = this.setLInChartLabels(
     new Date().getMonth() + 1,
     new Date().getFullYear()
   );
