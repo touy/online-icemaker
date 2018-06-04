@@ -157,7 +157,16 @@ loadClient() {
 /// INIT FUNCTIONS
 
 /// *************RECEIVING  */
-
+readPayment(m){
+  if(m){
+    this._currentPayment=m;
+    console.log(m);
+    alert('got payment');
+    sessionStorage.setItem('PM',JSON.stringify(this._currentPayment));
+    if(0)
+    this.router.navigate(['/bill']);
+  }
+}
   readClient(c): any {
     // this._client
     try {
@@ -244,9 +253,11 @@ loadClient() {
     this._currentPayment.bills=bills;
     //alert(bills.length);
     // this.websocketDataServiceService.makePayment(this._currentPayment);
-    sessionStorage.setItem('PM',JSON.stringify(this._currentPayment));
+    
+    
     if(confirm('making payment: '+this._currentPayment.totalpaid)){
-      this.router.navigate(['/bill']);
+      this.websocketDataServiceService.makePayment(this._currentPayment);
+      
     }
   }
   ///??????????
@@ -255,10 +266,10 @@ loadClient() {
     let array=this.billDiscountCollection;
     for (let index = 0; index < array.length; index++) {
       const element = array[index];
-      tt+=element.totalvalue;
+      tt-=element.totalvalue;
     }
     this._currentPayment.totaldiscount=tt;
-    return -1*tt;
+    return tt;
   }
   getTotalValue(){
     let tt=0;
@@ -283,6 +294,7 @@ loadClient() {
         this.billDiscountCollection[index]=this._currentDiscountBill;
       }
     }
+    this.getTotalDiscount();
   }
   
   //?????????????????????????
@@ -294,11 +306,14 @@ loadClient() {
         this.billDiscountCollection.splice(index,1);
       }
     }
+    this.getTotalDiscount();
   }
   //?????????????????????????????????
   cancelAddDiscount(){
     if(this._currentDiscountBill){
-      this.billDiscountCollection.splice(this.billDiscountCollection.length-1,1);
+      if(this._currentDiscountBill['isnew']===true){
+        this.billDiscountCollection.splice(this.billDiscountCollection.length-1,1);
+      }
     this._currentDiscountBill={
       day: new Date().getDate(),
       month: new Date().getMonth()+1,
@@ -321,12 +336,14 @@ loadClient() {
       gui: '',
       lastupdate: [],
   };
+  this.getTotalDiscount();
 console.log(this._currentDiscountBill);
     }
     
   }
   selectDiscount(b){
     this._currentDiscountBill=b;
+    this._currentDiscountBill.isnew=false;
    
   }
   ////// ????????????????????
@@ -373,9 +390,11 @@ console.log(this._currentDiscountBill);
         generatedtime: '',
         gui: '',
         lastupdate: [],
+        isnew:true,
     };
     console.log(this._currentDiscountBill);
       this.billDiscountCollection.push(this._currentDiscountBill);
+      this.getTotalDiscount();
     }
   }
 

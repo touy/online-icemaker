@@ -137,3 +137,10 @@ td {
   /* width: 130px; */
   width: auto;
 }
+
+.size-width-reports{
+  width: 60px !important;
+}
+.size-width-name-customer{
+  width: 100px;
+}

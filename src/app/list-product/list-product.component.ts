@@ -321,10 +321,10 @@ import { ElementRef,ViewChild} from '@angular/core';
           collection.push(element);
         }
       }
-      // if(!collection.length)
+      if(!collection.length)
         {
-          // alert('Please select one');
-          // return;
+          alert('Please select one');
+          return;
         }
       sessionStorage.setItem('PD',JSON.stringify(collection));
       sessionStorage.setItem('CD',JSON.stringify(this._currentDevice));
@@ -340,8 +340,10 @@ import { ElementRef,ViewChild} from '@angular/core';
       let min=24;
       let mintime=[];
       let maxtime=[];
+      console.log(array);
       for (let index = 0; index < array.length; index++) {
         const element = array[index];
+        console.log(element[0]);
         tt+=element.productiontime.working;
         eff+=element.effeciency;
         rates+=element.rate;
@@ -380,9 +382,9 @@ import { ElementRef,ViewChild} from '@angular/core';
         js.av=av;
         js.avkg=av*eff;
         js.max=max;
-        js.maxkg=max*rates*eff;
+        js.maxkg=max*eff;
         js.min=min;
-        js.minkg=min*rates*eff;
+        js.minkg=min*eff;
         js.maxtime=maxtime;
         js.mintime=mintime;
       }

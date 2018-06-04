@@ -75,7 +75,7 @@ constructor(
   );
   this._subs.push(
     this.websocketDataServiceService.currentPaymentSource.subscribe(m => {
-      this.readPayment(m);
+      //this.readPayment(m);
     })
   );
 
@@ -107,7 +107,7 @@ ngOnInit() {
   this._message = JSON.parse(JSON.stringify(this._client));;
 
   
-  this.runInit();
+  //this.runInit();
 }
 runInit(){
   setTimeout(() => {
@@ -182,16 +182,11 @@ loadClient() {
  
   }
 
-  readPayment(m){
-    if(m){
-      this._currentPayment=m;
-      alert('Payment OK');
-    }
-  }
+
   ////??????????????????????????????????
   makePayment(){
 
-    // this.websocketDataServiceService.makePayment(this._currentPayment);
+     this.websocketDataServiceService.makePayment(this._currentPayment);
   }
 
 }

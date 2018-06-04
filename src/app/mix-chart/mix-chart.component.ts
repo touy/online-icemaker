@@ -67,11 +67,14 @@ private _currentDevice={};
 onSendYear(e){
   this._selectedYear=e;
   console.log(e);
+  return e;
 }
 onSendMonth(e){
   this._selectedMonth=e;
   console.log(e);
+  return e;
 }
+
 onSelectCurrentDevice(e){
   console.log('get new device at mx chart');
   this._currentDevice=e;
@@ -103,6 +106,7 @@ onSendProduction(e){
   }
   this.productionCollection.push(e);
 }
+
 
 }
 
