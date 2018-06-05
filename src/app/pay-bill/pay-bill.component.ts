@@ -76,7 +76,7 @@ export class PayBillComponent {
     isapproved: false,
     approveby: ""
   };
-
+private _rep:any;
   /// WEBSOCKET LAUNCHING
   constructor(
     private modalService: NgbModal,
@@ -84,6 +84,7 @@ export class PayBillComponent {
     private router: Router,
     private differs: IterableDiffers
   ) {
+    this._rep={};
     this.loadClient();
     // if (this._client.logintoken) {
     //     router.navigate(["/main-menu"]);
@@ -141,6 +142,7 @@ export class PayBillComponent {
   loadClient() {
     let pd = sessionStorage.getItem("PD");
     let cd = sessionStorage.getItem("CD");
+    let rep = sessionStorage.getItem("rep");
     if (cd) {
       this._currentDevice = JSON.parse(cd);
     }
@@ -148,6 +150,10 @@ export class PayBillComponent {
     if (!pd) {
       /// to other page
       return;
+    }
+    
+    if(rep){
+      this._rep=JSON.parse(rep);
     }
 
     this.productionCollection = JSON.parse(pd);
