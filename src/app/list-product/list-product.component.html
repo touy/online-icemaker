@@ -11,9 +11,9 @@
                 <!-- small box -->
                 <div class="small-box bg-total-color">
                     <div class="inner">
-                        <h5 class="langlao">ລວມຊົ່ວໂມງເຮັດວຽກ: <small>{{_averageCollection.tt | number:'1.2-2'}} H</small></h5>
+                        <h5 class="langlao">ລວມຊົ່ວໂມງເຮັດວຽກ:<small> {{_averageCollection.tt | number:'1.2-2'}} H</small></h5>
 
-                        <h6 class="langlao">ລວມປະລິມານທີ່ຜະລິດໃດ້:<small>{{_averageCollection.ttkg | number:'1.2-2'}} KG</small></h6>
+                        <h6 class="langlao">ລວມປະລິມານທີ່ຜະລິດໃດ້:<small> {{_averageCollection.ttkg | number:'1.2-2'}} KG</small></h6>
                     </div>
                     <div class="icon">
                         <i class="far fa-clock"></i>
@@ -29,9 +29,9 @@
                 <!-- small box -->
                 <div class="small-box bg-average-color">
                     <div class="inner">
-                        <h5 class="langlao">ເວລາເຮັດວຽກ: <small>{{_averageCollection.av | number:'1.2-2'}} H ຕໍ່ວັນ</small></h5>
+                        <h5 class="langlao">ເວລາເຮັດວຽກ:<small> {{_averageCollection.av | number:'1.2-2'}} H ຕໍ່ວັນ</small></h5>
 
-                        <h6 class="langlao">ປະລິມານຜະລິດໃດ້: <small>{{_averageCollection.avkg | number:'1.2-2'}} KG ຕໍ່ວັນ</small></h6>
+                        <h6 class="langlao">ປະລິມານຜະລິດໃດ້:<small> {{_averageCollection.avkg | number:'1.2-2'}} KG ຕໍ່ວັນ</small></h6>
                     </div>
                     <div class="icon">
                         <i class="fas fa-chart-line"></i>
@@ -47,7 +47,7 @@
                 <!-- small box -->
                 <div class="small-box bg-maxtime-color">
                     <div class="inner">
-                        <h5 class="langlao">ເວລາເຮັດວຽກສູງສຸດ: <small>{{_averageCollection.max | number:'1.2-2'}} H ຕໍ່ວັນ</small></h5>
+                        <h5 class="langlao">ເວລາເຮັດວຽກສູງສຸດ:<small> {{_averageCollection.max | number:'1.2-2'}} H ຕໍ່ວັນ</small></h5>
 
                         <h6 class="langlao"><small>ປະລິມານຜະລິດໃດ້ສູງສຸດ: {{_averageCollection.maxkg | number:'1.2-2'}} KG</small></h6>
                     </div>
@@ -89,7 +89,7 @@
                                 </li>
                             </ul>
                     </h5>
-                       <h6 class="langlao"><small>ລວມປະລິມານທີ່ໃດ້ຮັບ:{{_averageCollection.maxkg | number:'1.2-2'}} KG</small></h6>
+                       <h6 class="langlao"><small>ລວມປະລິມານທີ່ໃດ້ຮັບ: {{_averageCollection.maxkg | number:'1.2-2'}} KG</small></h6>
                     </div>
                     <div class="icon">
                         <i class="fas fa-long-arrow-alt-up"></i>
@@ -111,14 +111,14 @@
                                 <li class="mr-3 mt-2 size-of-mindy" *ngFor="let m of _averageCollection.mintime"><u><small>{{m}}</small></u> 
                                 </li>
                             </ul></h5>
-                        <h6 class="langlao"><small>ລວມປະລິມານທີ່ໃດ້ຮັບ:{{_averageCollection.minkg | number:'1.2-2'}} KG</small></h6>
+                        <h6 class="langlao"><small>ລວມປະລິມານທີ່ໃດ້ຮັບ: {{_averageCollection.minkg | number:'1.2-2'}} KG</small></h6>
                     </div>
                     <div class="icon">
                         <i class="fas fa-long-arrow-alt-down"></i>
                         <i class="far fa-hourglass"></i>
                     </div>
                     <a href="#" class="small-box-footer">LIST MIN OF DAYS WORKING
-                        <i class="fa fa-arrow-circle-right"></i>
+                        <!-- <i class="fa fa-arrow-circle-right"></i> -->
                     </a>
                 </div>
             </div>
@@ -159,7 +159,7 @@
                                 <td>{{b.rate}}</td>
                                 <td>{{b.totalvalue | number:'1.2-2'}}</td>
                                 <td>
-                                    {{b.paidtime}}
+                                    {{b.paidtime | date:'dd-MM-yyyy'}}
                                 </td>
                                 <td>
                                     <input type="checkbox" [checked]="b.isinvoice" [disabled]="b.isdone" (change)="b.isinvoice = !b.isinvoice" >

@@ -98,6 +98,24 @@ td {
   transition: 0.5s;
 }
 
+.icon-edit-paybill{
+  color:rgb(47, 47, 139);
+  font-size:18pt !important;
+}
+.icon-delete-paybill{
+  color:rgb(158, 9, 34);
+  font-size:18pt !important;
+}
+
+.icon-edit-paybill:hover{
+  color:rgb(58, 58, 187);
+  font-size:21pt !important;
+}
+
+.icon-delete-paybill:hover{
+  color:rgb(214, 24, 56);
+  font-size:21pt !important;
+}
 
 /* .......................***********>..<................... */
 

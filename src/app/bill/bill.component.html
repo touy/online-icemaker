@@ -11,19 +11,19 @@
     <div class="row float-right">
         <div class="">
             <span class="input-group">
-                <label class="mt-2 langlao">ວັນທີ ເດືອນ ປີ:</label>
-                {{_currentPayment.paidtime}}
+                <label class="langlao mr-2">ວັນທີ ເດືອນ ປີ:</label>
+                {{_currentPayment.paidtime | date:'dd-MM-yyyy'}}
             </span>
         </div>
     </div>
     <div class="row float-left">
         <div class="col-12">
             <span class="input-group">
-                <label class="langlao size-width-name-customer">ຊື່ລູກຄ້າ:</label>
+                <label class="langlao size-width-name-customer">ຊື່ລູກຄ້າ</label>:
                 {{_currentPayment.username}}
             </span>
             <span class="input-group mt-2">
-                <label class="langlao mt-2 size-width-name-customer">IMEI:</label>
+                <label class="langlao size-width-name-customer">IMEI</label>:
                 {{_currentPayment.imei}}
             </span>
         </div>
@@ -65,7 +65,7 @@
                             <tr class="height-price">
                                 <th colspan="3" id="free-space"></th>
                                 <td class="langlao">ສ່ວນຫລຸດ</td>
-                                <td colspan="1">{{_currentPayment.totaldiscount}}</td>
+                                <td colspan="1">-{{_currentPayment.totaldiscount}}</td>
                             </tr>
                             <tr class="height-price">
                                 <th colspan="3" id="free-space"></th>

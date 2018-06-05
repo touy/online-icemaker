@@ -46,7 +46,8 @@
                                 <td class="langlao">{{b.effeciency}} ກິໂລ</td>
                                 <td class="langlao">{{b.effeciency*b.productiontime.working | number:'1.2-2'}} ກິໂລ</td>
                                 <td>{{b.rate}}</td>
-                                <td class="langlao">{{b.totalvalue | number:'1.0-0'}} ກີບ</td>
+                                <td colspan="5" class="langlao">{{b.totalvalue | number:'1.0-0'}} ກີບ</td>
+                                <td></td>
                             </tr>
                             <tr class="height-price">
                                 <td class="langlao add-column">
@@ -66,11 +67,11 @@
                                 <td>{{b.rate}}</td>
                                 <td colspan="5">{{b.totalvalue | number:'1.0-0'}}</td>
                                 <th class="langlao">
-                                    <a class="btn" (click)="selectDiscount(b);PopUp_add_discout(add_discout)">
-                                        <i class="far fa-edit"></i>
+                                    <a (click)="selectDiscount(b);PopUp_add_discout(add_discout)">
+                                        <i class="far fa-edit mr-3 icon-edit-paybill"></i>
                                     </a>
                                     <a (click)="deleteDiscountBill(b)">
-                                        <i class="far fa-trash-alt mr-1"></i>
+                                        <i class="far fa-trash-alt icon-delete-paybill"></i>
                                     </a>
                                 </th>
                             </tr>
@@ -103,6 +104,7 @@
         </div>
     </div>
 </div>
+
 <button class="col-3 btn d-block mx-auto btn-primary langlao mt-4 mb-3" (click)="makePayment()">ຮັບເງິນ + ພິມ</button>
 
 <div class="col-md-12">
@@ -149,8 +151,7 @@
                                         <input class="" type="text" [value]="_currentDiscountBill.sn" disabled>
                                     </th>
                                     <td>
-                                        <input class="re-size-2" type="number" [value]="_currentDiscountBill.productiontime.working"
-                                            (input)="updateDiscountCalculation($event.target.value,1)">
+                                        <input class="re-size-2" type="number" [value]="_currentDiscountBill.productiontime.working" (input)="updateDiscountCalculation($event.target.value,1)">
                                     </td>
                                     <td>
                                         <input class="re-size-2" type="number" [value]="_currentDiscountBill.effeciency" (input)="updateDiscountCalculation($event.target.value,2)">
