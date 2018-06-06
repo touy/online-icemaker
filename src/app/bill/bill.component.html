@@ -1,7 +1,7 @@
 <div class="container">
-    <div class="row">
+    <div class="row2">
         <div class="col-12">
-            <h4 class="dispaly-7 text-center langlao mt-3">ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ
+            <h4 class="dispaly-6 text-center langlao">ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ
                 <br> ສັນຕິພາບ ເອກະລາດ ປະຊາທິໄຕ ເອກະພາບ ວັດຖະນາຖາວອນ</h4>
             <h1 class="display-6 text-center langlao mt-3">
                 <u>ໃບຮັບເງິນ</u>
@@ -20,7 +20,7 @@
         <div class="col-12">
             <span class="input-group">
                 <label class="langlao size-width-name-customer">ຊື່ລູກຄ້າ</label>:
-                <span class="text-uppercase ml-2"> {{_currentPayment.username}}</span>
+                <span class="text-uppercase langlao ml-2"> {{_currentPayment.username}}</span>
             </span>
             <span class="input-group mt-2">
                 <label class="langlao size-width-name-customer">IMEI</label>:
@@ -28,8 +28,8 @@
             </span>
         </div>
     </div>
-    <div class="clearfix"></div>
-    <div class="mt-5">
+
+    <div class="mt-3">
         <div class="d-flex justify-content-center">
             <div class="">
                 <form method="POST " action="">
@@ -55,11 +55,11 @@
                                 <td class="langlao">
                                     {{b.working*b.effeciency | number:'1.2-2'}} ກິໂລ
                                 </td>
-                                <td colspan="4" *ngIf="b.sn.indexOf('_')>-1">
+                                <td colspan="4" *ngIf="b.sn.indexOf('_')!==0">
                                     {{b.totalvalue | number:'1.0-0'}}
                                 </td>
-                                <td colspan="4" *ngIf="b.sn.indexOf('_')<0">
-                                        ({{b.totalvalue | number:'1.0-0'}})
+                                <td colspan="4" *ngIf="b.sn.indexOf('_')===0">
+                                    ({{b.totalvalue | number:'1.0-0'}})
                                 </td>
                                 <td colspan="4">
                                     ({{b.description}})
@@ -86,117 +86,127 @@
             </div>
         </div>
     </div>
-    <div class="comment">
+
+    <!-- List report -->
+    <div class="row">
+        <div class="col-6 select-device-list">
+            <ul class="list-group222">
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <i class="far fa-clock size-icon-one"></i>:
+                    <b>ລວມຊົ່ວໂມງທັງໝົດທີ່ເຮັດວຽກ:
+                        <small>{{_reports.tt | number:'1.2-2'}} H</small>
+                    </b>
+                </li>
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <i class="far fa-clock size-icon-one"></i>:
+                    <b>ລວມປະລິມານທັງໝົດທີ່ຜະລິດໃດ້:
+                        <small>{{_reports.ttkg | number:'1.2-2'}} KG</small>
+                    </b>
+                </li>
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <i class="fas fa-chart-line size-icon-two"></i>:
+                    <b>ເວລາເຮັດວຽກ:
+                        <small>{{_reports.av | number:'1.2-2'}} H ຕໍ່ວັນ</small>
+                    </b>
+                </li>
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <i class="fas fa-chart-line size-icon-two"></i>:
+                    <b>ປະລິມານຜະລິດໃດ້:
+                        <small>{{_reports.avkg | number:'1.2-2'}} KG</small>
+                    </b>
+                </li>
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <i class="fas fa-sort-amount-up size-icon-three"></i>:
+                    <b>ເວລາເຮັດວຽກສູງສຸດ:
+                        <small>{{_reports.max | number:'1.2-2'}} H ຕໍ່ວັນ</small>
+                    </b>
+                </li>
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <i class="fas fa-sort-amount-up size-icon-three"></i>:
+                    <b>ປະລິມານຜະລິດໃດ້ສູງສຸດ:
+                        <small>{{_reports.maxkg | number:'1.2-2'}} KG</small>
+                    </b>
+                </li>
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <i class="fas fa-sort-amount-down size-icon-four"></i>:
+                    <b>ເວລາເຮັດວຽກໜ້ອຍສຸດ:
+                        <small>{{_reports.min | number:'1.2-2'}} H</small>
+                    </b>
+                </li>
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <i class="fas fa-sort-amount-down size-icon-four"></i>:
+                    <b>ປະລິມານຜະລິດໃດ້ໜ້ອຍສຸດ:
+                        <small>{{_reports.minkg | number:'1.2-2'}} KG</small>
+                    </b>
+                </li>
+                <!-- <li class="list-group-item list-group-item-success text-uppercase">total run: {{d.totalrun}}</li> -->
+            </ul>
+        </div>
+        <div class="col-6 select-device-list">
+            <ul class="list-group222">                
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <span class="size-icon-five">
+                        <i class="fas fa-long-arrow-alt-up"></i>
+                        <i class="fas fa-hourglass"></i>:</span>
+                    <b>ວັນທີ່ເຮັດວຽກຫຼາຍສຸດ:
+                        <ul class="nav">
+                            <li class="mr-3 mt-2 size-width-reports" *ngFor="let max of _reports.maxtime">
+                                <u class="size-of-mindy">
+                                    <small>{{max}}</small>
+                                </u>
+                            </li>
+                        </ul>
+                    </b>
+                </li>
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <span class="size-icon-five">
+                        <i class="fas fa-long-arrow-alt-up"></i>
+                        <i class="fas fa-hourglass"></i>:</span>
+                    <b>ລວມປະລິມານທີ່ໃດ້ຮັບ:
+                        <small>{{_reports.maxkg | number:'1.2-2'}} KG</small>
+                    </b>
+                </li>
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <span class="size-icon-six">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                        <i class="far fa-hourglass"></i>:</span>
+                    <b class="width-mintime">ວັນທີ່ເຮັດວຽກໜ້ອຍສຸດ:
+                        <small>
+                            <u>
+                                <ul class="nav">
+                                    <li class="mr-3 mt-2 size-width-reports" *ngFor="let min of _reports.mintime">{{min}}</li>
+                                </ul>
+                            </u>
+                        </small>
+                    </b>
+
+                </li>
+                <li class="list-group-item list-group-item-success text-uppercase langlao">
+                    <span class="size-icon-six">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                        <i class="far fa-hourglass"></i>:</span>
+                    <b>ລວມປະລິມານທີ່ໃດ້ຮັບ:
+                        <small>{{_reports.minkg | number:'1.2-2'}} KG</small>
+                    </b>
+                </li>
+                <!-- <li class="list-group-item list-group-item-success text-uppercase">total run: {{d.totalrun}}</li> -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="mr-5 mt-3">
+        <div class="recieve-money">
+            <h6 class="text-right mt-3 langlao">
+                <u>ລາຍເຊັນຜູ້ຮັບເງິນ</u>
+            </h6>
+        </div>
+    </div>
+
+    <div class="comment mt-4">
         <div class="discription-left">
             <label class="langlao">ເພີ່ມເຕີມ</label>
             <textarea class="form-control langlao" id="" rows="1" [value]="_currentPayment.description" (input)="_currentPayment.description($event.target.value)"
                 disabled></textarea>
         </div>
     </div>
-    <div class="mt-5 mb-5 mr-5">
-        <div class="recieve-money">
-            <h6 class="text-right langlao min-height-recieve">
-                <u>ລາຍເຊັນຜູ້ຮັບເງິນ</u>
-            </h6>
-        </div>
-    </div>
-
-    <!-- List report -->
-    <div class="select-device-list mt-3">
-        <ul class="list-group222">
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <i class="far fa-clock size-icon-one"></i>:
-                <b>ລວມຊົ່ວໂມງທັງໝົດທີ່ເຮັດວຽກ:
-                    <small>{{_reports.tt | number:'1.2-2'}} H</small>
-                </b>
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <i class="far fa-clock size-icon-one"></i>:
-                <b>ລວມປະລິມານທັງໝົດທີ່ຜະລິດໃດ້:
-                    <small>{{_reports.ttkg | number:'1.2-2'}} KG</small>
-                </b>
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <i class="fas fa-chart-line size-icon-two"></i>:
-                <b>ເວລາເຮັດວຽກ:
-                    <small>{{_reports.av | number:'1.2-2'}} H ຕໍ່ວັນ</small>
-                </b>
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <i class="fas fa-chart-line size-icon-two"></i>:
-                <b>ປະລິມານຜະລິດໃດ້:
-                    <small>{{_reports.avkg | number:'1.2-2'}} KG</small>
-                </b>
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <i class="fas fa-sort-amount-up size-icon-three"></i>:
-                <b>ເວລາເຮັດວຽກສູງສຸດ:
-                    <small>{{_reports.max | number:'1.2-2'}} H ຕໍ່ວັນ</small>
-                </b>
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <i class="fas fa-sort-amount-up size-icon-three"></i>:
-                <b>ປະລິມານຜະລິດໃດ້ສູງສຸດ:
-                    <small>{{_reports.maxkg | number:'1.2-2'}} KG</small>
-                </b>
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <i class="fas fa-sort-amount-down size-icon-four"></i>:
-                <b>ເວລາເຮັດວຽກໜ້ອຍສຸດ:
-                    <small>{{_reports.min | number:'1.2-2'}} H</small>
-                </b>
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <i class="fas fa-sort-amount-down size-icon-four"></i>:
-                <b>ປະລິມານຜະລິດໃດ້ໜ້ອຍສຸດ:
-                    <small>{{_reports.minkg | number:'1.2-2'}} KG</small>
-                </b>
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <span class="size-icon-five">
-                    <i class="fas fa-long-arrow-alt-up"></i>
-                    <i class="fas fa-hourglass"></i>:</span>
-                <b>ວັນທີ່ເຮັດວຽກຫຼາຍສຸດ:
-                    <ul class="nav">
-                        <li class="mr-3 mt-2 size-width-reports" *ngFor="let max of _reports.maxtime">
-                            <u class="size-of-mindy">
-                                <small>{{max}}</small>
-                            </u>
-                        </li>
-                    </ul>
-                </b>
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <span class="size-icon-five">
-                    <i class="fas fa-long-arrow-alt-up"></i>
-                    <i class="fas fa-hourglass"></i>:</span>
-                <b>ລວມປະລິມານທີ່ໃດ້ຮັບ:
-                    <small>{{_reports.maxkg | number:'1.2-2'}} KG</small>
-                </b>
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <span class="size-icon-six">
-                    <i class="fas fa-long-arrow-alt-down"></i>
-                    <i class="far fa-hourglass"></i>:</span>
-                <b class="width-mintime">ວັນທີ່ເຮັດວຽກໜ້ອຍສຸດ:
-                    <small>
-                        <u>
-                            <ul class="nav">
-                                <li class="mr-3 mt-2 size-width-reports" *ngFor="let min of _reports.mintime">{{min}}</li>
-                            </ul>
-                        </u>
-                    </small>
-                </b>
-
-            </li>
-            <li class="list-group-item list-group-item-success text-uppercase langlao">
-                <span class="size-icon-six">
-                    <i class="fas fa-long-arrow-alt-down"></i>
-                    <i class="far fa-hourglass"></i>:</span>
-                <b>ລວມປະລິມານທີ່ໃດ້ຮັບ:
-                    <small>{{_reports.minkg | number:'1.2-2'}} KG</small>
-                </b>
-            </li>
-            <!-- <li class="list-group-item list-group-item-success text-uppercase">total run: {{d.totalrun}}</li> -->
-        </ul>
-    </div>
+</div>

@@ -173,7 +173,7 @@
     </div>
 </div>
 
-<button class="col-6 btn d-block mx-auto btn-primary langlao mt-3 mb-3" (click)="gotopay()">ຊຳລະ</button>
+<button class="col-6 btn d-block mx-auto btn-primary langlao mt-3 mb-3" (click)="gotopay()" >ຊຳລະ</button>
 
 <hr>
 
@@ -188,12 +188,22 @@
                 <div class="col-xl-6 xol-lg-6 col-12">
                     <div class="input-group mt-3">
                         <label class="col-5" for="">IMEI:</label>
-                        <input class="col-7 form-control text-center" type="text" placeholder="025468181259" disabled>
+                        <input class="col-7 form-control text-center" type="text" [value]="_currentDevice.imei" disabled>
                     </div>
 
                     <div class="input-group mt-3">
-                        <label class="col-5 langlao" for="">ຊື່ຕູ້ນ້ຳກ້ອນ:</label>
-                        <input class="col-7 form-control text-center langlao" type="text" placeholder="ຕູ້ນ້ຳກ້ອນ A" disabled>
+                        <label class="col-5 langlao" for="">ຜູ້ໃຊ້:</label>
+                        <input class="col-7 form-control text-center langlao" type="text" [value]="_currentDevice.name" disabled>
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <label class="col-5 langlao" for="">ເບີໂທລະສັບ:</label>
+                        <input class="col-7 form-control text-center langlao" type="text" [value]="_currentDevice.phonenumber" disabled>
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <label class="col-5 langlao" for="">Ownername:</label>
+                        <input class="col-7 form-control text-center langlao" type="text" [value]="_currentDevice.ownername" disabled>
                     </div>
 
                     <div class="input-group mt-3">
@@ -210,11 +220,15 @@
                         <label class="col-5 langlao" for="">ມື້ຕິດຕັ້ງ:</label>
                         <input class="col-7 form-control text-center langlao" type="text" placeholder="01.01.2011" disabled>
                     </div>
-
                     <div class="input-group mt-3">
-                        <label class="col-5 langlao" for="">ຜູ້ໃຊ້:</label>
-                        <input class="col-7 form-control text-center langlao" type="text" placeholder="Mr.ABC" disabled>
+                        <label class="col-5 langlao" for="">Description:</label>
+                        <textarea class="form-control" name="" id="" rows="5" [value]="_currentDevice.description"></textarea>
                     </div>
+                    <div class="input-group mt-3">
+                        <label class="col-5 langlao" for="">Other:</label>
+                        <textarea class="form-control" name="" id="" rows="5" [value]="_currentDevice.other"></textarea>
+                    </div>
+
                 </div>
 
                 <div class="col-xl-6 xol-lg-6 col-12">

@@ -42,9 +42,6 @@ td {
   background: none !important;
 }
 
-.min-height-recieve {
-  margin-bottom: 60px;
-}
 .table {
   border: none !important;
 }
@@ -143,4 +140,8 @@ td {
 }
 .size-width-name-customer{
   width: 55px;
+}
+
+.comment{
+  position: relative;
 }

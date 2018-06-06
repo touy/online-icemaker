@@ -246,6 +246,7 @@ loadDevices(){
   }
   selectYear(y){
     if(y===undefined) return;
+    this.websocketDataServiceService.setCancelSending();
     this._selectedYear=y;
     this.websocketDataServiceService.selectYear(y);
     console.log('select year '+y);
@@ -254,12 +255,14 @@ loadDevices(){
 
   selectMonth(m){
     if(m===undefined) return;
+    this.websocketDataServiceService.setCancelSending();
     this._selectedMonth=m;
     this.websocketDataServiceService.selectMonth(m);
     console.log('select month '+m);
     this.sendMonth.emit(this._selectedMonth);
   }
   selectDevice(d){
+    this.websocketDataServiceService.setCancelSending();
     this._selectedDevice=d;
    this.sendDevice.emit(this._selectedDevice);
    this.websocketDataServiceService.getProductionTime(this._selectedDevice);

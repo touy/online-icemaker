@@ -329,7 +329,8 @@ import { ElementRef,ViewChild} from '@angular/core';
       sessionStorage.setItem('PD',JSON.stringify(collection));
       sessionStorage.setItem('CD',JSON.stringify(this._currentDevice));
       sessionStorage.setItem('rep',JSON.stringify(this.getAverageProductionBySelected(collection)));
-      this.router.navigate(['/pay-bill']);
+      //this.router.navigate(['/pay-bill'],);
+      window.open( "pay-bill" );
     }
     getAverageProductionBySelected(array){
       let tt=0;

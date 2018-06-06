@@ -59,7 +59,7 @@
                                 <td>{{b.effeciency}}</td>
                                 <td>{{b.effeciency*b.productiontime.working | number:'1.0-0'}}</td>
                                 <td>{{b.rate}}</td>
-                                <td colspan="5">{{b.totalvalue | number:'1.0-0'}}</td>
+                                <td colspan="5">( {{b.totalvalue | number:'1.0-0'}} )</td>
                                 <th class="langlao">
                                     <a (click)="selectDiscount(b);PopUp_add_discout(add_discout)">
                                         <i class="far fa-edit mr-2 icon-edit-paybill"></i>
@@ -101,7 +101,7 @@
     <div class="row">
         <div class="col-md-6">
             <label class="langlao" for="">ຈ່າຍໃຫ້</label>
-            <input class="form-control" [value]="_currentPayment.username" (input)="_currentPayment.username=$event.target.value" type="text">
+            <input class="form-control langlao" [value]="_currentPayment.username" (input)="_currentPayment.username=$event.target.value" type="text">
         </div>
         <div class="col-md-6">
             <label class="langlao" for="">ເພີ່ມເຕີມ</label>

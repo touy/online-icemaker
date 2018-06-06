@@ -1,0 +1,8 @@
+imei: string,
+name: string,
+phonenumber: string;
+ownername: any[],
+photo: any[],
+description: string,
+others: string,
+isactive: boolean,
