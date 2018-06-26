@@ -6,14 +6,14 @@ import { ChatService, Message } from './chat.service';
 import { v4 as uuid } from 'uuid';
 import { Moment } from 'moment';
 import * as moment from 'moment-timezone';
-//import * as PouchDB from 'pouchdb';
-//import { PouchDBService } from './pouchdb.service';
+// import * as PouchDB from 'pouchdb';
+// import { PouchDBService } from './pouchdb.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Injectable()
 export class WebsocketDataServiceService implements OnInit {
 
-  private _timerOutArray: any[]=[];
+  private _timerOutArray: any[] = [];
   private _currentDay = 0;
   private _currentMonth = 0;
   private _currentYear = 0;
@@ -27,7 +27,7 @@ export class WebsocketDataServiceService implements OnInit {
   private _currentUserdetail: any;
   private _server_event: any = [];
   private _moment: Moment;
-  //private _pouch: PouchDB.Database;
+  // private _pouch: PouchDB.Database;
   private _client: Message = {
     gui: '',
     username: '',
@@ -65,7 +65,7 @@ export class WebsocketDataServiceService implements OnInit {
   public currentPaymentSource = new BehaviorSubject<any>(this._currentPayment);
   public currentSubUserSource = new BehaviorSubject<any>(this._currentSubUser);
   public currentBillSource = new BehaviorSubject<any>(this._currentBill);
-  public currentLastreport = new BehaviorSubject<any>(this._lastReport);
+  public currentLastreportSource = new BehaviorSubject<any>(this._lastReport);
   // private currentMessage = this.clientSource.asObservable();
   // private serverEvent = this.eventSource.asObservable();
   // timeOut_runner = setTimeout(() => {
@@ -100,7 +100,7 @@ export class WebsocketDataServiceService implements OnInit {
     this.currentPaymentSource.next(this._currentPayment);
   }
   public refreshLastReport() {
-    this.currentLastreport.next(this._lastReport);
+    this.currentLastreportSource.next(this._lastReport);
   }
 
 
@@ -145,8 +145,8 @@ export class WebsocketDataServiceService implements OnInit {
     this._selectedYear = new Date().getFullYear();
   }
   constructor(private chatService: ChatService, private sanitizer: DomSanitizer) {
-    //this._pouch = new PouchDB('_client');
-    this._timerOutArray=[];
+    // this._pouch = new PouchDB('_client');
+    this._timerOutArray = [];
     this.setCancelSending();
     chatService.messages.subscribe(msg => {
       const d = msg;
@@ -478,7 +478,15 @@ export class WebsocketDataServiceService implements OnInit {
                 }
 
                 break;
-
+              case 'get-production-bills':
+                if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
+                  // console.log(this._client.data['message']);
+                } else {
+                  console.log(this._client.data['message']);
+                  this._currentBill = this._client.data.icemakerbill;
+                  this.refreshBills();
+                }
+                break;
               case 'get-production-time':
                 if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
                   // console.log(this._client.data['message']);
@@ -488,7 +496,7 @@ export class WebsocketDataServiceService implements OnInit {
                   this.refreshBills();
                 }
                 break;
-              case 'get-production-data':
+              case 'get-production-details':
                 if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
                   // console.log(this._client.data['message']);
                 } else {
@@ -517,9 +525,18 @@ export class WebsocketDataServiceService implements OnInit {
                 }
 
                 break;
+                case 'get-realtime-working-status':
+                if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
+                  console.log(this._client.data['message']);
+                } else {
+                  console.log(this._client.data['message']);
+                  this._lastReport = this._client.data.lastreport;
+                  this.refreshLastReport();
+                }
+                break;
               case 'get-latest-working-status':
                 if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
-                  // console.log(this._client.data['message']);
+                  console.log(this._client.data['message']);
                 } else {
                   console.log(this._client.data['message']);
                   this._lastReport = this._client.data.lastreport;
@@ -1117,9 +1134,54 @@ export class WebsocketDataServiceService implements OnInit {
     // this._message.data.year = 2018;
     // this.sendMsg();
   }
-  getLatestWorkingStatus() {
+  getProductionBill(d) {
     this._message = JSON.parse(JSON.stringify(this._client));
     this._message.data = {};
+    this._message.data.device = d;
+    this.setInfoForGetProductionTime(this._message.data);
+    this._message.data.transaction = this.createTransaction();
+    this._message.data.command = 'get-production-bills';
+    if (1) {
+      let i = 0;
+      for (let index = 0; index <= this._message.data.dates; index++) {
+        const element = this._message.data.dates - index;
+        if (element === 0) {
+          break;
+        }
+        const e = element;
+        if (
+          new Date().getMonth() + 1 !== this._message.data.month ||
+          new Date().getFullYear() !== this._message.data.year
+        ) {
+          this._timerOutArray.push(
+            setTimeout(() => {
+              console.log('GET DATA DATE ' + e);
+              this._message.data.day = e;
+              this.sendMsg();
+            }, 1000 * (i++ + 1)));
+        } else if (new Date().getDate() >= e) {
+          this._timerOutArray.push(setTimeout(() => {
+            console.log('GET DATA DATE ' + e);
+            this._message.data.day = e;
+            this.sendMsg();
+          }, 1000 * (i++ + 1)));
+        } else {
+          console.log('ignore');
+        }
+      }
+    }
+    // this._message.data.day = 2;
+    // this._message.data.month = 5;
+    // this._message.data.year = 2018;
+    // this.sendMsg();
+  }
+  getLatestWorkingStatus(device) {
+    this._message = JSON.parse(JSON.stringify(this._client));
+    this._message.data = {};
+    this._message.data.device = device;
+    this._message.data.day = new Date().getDate();
+    this._message.data.month = new Date().getMonth() + 1;
+    this._message.data.year = new Date().getFullYear();
     this._message.data.transaction = this.createTransaction();
     this._message.data.command = 'get-latest-working-status';
     this.sendMsg();

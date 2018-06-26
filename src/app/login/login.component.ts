@@ -145,7 +145,13 @@ export class LoginComponent implements OnInit, OnDestroy {
               this._client.data['command']='';
               this.saveClient();
               console.log("LOGIN OK");
-              this.router.navigate(["/user-list"]);
+              this.router.navigate(["/mix-chart"]);
+              // if(this._client.username==='ice-maker-admin'){
+              //   this.router.navigate(["/mix-chart-admin"]);
+              // }else{
+              //   this.router.navigate(["/mix-chart"]);
+              // }
+              
             }
             break;
           case "get-client":

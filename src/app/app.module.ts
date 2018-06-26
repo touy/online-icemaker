@@ -29,6 +29,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { DeviceInfoComponent } from './device-info/device-info.component';
 import { DeviceSelectListComponent } from './device-select-list/device-select-list.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,8 @@ import { DeviceSelectListComponent } from './device-select-list/device-select-li
     DeviceListComponent,
     UserListComponent,
     DeviceInfoComponent,
-    DeviceSelectListComponent
+    DeviceSelectListComponent,
+
   ],
   imports: [
     NgbModule.forRoot(),

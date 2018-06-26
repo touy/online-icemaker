@@ -33,10 +33,10 @@ export class WebsocketService {
       next: (data: Object) => {
         if (this.ws.readyState === WebSocket.OPEN) {
           console.log('state: ' + this.ws.readyState);
-          if (this.ws.readyState !== 1) {
-            console.log('reconnecting ');
-            this.create(this.url);
-          }
+          // if (this.ws.readyState !== 1) {
+          //   console.log('reconnecting ');
+          //   this.create(this.url);
+          // }
           // console.log(data);
           const buf = Buffer.from(Buffer.from(JSON.stringify(data)).toString('base64'));
           this.ws.send(buf);

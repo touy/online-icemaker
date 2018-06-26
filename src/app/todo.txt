@@ -1,0 +1,7 @@
+1. currently it's admin page ==> OK
+2. need to have page for client ==> OK
+3. there must be only login , logout , and default after login must be production.==>OK
+4. set ownername on database later make a page to adjust the ownername ==> OK
+5. report show the result icemakerbill only ==> OK
+6. no payment button and checkbox ==> OK
+7. get latest online device report.

@@ -28,8 +28,6 @@
 }
 .card:hover{
     background:rgba(0, 188, 212, 0.1);
-    width: 190px;
-    height: 180px;
     transition: 0.8s;
     border:2px double #1df30a;
     box-shadow: 0 0 0 0.2rem #19a0fac9;
@@ -70,7 +68,7 @@
 }
 
 .size-icon-device-select{
-    height: 20px;
+    height: 25px;
     width: 25px;
     border-radius: 100%;
     font-size: 10pt;
@@ -78,8 +76,103 @@
     background: white;
     padding: 4px;
 }
-.size-icon-device-select-imei{
-    height: 20px;
+.size-name{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    font-size: 50pt;
+    color:white;
+    background: #fa8a2e;
+    padding: 4px;
+}
+.text-add{
+    text-align: center;
+    height: 25px !important;
+    width: 25px !important;
+}
+.size-phone{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    font-size: 40pt;
+    color:white;
+    background: #55cb1f;
+    padding: 4px;
+}
+.size-snow-working{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    font-size: 40pt;
+    color:white;
+    background: #fa8a2e;
+    padding: 4px;
+}
+.size-offline{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    font-size: 40pt;
+    color:white;
+    background: #f31a06;
+    padding: 4px;
+}
+.size-sleep{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    font-size: 40pt;
+    color:white;
+    background: #2172eb;
+    padding: 0px;
+}
+.size-snow-time-working{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    font-size: 40pt;
+    color:white;
+    background: #55cb1f;
+    padding: 4px;
+}
+.size-snow-time-sleeping{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    font-size: 40pt;
+    color:white;
+    background: #929091;
+    padding: 4px;
+}
+.size-total-working{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    font-size: 40pt;
+    color:white;
+    background: #007bff;
+    padding: 4px;
+}
+.size-total-working-2{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    font-size: 40pt;
+    color:white;
+    background: #007bff;
+    padding: 0px;
+}
+.size-toltal-sleeping{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    font-size: 40pt;
+    color:white;
+    background: #f31a06;
+    padding: 4px;
+}
+.size-free-fix{
+    height: 25px;
     width: 25px;
     border-radius: 100%;
     font-size: 10pt;
@@ -87,46 +180,11 @@
     background: #fa8a2e;
     padding: 4px;
 }
-.size-icon-device-select-watting{
-    height: 20px;
-    width: 25px;
-    border-radius: 100%;
-    font-size: 10pt;
-    color:white;
-    background: #202020;
-    padding: 4px;
-}
-.size-icon-device-select-phone{
-    height: 20px;
-    width: 25px;
-    border-radius: 100%;
-    font-size: 10pt;
-    color:white;
-    background: #55cb1f;
-    padding: 4px;
-}
-.size-icon-device-select-play{
-    height: 20px;
-    width: 25px;
-    border-radius: 100%;
-    font-size: 10pt;
-    color:white;
-    background: #007bff;
-    padding: 4px;
-}
-.size-icon-device-select-stop{
-    height: 20px;
-    width: 25px;
-    border-radius: 100%;
-    font-size: 10pt;
-    color:white;
-    background: red;
-    padding: 4px;
+.pd-name{
+    padding: 20px;
 }
 .select-decvice{
     background:rgba(0, 188, 212, 0.1);
-    width: 190px;
-    height: 180px;
     transition: 0.8s;
     border:2px double #1df30a;
     box-shadow: 0 0 0 0.2rem #19a0fac9;

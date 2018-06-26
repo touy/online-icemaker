@@ -89,7 +89,7 @@ onSendProduction(e){
   }
   for (let index = 0; index < array.length; index++) {
     const element = array[index];
-    if(this._selectedMonth!==element.month||this._selectedYear!==element.year||this._currentDevice['imei']!==element.imei){
+    if(this._selectedMonth!=element.month||this._selectedYear!=element.year||this._currentDevice['imei']!=element.imei){
       this.productionCollection=[];
       if(e){
         this.productionCollection.push(e);
@@ -99,7 +99,7 @@ onSendProduction(e){
   }
   for (let index = 0; index < array.length; index++) {
     const element = array[index];
-    if(e.day===element.day&&e.month===element.month&&e.year==element.year&&element.imei===element.imei){
+    if(e.day==element.day&&e.month==element.month&&e.year==element.year&&element.imei==element.imei){
       this.productionCollection[index]=e;
       return;
     }

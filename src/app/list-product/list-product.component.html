@@ -147,7 +147,7 @@
                                 <th class="langlao ct">ລາຄາ</th>
                                 <th class="langlao ct">ຈຳນວນ</th>
                                 <th class="langlao ct">ວັນທີຊຳລະ</th>
-                                <th class="langlao ct">ຊຳລະ <br> <input type="checkbox" (change)="selectAll()"/></th>
+                                <th class="langlao ct" *ngIf="isAdmin()">ຊຳລະ <br> <input type="checkbox" (change)="selectAll()"/></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -161,7 +161,7 @@
                                 <td>
                                     {{b.paidtime | date:'dd-MM-yyyy'}}
                                 </td>
-                                <td>
+                                <td *ngIf="isAdmin()">
                                     <input type="checkbox" [checked]="b.isinvoice" [disabled]="b.isdone" (change)="b.isinvoice = !b.isinvoice" >
                                 </td>
                             </tr>
@@ -173,7 +173,7 @@
     </div>
 </div>
 
-<button class="col-6 btn d-block mx-auto btn-primary langlao mt-3 mb-3" (click)="gotopay()" >ຊຳລະ</button>
+<!-- <button class="col-6 btn d-block mx-auto btn-primary langlao mt-3 mb-3" (click)="gotopay()" >ຊຳລະ</button> -->
 
 <hr>
 

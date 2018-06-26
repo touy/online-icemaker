@@ -18,7 +18,7 @@ import { ElementRef,ViewChild} from '@angular/core';
   export class ListProductComponent implements DoCheck {
 
     ngDoCheck() {
-      var changes = this.differ.diff(this.productionCollection);
+      const changes = this.differ.diff(this.productionCollection);
       if (changes) {
         console.log(changes);
         console.log('line chart get new device'+this.productionCollection.length);
@@ -459,5 +459,8 @@ import { ElementRef,ViewChild} from '@angular/core';
   
   /////////////// END SENDING
   /// ICEMAKER ----------------------------------------
+  isAdmin(){
+    return this._client.username==='ice-maker-admin';
+  }
   }
   
