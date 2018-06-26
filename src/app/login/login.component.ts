@@ -246,6 +246,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     this.websocketDataServiceService.refreshClient();
+    this._loginUser.username=this._loginUser.username.toLowerCase();
     this.websocketDataServiceService.login(this._loginUser);
   }
 
