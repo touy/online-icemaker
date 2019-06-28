@@ -173,7 +173,7 @@ export class DeviceSelectListComponent implements OnDestroy, OnInit {
   }
   addLastReport(msg: any): any {
     console.log(msg);
-    if (!msg) { return; }
+    if (!msg||JSON.parse(msg)==='{}') { return; }
     console.log('adding last report');
     const array = this._lastreportcollection;
     if (!array.length) {
