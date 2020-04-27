@@ -1,4 +1,4 @@
-import { element } from "protractor";
+import { element } from 'protractor';
 import {
   Component,
   Inject,
@@ -7,76 +7,76 @@ import {
   Input,
   IterableDiffers,
   DoCheck
-} from "@angular/core";
-import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
-import { Router, RouterModule } from "@angular/router";
-import { FormsModule } from "@angular/forms"; // <<<< import it here
-import { WebsocketDataServiceService } from "../websocket-data-service.service";
-import { ChatService, Message } from "../chat.service";
-import { WebsocketService } from "../websocket.service";
-import { BOOL_TYPE } from "@angular/compiler/src/output/output_ast";
-import { BADFAMILY } from "dns";
+} from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms'; // <<<< import it here
+import { WebsocketDataServiceService } from '../websocket-data-service.service';
+import { ChatService, Message } from '../chat.service';
+import { WebsocketService } from '../websocket.service';
+import { BOOL_TYPE } from '@angular/compiler/src/output/output_ast';
+import { BADFAMILY } from 'dns';
 
-import { ElementRef, ViewChild } from "@angular/core";
+import { ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-  selector: "app-pay-bill",
-  templateUrl: "./pay-bill.component.html",
-  styleUrls: ["./pay-bill.component.css"],
+  selector: 'app-pay-bill',
+  templateUrl: './pay-bill.component.html',
+  styleUrls: ['./pay-bill.component.css'],
   providers: [WebsocketDataServiceService, ChatService, WebsocketService]
 })
 export class PayBillComponent {
   closeResult: string;
-  @ViewChild("Alert_update_details") Alert_update_details: ElementRef;
+  @ViewChild('Alert_update_details', { static: true }) Alert_update_details: ElementRef;
 
   private _message: Message;
-  private billDiscountCollection = [];
+  public billDiscountCollection = [];
   private _deviceInfo: any[];
   private _selectedDevice: any;
   private _server_event: Array<any> = [];
   private _client: Message = {
-    gui: "",
-    username: "",
-    logintoken: "",
-    logintime: "",
-    loginip: "",
+    gui: '',
+    username: '',
+    logintoken: '',
+    logintime: '',
+    loginip: '',
     data: {}
   };
   private _otherSource: any = {};
-  private _loginUser = { username: "", password: "" };
+  private _loginUser = { username: '', password: '' };
   private _currentUserdetail: any = {};
   private _otherMessage: any = {};
   private _subs: any = [];
   private _trans: any = [];
-  private productionCollection = [];
+  public productionCollection = [];
   //// ICE-MAKER
 
-  private _currentDevice: any;
-  private _arrayDevices: any;
-  private _currentSubUser: any;
-  private _currentBill: any;
-  private _arrayBills: any;
-  private _arrayPayment: any;
-  private _currentDiscountBill: any;
-  private _currentPayment = {
-    gui: "",
-    sn: "",
-    bills: [], //{imei:'',_id:'',gui:'',sn:'',workingtime:0,parking:0,problem:0,rate:0,totalvalue:0,effeciency:0,totalvalue:0,paidtime:''}
+  public _currentDevice: any;
+  public _arrayDevices: any;
+  public _currentSubUser: any;
+  public _currentBill: any;
+  public _arrayBills: any;
+  public _arrayPayment: any;
+  public _currentDiscountBill: any;
+  public _currentPayment = {
+    gui: '',
+    sn: '',
+    bills: [], // {imei:'',_id:'',gui:'',sn:'',workingtime:0,parking:0,problem:0,rate:0,totalvalue:0,effeciency:0,totalvalue:0,paidtime:''}
     totalvalue: 0,
     totaldiscount: 0,
     totalpaid: 0,
-    preparedby: "",
-    imei: "",
-    invoicetime: "",
-    description: "",
-    paidby: "",
-    username: "",
-    paidtime: "",
-    approvedtime: "",
+    preparedby: '',
+    imei: '',
+    invoicetime: '',
+    description: '',
+    paidby: '',
+    username: '',
+    paidtime: '',
+    approvedtime: '',
     isapproved: false,
-    approveby: ""
+    approveby: ''
   };
-private _rep:any;
+  public _rep: any;
   /// WEBSOCKET LAUNCHING
   constructor(
     private modalService: NgbModal,
@@ -84,7 +84,7 @@ private _rep:any;
     private router: Router,
     private differs: IterableDiffers
   ) {
-    this._rep={};
+    this._rep = {};
     this.loadClient();
     // if (this._client.logintoken) {
     //     router.navigate(["/main-menu"]);
@@ -100,7 +100,7 @@ private _rep:any;
       })
     );
     this._currentDevice = [];
-    console.log("load line chart");
+    console.log('load line chart');
   }
   //// END WEBSOCKET LAUNCHING
 
@@ -112,7 +112,7 @@ private _rep:any;
   private clearJSONValue(u) {
     for (const key in u) {
       if (u.hasOwnProperty(key)) {
-        u[key] = "";
+        u[key] = '';
       }
     }
   }
@@ -129,20 +129,20 @@ private _rep:any;
   }
   runInit() {
     setTimeout(() => {
-      //this.loadDevices();
+      // this.loadDevices();
     }, 1000);
   }
   ngOnDestroy() {
-    console.log("STOP SERVICE");
+    console.log('STOP SERVICE');
   }
   saveClient() {
     // this.websocketDataServiceService.refreshClient();
     this.websocketDataServiceService.setClient(this._client);
   }
   loadClient() {
-    let pd = sessionStorage.getItem("PD");
-    let cd = sessionStorage.getItem("CD");
-    let rep = sessionStorage.getItem("rep");
+    const pd = sessionStorage.getItem('PD');
+    const cd = sessionStorage.getItem('CD');
+    const rep = sessionStorage.getItem('rep');
     if (cd) {
       this._currentDevice = JSON.parse(cd);
     }
@@ -151,31 +151,31 @@ private _rep:any;
       /// to other page
       return;
     }
-    
-    if(rep){
-      this._rep=JSON.parse(rep);
+
+    if (rep) {
+      this._rep = JSON.parse(rep);
     }
 
     this.productionCollection = JSON.parse(pd);
-    sessionStorage.setItem("PD", "");
-    sessionStorage.setItem("firstHandShake", "");
-    sessionStorage.setItem("firstHeartBeat", "");
+    sessionStorage.setItem('PD', '');
+    sessionStorage.setItem('firstHandShake', '');
+    sessionStorage.setItem('firstHeartBeat', '');
 
     this._client = this.websocketDataServiceService.getClient();
-    console.log("client loaded");
+    console.log('client loaded');
     this.getTotalValue();
   }
   /// INIT FUNCTIONS
 
   /// *************RECEIVING  */
   readPayment(m) {
-    console.log("got " + m);
+    console.log('got ' + m);
     if (m) {
       this._currentPayment = m;
       console.log(m);
-      alert("got payment");
-      sessionStorage.setItem("PM", JSON.stringify(this._currentPayment));
-      this.router.navigate(["/bill"]);
+      alert('got payment');
+      sessionStorage.setItem('PM', JSON.stringify(this._currentPayment));
+      this.router.navigate(['/bill']);
     }
   }
   readClient(c): any {
@@ -185,14 +185,14 @@ private _rep:any;
         this._client = c;
         // this.saveClient();
         // console.log(c);
-        switch (this._client.data["command"]) {
-          case "ping":
+        switch (this._client.data['command']) {
+          case 'ping':
             if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
+              this._client.data['message'].toLowerCase().indexOf('error') > -1
             ) {
-              console.log(this._client.data["message"]);
+              console.log(this._client.data['message']);
             } else {
-              console.log(this._client.data["message"]);
+              console.log(this._client.data['message']);
             }
             break;
 
@@ -201,26 +201,26 @@ private _rep:any;
         }
       } else {
         // alert('data empty');
-        console.log("data is empty");
+        console.log('data is empty');
       }
     } catch (error) {
       console.log(error);
     }
   }
-  //?????????????????????
+  // ?????????????????????
   getColor(value) {
     if (value < 1) {
-      return "red";
+      return 'red';
     } else if (value < 1) {
-      return "white";
+      return 'white';
     } else {
-      return "";
+      return '';
     }
   }
-  ////??????????????????????????????????
+  //// ??????????????????????????????????
   makePayment() {
     let array = this.productionCollection;
-    let bills = [];
+    const bills = [];
     for (let index = 0; index < array.length; index++) {
       const element = array[index];
       bills.push({
@@ -236,7 +236,7 @@ private _rep:any;
         effeciency: element.effeciency,
         totaldiscount: element.totaldiscount,
         description: element.description,
-        paidtime: ""
+        paidtime: ''
       });
     }
     array = this.billDiscountCollection;
@@ -255,21 +255,21 @@ private _rep:any;
         effeciency: element.effeciency,
         totaldiscount: -element.totaldiscount,
         description: element.description,
-        paidtime: ""
+        paidtime: ''
       });
     }
     this._currentPayment.bills = bills;
-    //alert(bills.length);
+    // alert(bills.length);
     // this.websocketDataServiceService.makePayment(this._currentPayment);
 
-    if (confirm("making payment: " + this._currentPayment.totalpaid)) {
+    if (confirm('making payment: ' + this._currentPayment.totalpaid)) {
       this.websocketDataServiceService.makePayment(this._currentPayment);
     }
   }
-  ///??????????
+  /// ??????????
   getTotalDiscount() {
     let tt = 0;
-    let array = this.billDiscountCollection;
+    const array = this.billDiscountCollection;
     for (let index = 0; index < array.length; index++) {
       const element = array[index];
       tt -= element.totalvalue;
@@ -281,7 +281,7 @@ private _rep:any;
     let tt = 0;
     tt = this.getTotalDiscount();
     let t = 0;
-    let array = this.productionCollection;
+    const array = this.productionCollection;
     for (let index = 0; index < array.length; index++) {
       const element = array[index];
       t += element.totalvalue;
@@ -291,9 +291,9 @@ private _rep:any;
     this._currentPayment.totalpaid = tt;
     return tt;
   }
-  ///?????????????????????
+  /// ?????????????????????
   saveDicountBill() {
-    let array = this.billDiscountCollection;
+    const array = this.billDiscountCollection;
     for (let index = 0; index < array.length; index++) {
       const element = array[index];
       if (this._currentDiscountBill.sn === element.sn) {
@@ -303,9 +303,9 @@ private _rep:any;
     this.getTotalValue();
   }
 
-  //?????????????????????????
+  // ?????????????????????????
   deleteDiscountBill(b) {
-    let array = this.billDiscountCollection;
+    const array = this.billDiscountCollection;
     for (let index = 0; index < array.length; index++) {
       const element = array[index];
       if (b.sn === element.sn) {
@@ -314,10 +314,10 @@ private _rep:any;
     }
     this.getTotalValue();
   }
-  //?????????????????????????????????
+  // ?????????????????????????????????
   cancelAddDiscount() {
     if (this._currentDiscountBill) {
-      if (this._currentDiscountBill["isnew"] === true) {
+      if (this._currentDiscountBill['isnew'] === true) {
         this.billDiscountCollection.splice(
           this.billDiscountCollection.length - 1,
           1
@@ -336,16 +336,16 @@ private _rep:any;
         totalvalue: 0,
         imei: this.productionCollection[0].imei,
         sn:
-          "_" +
+          '_' +
           `${new Date().getDate()}${new Date().getMonth() +
-            1}${new Date().getFullYear()}${new Date().getTime()}`,
+          1}${new Date().getFullYear()}${new Date().getTime()}`,
         isdone: true,
-        paidtime: "",
-        description: "",
-        paymentgui: "",
-        paidby: "",
-        generatedtime: "",
-        gui: "",
+        paidtime: '',
+        description: '',
+        paymentgui: '',
+        paidby: '',
+        generatedtime: '',
+        gui: '',
         lastupdate: []
       };
       this.getTotalValue();
@@ -375,9 +375,9 @@ private _rep:any;
     console.log(this._currentDiscountBill.productiontime.working);
     this.getTotalValue();
   }
-  //??????????????
-  confirmPayment() {}
-  //?????????????????????????????????
+  // ??????????????
+  confirmPayment() { }
+  // ?????????????????????????????????
   addDiscount() {
     if (this.productionCollection.length) {
       this._currentDiscountBill = {
@@ -393,16 +393,16 @@ private _rep:any;
         totalvalue: 0,
         imei: this.productionCollection[0].imei,
         sn:
-          "_" +
+          '_' +
           `${new Date().getDate()}${new Date().getMonth() +
-            1}${new Date().getFullYear()}${new Date().getTime()}`,
+          1}${new Date().getFullYear()}${new Date().getTime()}`,
         isdone: true,
-        paidtime: "",
-        description: "",
-        paymentgui: "",
-        paidby: "",
-        generatedtime: "",
-        gui: "",
+        paidtime: '',
+        description: '',
+        paymentgui: '',
+        paidby: '',
+        generatedtime: '',
+        gui: '',
         lastupdate: [],
         isnew: true
       };

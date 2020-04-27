@@ -22,7 +22,7 @@ export class DeviceSelectListComponent implements OnDestroy, OnInit {
   @Output() sendProduction = new EventEmitter<any>();
   @Output() sendYear = new EventEmitter<any>();
   @Output() sendMonth = new EventEmitter<any>();
-  @ViewChild('Alert_update_details') Alert_update_details: ElementRef;
+  @ViewChild('Alert_update_details', { static: true }) Alert_update_details: ElementRef;
 
   private _currentBill: any;
   private _deviceInfo: any[];
@@ -40,7 +40,7 @@ export class DeviceSelectListComponent implements OnDestroy, OnInit {
 
   //// ICE-MAKER
 
-  private _currentDevice: any;
+  public _currentDevice: any;
   private _arrayDevices: any;
 
 
@@ -140,8 +140,8 @@ export class DeviceSelectListComponent implements OnDestroy, OnInit {
       window.navigator.geolocation.getCurrentPosition(
         position => {
           this.geolocationPosition = position,
-          console.log('GPS location');
-            console.log(position);
+            console.log('GPS location');
+          console.log(position);
         },
         error => {
           switch (error.code) {
@@ -157,7 +157,7 @@ export class DeviceSelectListComponent implements OnDestroy, OnInit {
           }
         }
       );
-    };
+    }
   }
   runInit() {
     setTimeout(() => {
@@ -173,12 +173,20 @@ export class DeviceSelectListComponent implements OnDestroy, OnInit {
   }
   addLastReport(msg: any): any {
     console.log(msg);
-    if (!msg||JSON.parse(msg)==='{}') { return; }
+    if (!msg || JSON.stringify(msg) === '{}') { return; }
     console.log('adding last report');
-    const array = this._lastreportcollection;
-    if (!array.length) {
+    console.log('length ', this._lastreportcollection.length);
+    console.log('data ', this._lastreportcollection[0]);
+
+    if (!this._lastreportcollection.length || !this._lastreportcollection[0]) {
       this._lastreportcollection.push(msg);
+      // array = this._lastreportcollection;
+      console.log('added last report', msg);
+
     }
+    const array = this._lastreportcollection;
+    console.log(array);
+
     for (let index = 0; index < array.length; index++) {
       const element = array[index];
       if (element.data && msg.data) {
@@ -333,12 +341,12 @@ export class DeviceSelectListComponent implements OnDestroy, OnInit {
     this.websocketDataServiceService.setCancelSending();
     this._selectedDevice = d;
     this.sendDevice.emit(this._selectedDevice);
-    if(this.isAdmin()){
+    if (this.isAdmin()) {
       this.websocketDataServiceService.getProductionTime(this._selectedDevice);
-    }else{
+    } else {
       this.websocketDataServiceService.getProductionBill(this._selectedDevice);
     }
-    
+
   }
   getSelectedDevice(d) {
     if (d && this._selectedDevice) {
@@ -396,10 +404,10 @@ export class DeviceSelectListComponent implements OnDestroy, OnInit {
 
     }
   }
-  isToday(d){
-    let today=new Date();
-    let other=new Date(d);
-    return other.getDate()===today.getDate()&&other.getMonth()===today.getMonth()&&other.getFullYear()===today.getFullYear();
+  isToday(d) {
+    const today = new Date();
+    const other = new Date(d);
+    return other.getDate() === today.getDate() && other.getMonth() === today.getMonth() && other.getFullYear() === today.getFullYear();
   }
   getLocalLastReport(imei) {
     const array = this._lastreportcollection;
@@ -426,9 +434,8 @@ export class DeviceSelectListComponent implements OnDestroy, OnInit {
     }
 
   }
-  isAdmin(){
-    return this._client.username==='ice-maker-admin';
+  isAdmin() {
+    return this._client.username === 'ice-maker-admin';
   }
 
 }
-

@@ -29,6 +29,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { DeviceInfoComponent } from './device-info/device-info.component';
 import { DeviceSelectListComponent } from './device-select-list/device-select-list.component';
 
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -53,16 +54,16 @@ import { DeviceSelectListComponent } from './device-select-list/device-select-li
     DeviceListComponent,
     UserListComponent,
     DeviceInfoComponent,
-    DeviceSelectListComponent,
-
+    DeviceSelectListComponent
   ],
   imports: [
-    NgbModule.forRoot(),
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     ChartsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

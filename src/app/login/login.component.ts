@@ -1,35 +1,35 @@
-import { Component, Inject, OnInit, OnDestroy } from "@angular/core";
-import { Router, RouterModule } from "@angular/router";
-import { FormsModule } from "@angular/forms"; // <<<< import it here
-import { WebsocketDataServiceService } from "../websocket-data-service.service";
-import { ChatService, Message } from "../chat.service";
-import { WebsocketService } from "../websocket.service";
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms'; // <<<< import it here
+import { WebsocketDataServiceService } from '../websocket-data-service.service';
+import { ChatService, Message } from '../chat.service';
+import { WebsocketService } from '../websocket.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
   providers: [WebsocketDataServiceService, ChatService, WebsocketService]
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private _message: Message;
   private _newUser: any = {};
-  private _userDetailsStr = "";
+  private _userDetailsStr = '';
   private _server_event: any = [];
   private _client: Message = {
-    gui: "",
-    username: "",
-    logintoken: "",
-    logintime: "",
-    loginip: "",
+    gui: '',
+    username: '',
+    logintoken: '',
+    logintime: '',
+    loginip: '',
     data: {}
   };
-  private _otherSource: any = {};
-  private _loginUser = { username: "", password: "" };
-  private _currentUserdetail: any = {};
-  private _otherMessage: any = {};
-  private _subs: any = [];
-  private _trans: any = [];
+  public _otherSource: any = {};
+  public _loginUser = { username: '', password: '' };
+  public _currentUserdetail: any = {};
+  public _otherMessage: any = {};
+  public _subs: any = [];
+  public _trans: any = [];
 
   /// WEBSOCKET LAUNCHING
   constructor(
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private clearJSONValue(u) {
     for (const key in u) {
       if (u.hasOwnProperty(key)) {
-        u[key] = "";
+        u[key] = '';
       }
     }
   }
@@ -93,23 +93,23 @@ export class LoginComponent implements OnInit, OnDestroy {
     this._newUser.data.user = {};
     this._message = JSON.parse(JSON.stringify(this._client));
     this._currentUserdetail = {};
-    this._userDetailsStr = "";
+    this._userDetailsStr = '';
     this._otherMessage = {};
   }
   ngOnDestroy() {
-    console.log("STOP SERVICE");
+    console.log('STOP SERVICE');
   }
   saveClient() {
     this.websocketDataServiceService.setClient(this._client);
-   // console.log(JSON.stringify(this._client));
+    // console.log(JSON.stringify(this._client));
   }
   loadClient() {
-    sessionStorage.setItem("firstHandShake", "");
-    sessionStorage.setItem("firstHeartBeat", "");
-    //if (!this._client.gui || this._client.gui === undefined) {
-      this._client = this.websocketDataServiceService.getClient();
-      //this.websocketDataServiceService.refreshClient();
-      console.log("client loaded");
+    sessionStorage.setItem('firstHandShake', '');
+    sessionStorage.setItem('firstHeartBeat', '');
+    // if (!this._client.gui || this._client.gui === undefined) {
+    this._client = this.websocketDataServiceService.getClient();
+    // this.websocketDataServiceService.refreshClient();
+    console.log('client loaded');
     // } else {
     //   this.saveClient();
     // }
@@ -122,54 +122,54 @@ export class LoginComponent implements OnInit, OnDestroy {
     try {
       if (c !== undefined) {
         this._client = c;
-        switch (this._client.data["command"]) {
-          case "heart-beat":
+        switch (this._client.data['command']) {
+          case 'heart-beat':
             if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
+              this._client.data['message'].toLowerCase().indexOf('error') > -1
             ) {
-              console.log(this._client.data["message"]);
+              console.log(this._client.data['message']);
             } else {
-              console.log("heart beat ok");
+              console.log('heart beat ok');
             }
             break;
-          case "ping":
-            console.log("ping OK");
+          case 'ping':
+            console.log('ping OK');
             break;
-          case "login":
+          case 'login':
             if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
+              this._client.data['message'].toLowerCase().indexOf('error') > -1
             ) {
-              console.log(this._client.data["message"]);
+              console.log(this._client.data['message']);
             } else {
-              this._client.data['message']='';
-              this._client.data['command']='';
+              this._client.data['message'] = '';
+              this._client.data['command'] = '';
               this.saveClient();
-              console.log("LOGIN OK");
-              this.router.navigate(["/mix-chart"]);
+              console.log('LOGIN OK');
+              this.router.navigate(['/mix-chart']);
               // if(this._client.username==='ice-maker-admin'){
               //   this.router.navigate(["/mix-chart-admin"]);
               // }else{
               //   this.router.navigate(["/mix-chart"]);
               // }
-              
+
             }
             break;
-          case "get-client":
+          case 'get-client':
             if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
+              this._client.data['message'].toLowerCase().indexOf('error') > -1
             ) {
-              console.log(this._client.data["message"]);
+              console.log(this._client.data['message']);
             } else {
-              console.log("get-client OK");
+              console.log('get-client OK');
             }
             break;
-          case "shake-hands":
+          case 'shake-hands':
             if (
-              this._client.data["message"].toLowerCase().indexOf("error") > -1
+              this._client.data['message'].toLowerCase().indexOf('error') > -1
             ) {
-              console.log(this._client.data["message"]);
+              console.log(this._client.data['message']);
             } else {
-              console.log("shake hands ok");
+              console.log('shake hands ok');
               console.log(this._client);
               this.saveClient();
             }
@@ -178,7 +178,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             break;
         }
       } else {
-        console.log("data is empty");
+        console.log('data is empty');
       }
     } catch (error) {
       // alert(error);
@@ -193,14 +193,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     const d = event;
     if (d !== undefined) {
       this._server_event.push(d);
-      if (d["command"] !== undefined) {
-        switch (d["command"]) {
-          case "error-changed":
-            console.log(d["client"]["data"]["message"]);
+      if (d['command'] !== undefined) {
+        switch (d['command']) {
+          case 'error-changed':
+            console.log(d['client']['data']['message']);
             break;
-          case "login-changed":
+          case 'login-changed':
             console.log(
-              d["client"]["logintoken"] + "   -   " + d["client"]["logintime"]
+              d['client']['logintoken'] + '   -   ' + d['client']['logintime']
             );
             break;
           default:
@@ -222,12 +222,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   showNewMessage() {
-    this._client.data.message = "changed from show message";
+    this._client.data.message = 'changed from show message';
     this.websocketDataServiceService.changeMessage(this._client);
   }
   setOtherMessage() {
     const msg = {
-      title: "",
+      title: '',
       data: {},
       other: {}
     };
@@ -240,13 +240,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   ping_test() {
     this.websocketDataServiceService.refreshClient();
     this.websocketDataServiceService.ping_test();
-    this._client.data.message += " HERE in app component";
+    this._client.data.message += ' HERE in app component';
     console.log(this._client);
   }
 
   login() {
     this.websocketDataServiceService.refreshClient();
-    this._loginUser.username=this._loginUser.username.toLowerCase();
+    this._loginUser.username = this._loginUser.username.toLowerCase();
     this.websocketDataServiceService.login(this._loginUser);
   }
 
@@ -256,7 +256,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.websocketDataServiceService.setClient(this._client);
     this.router
       .navigate([com])
-      .then(res => {})
+      .then(res => { })
       .catch(err => {
         console.log(err);
       });

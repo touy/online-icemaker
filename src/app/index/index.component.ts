@@ -9,7 +9,7 @@ import { WebsocketService } from '../websocket.service';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css','./second-index.component.css','./util.component.css'],
+  styleUrls: ['./index.component.css', './second-index.component.css', './util.component.css'],
   providers: [WebsocketDataServiceService, ChatService, WebsocketService]
 })
 
@@ -47,7 +47,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   constructor(private websocketDataServiceService: WebsocketDataServiceService, private router: Router) {
     this.loadClient();
     this._subs.push(this.websocketDataServiceService.clientSource.subscribe(client => {
-    this.readClient(client);
+      this.readClient(client);
     }));
     this._subs.push(this.websocketDataServiceService.newUserSource.subscribe(client => {
       this._newUser = client;
@@ -76,7 +76,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     this._subs.push(this.websocketDataServiceService.currentSubUserSource.subscribe(msg => {
       this.readSubUser(msg);
     }));
-    //this.websocketDataServiceService.heartbeat_interval = setInterval(this.websocketDataServiceService.heartbeat.bind(this.websocketDataServiceService), 1000 * 60);
+    // this.websocketDataServiceService.heartbeat_interval = setInterval(this.websocketDataServiceService.heartbeat.bind(this.websocketDataServiceService), 1000 * 60);
 
   }
   //// END WEBSOCKET LAUNCHING
@@ -207,9 +207,9 @@ export class IndexComponent implements OnInit, OnDestroy {
             if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
               console.log(this._client.data['message']);
             } else {
-              alert("Get device is working2");
+              alert('Get device is working2');
             }
-            break; 
+            break;
           default:
             break;
         }

@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 // tslint:disable-next-line:import-blacklist
 import { Observable, Subject } from 'rxjs';
 import { WebsocketService } from './websocket.service';
-import { DOCUMENT } from '@angular/platform-browser';
-import { map, share } from 'rxjs/operators';
+// import { DOCUMENT } from '@angular/platform-browser';
+import { map, share } from 'rxjs/Operators';
 import { Buffer } from 'buffer';
 // let CHAT_URL = 'ws://192.168.0.228:6698//'; // ice-maker web service
 // let CHAT_URL = 'ws://localhost:6698/';
-let CHAT_URL = 'ws://nonav.net:6698/'; // ice-maker web service
-// let CHAT_URL = 'ws://nonav.net:6688/'; // user-mananagement web service
+let CHAT_URL = 'ws://laoapps.com:6698/'; // ice-maker web service
+// let CHAT_URL = 'ws://laoapps.com:6688/'; // user-mananagement web service
 export interface Message {
   gui: string;
   username: string;
@@ -55,7 +55,6 @@ export class ChatService {
         // console.log(data);
         return data;
       })).pipe(share());
-      // })).pipe(share());
   }
   seturl(url) {
     CHAT_URL = url;

@@ -150,7 +150,8 @@ export class WebsocketDataServiceService implements OnInit {
     this.setCancelSending();
     chatService.messages.subscribe(msg => {
       const d = msg;
-      // // alert(d);
+     // console.log('d: ', d);
+
       try {
         if (d !== undefined) {
           if (d['command'] !== undefined) {
@@ -235,8 +236,10 @@ export class WebsocketDataServiceService implements OnInit {
             this._client = msg;
             // this.setClient(this._client);
             // this.refreshClient();
-            console.log('return from server client');
-            console.log(this._client);
+            // console.log('return from server client');
+            // console.log(this._client);
+            // console.log('command ', this._client.data ? this._client.data.command : 'none command');
+
             switch (this._client.data['command']) {
               // case 'heart-beat':
               //   if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
@@ -525,7 +528,7 @@ export class WebsocketDataServiceService implements OnInit {
                 }
 
                 break;
-                case 'get-realtime-working-status':
+              case 'get-realtime-working-status':
                 if (this._client.data['message'].toLowerCase().indexOf('error') > -1) {
                   console.log(this._client.data['message']);
                 } else {

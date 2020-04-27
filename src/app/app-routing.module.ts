@@ -21,7 +21,6 @@ import { DeviceListComponent } from './device-list/device-list.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { DeviceInfoComponent } from './device-info/device-info.component';
 
-
 const routes: Routes = [
   { path: '', component: MainMenuComponent },
   { path: 'chart', component: ChartComponent },
@@ -41,8 +40,7 @@ const routes: Routes = [
   { path: 'device-list', component:DeviceListComponent},
   { path: 'user-list', component:UserListComponent},
   { path: 'device-info', component:DeviceInfoComponent},
-  { path: 'device-seletct-list', component:DeviceSelectListComponent},
-
+  { path: 'device-seletct-list', component:DeviceSelectListComponent}
 ]
 
 @NgModule({

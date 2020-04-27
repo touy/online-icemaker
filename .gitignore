@@ -4,14 +4,9 @@
 /dist
 /tmp
 /out-tsc
-
+.history
 # dependencies
-/*
-!/node_modules
-/node_modules/*
-!/node_modules/bootstrap
-node_modules
-
+/node_modules
 
 # IDEs and editors
 /.idea
