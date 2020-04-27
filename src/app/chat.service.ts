@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { WebsocketService } from './websocket.service';
 // import { DOCUMENT } from '@angular/platform-browser';
-import { map, share } from 'rxjs/Operators';
+import { map, share } from 'rxjs/operators';
 import { Buffer } from 'buffer';
 // let CHAT_URL = 'ws://192.168.0.228:6698//'; // ice-maker web service
 // let CHAT_URL = 'ws://localhost:6698/';
